@@ -21,6 +21,7 @@ import {
   Unlock,
   RotateCcw,
   Plus,
+  Minus,
   Trash2,
   Sparkles,
   Pencil,
@@ -444,8 +445,12 @@ function Section({ title, subtitle, children, action }) {
  *     if any existing source has an outgoing edge, wires the new node into
  *     that same downstream target so it participates in the Sankey.
  */
-function CostSourcesTable({ sources, groupId, laneId, frozen }) {
-  const totalActual = sources.reduce((s, n) => s + (n.amount || 0), 0);
+function CostSourcesTable({ sources, adjustments = [], groupId, laneId, frozen }) {
+  // Werkelijk = sources + adjustments (signed). Begroting only sources —
+  // adjustments are corrections that, by definition, weren't budgeted.
+  const totalActual =
+    sources.reduce((s, n) => s + (n.amount || 0), 0) +
+    adjustments.reduce((s, n) => s + (n.amount || 0), 0);
   const totalBudgeted = sources.reduce((s, n) => s + (n.budgetedAmount || 0), 0);
 
   function handleAdd() {
@@ -622,6 +627,83 @@ function CostSourcesTable({ sources, groupId, laneId, frozen }) {
             </tr>
           );
         })}
+
+        {/* Adjustment rows — corrections inserted on edges via the canvas.
+         *  Different visual treatment so the user can tell at a glance
+         *  these are signed corrections, not regular suppliers: violet
+         *  accent, +/− chip in the Soort column, signed amount in the
+         *  Werkelijk column tinted by direction, no Begroting/Afwijking. */}
+        {adjustments.map((a) => {
+          const isPositive = (a.amount || 0) >= 0;
+          const SignIcon = isPositive ? Plus : Minus;
+          return (
+            <tr key={a.id} className="group hover:bg-violet-50/40 bg-violet-50/20">
+              <td className="px-3 py-2">
+                <div className="flex items-center gap-1.5 min-w-0">
+                  <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded-full bg-violet-100 border border-violet-200 text-violet-700 text-[9px] font-semibold uppercase tracking-wider shrink-0">
+                    <Sparkles size={9} />
+                    Correctie
+                  </span>
+                  <EditableTextCell
+                    value={a.label}
+                    disabled={frozen}
+                    placeholder="Reden van correctie"
+                    onCommit={(val) =>
+                      setNodeField(groupId, a.id, "label", val)
+                    }
+                  />
+                </div>
+              </td>
+              <td className="px-3 py-2 text-slate-600">
+                <span
+                  className={`inline-flex items-center gap-1 text-[11px] ${
+                    isPositive ? "text-emerald-700" : "text-amber-700"
+                  }`}
+                >
+                  <SignIcon size={11} strokeWidth={2.5} />
+                  {isPositive ? "Bijtelling" : "Aftrek"}
+                </span>
+              </td>
+              <td className="px-3 py-2 text-right tabular-nums text-slate-300">
+                —
+              </td>
+              <td className="px-3 py-2">
+                <EditableCurrencyCell
+                  value={a.amount}
+                  disabled={frozen}
+                  onCommit={(val) =>
+                    setNodeField(groupId, a.id, "amount", val)
+                  }
+                />
+              </td>
+              <td className="px-3 py-2 text-right tabular-nums text-slate-300">
+                —
+              </td>
+              <td className="px-1.5 py-2 text-right">
+                {!frozen && (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      if (
+                        typeof window !== "undefined" &&
+                        !window.confirm(
+                          `Correctie "${a.label || a.id}" verwijderen?`
+                        )
+                      )
+                        return;
+                      deleteNode(groupId, a.id, laneId);
+                    }}
+                    className="opacity-0 group-hover:opacity-100 transition-opacity inline-flex items-center justify-center w-6 h-6 rounded text-slate-400 hover:bg-rose-50 hover:text-rose-600 focus:opacity-100 focus:outline-none focus:ring-1 focus:ring-rose-300"
+                    title="Correctie verwijderen"
+                  >
+                    <Trash2 size={12} />
+                  </button>
+                )}
+              </td>
+            </tr>
+          );
+        })}
+
         {!frozen && (
           <tr className="border-t border-slate-100">
             <td colSpan={6} className="px-3 py-1.5">
@@ -1065,6 +1147,16 @@ export default function LaneWorkflowView({ laneId, scopeAudienceId, onJumpToBook
       flow.nodes.filter((n) => n.type === "source" && n.laneId === laneId),
     [flow, laneId]
   );
+  // Adjustments inserted on edges (Phase 7) are also cost line-items
+  // with a sign; they belong in Step 1's Kostenposten list alongside the
+  // sources so the user sees the full picture of what makes up the total.
+  const adjustments = useMemo(
+    () =>
+      flow.nodes.filter(
+        (n) => n.type === "adjustment" && n.laneId === laneId
+      ),
+    [flow, laneId]
+  );
   const allSettlements = useMemo(
     () =>
       flow.nodes.filter(
@@ -1086,11 +1178,25 @@ export default function LaneWorkflowView({ laneId, scopeAudienceId, onJumpToBook
   );
 
   const hasEdits = groupId
-    ? hasEditsForLane(groupId, [...sources, ...allSettlements], laneId)
+    ? hasEditsForLane(
+        groupId,
+        [...sources, ...adjustments, ...allSettlements],
+        laneId
+      )
     : false;
 
-  const totalActual = sources.reduce((s, n) => s + (n.amount || 0), 0);
-  const totalBudgeted = sources.reduce((s, n) => s + (n.budgetedAmount || 0), 0);
+  // Werkelijk-totaal = sources + adjustments (signed). Mirrors what
+  // active() in costFlow.js folds into the settlement amount.
+  const totalSources = sources.reduce((s, n) => s + (n.amount || 0), 0);
+  const totalAdjustments = adjustments.reduce(
+    (s, n) => s + (n.amount || 0),
+    0
+  );
+  const totalActual = totalSources + totalAdjustments;
+  const totalBudgeted = sources.reduce(
+    (s, n) => s + (n.budgetedAmount || 0),
+    0
+  );
 
   // Component-level identity is derived: service code from settlements,
   // ledger account from the first source's anchor.
@@ -1198,10 +1304,11 @@ export default function LaneWorkflowView({ laneId, scopeAudienceId, onJumpToBook
         {/* Stap 1 — Kostenposten */}
         <Section
           title="1 · Kostenposten"
-          subtitle="Eén rij per leverancier die bijdraagt aan dit component. Klik op een veld om te wijzigen, of voeg onderaan een nieuwe leverancier toe."
+          subtitle="Eén rij per leverancier die bijdraagt aan dit component, plus eventuele correcties. Klik op een veld om te wijzigen."
         >
           <CostSourcesTable
             sources={sources}
+            adjustments={adjustments}
             groupId={groupId}
             laneId={laneId}
             frozen={frozen}
@@ -1289,7 +1396,7 @@ export default function LaneWorkflowView({ laneId, scopeAudienceId, onJumpToBook
                     return;
                   clearLaneEdits(
                     groupId,
-                    [...sources, ...allSettlements],
+                    [...sources, ...adjustments, ...allSettlements],
                     laneId
                   );
                 }}
