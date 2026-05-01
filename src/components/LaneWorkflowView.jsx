@@ -46,7 +46,8 @@ import {
   useEditsVersion,
 } from "@/lib/costFlowEdits";
 import { getLaneTenancyOutcomes } from "@/lib/perTenant";
-import TenancyDetailSheet from "./TenancyDetailSheet";
+// (TenancyDetailSheet entry point lives in the Huurders-tab now —
+//  the lane workflow no longer needs it inline.)
 
 /* ──────────────────────────────────────────────────────────────
  * LaneWorkflowView — the cost-component workflow page (Phase 2)
@@ -445,6 +446,20 @@ function Section({ title, subtitle, children, action }) {
  *     if any existing source has an outgoing edge, wires the new node into
  *     that same downstream target so it participates in the Sankey.
  */
+/* ─── ReadOnlyCurrencyCell — voor Werkelijk-bedragen die uit het
+ * grootboek komen. Geen klik-affordance, geen hover-state — duidelijk
+ * een uitkomst, geen invoerveld. */
+function ReadOnlyCurrencyCell({ value, hint = "Uit grootboek" }) {
+  return (
+    <div
+      className="text-right text-[11px] tabular-nums text-slate-900 cursor-default px-1.5 py-0.5"
+      title={hint}
+    >
+      {value != null ? fmtEur(value) : "—"}
+    </div>
+  );
+}
+
 function CostSourcesTable({ sources, adjustments = [], groupId, laneId, frozen }) {
   // Werkelijk = sources + adjustments (signed). Begroting only sources —
   // adjustments are corrections that, by definition, weren't budgeted.
@@ -519,8 +534,28 @@ function CostSourcesTable({ sources, adjustments = [], groupId, laneId, frozen }
         <tr>
           <th className="text-left font-semibold px-3 py-2">Leverancier</th>
           <th className="text-left font-semibold px-3 py-2">Soort</th>
-          <th className="text-right font-semibold px-3 py-2 w-32">Begroting</th>
-          <th className="text-right font-semibold px-3 py-2 w-32">Werkelijk</th>
+          <th className="text-right font-semibold px-3 py-2 w-32">
+            <div className="flex items-center justify-end gap-1">
+              <span>Begroting</span>
+              <span
+                className="inline-flex items-center px-1 py-0.5 rounded text-[8px] font-semibold tracking-wider text-slate-500 bg-slate-100 border border-slate-200 normal-case"
+                title="Wordt jaarlijks vastgesteld door admin — organisatiebreed"
+              >
+                Admin
+              </span>
+            </div>
+          </th>
+          <th className="text-right font-semibold px-3 py-2 w-32">
+            <div className="flex items-center justify-end gap-1">
+              <span>Werkelijk</span>
+              <span
+                className="inline-flex items-center px-1 py-0.5 rounded text-[8px] font-semibold tracking-wider text-slate-500 bg-slate-100 border border-slate-200 normal-case"
+                title="Uitkomst uit het grootboek — niet bewerkbaar"
+              >
+                Grootboek
+              </span>
+            </div>
+          </th>
           <th className="text-right font-semibold px-3 py-2 w-24">Afwijking</th>
           <th className="w-8" />
         </tr>
@@ -591,13 +626,8 @@ function CostSourcesTable({ sources, adjustments = [], groupId, laneId, frozen }
                 />
               </td>
               <td className="px-3 py-2">
-                <EditableCurrencyCell
-                  value={s.amount}
-                  disabled={frozen}
-                  onCommit={(val) =>
-                    setNodeField(groupId, s.id, "amount", val)
-                  }
-                />
+                {/* Werkelijk = uitkomst uit het grootboek, niet bewerkbaar */}
+                <ReadOnlyCurrencyCell value={s.amount} />
               </td>
               <td
                 className={`px-3 py-2 text-right tabular-nums text-[11px] ${
@@ -711,9 +741,12 @@ function CostSourcesTable({ sources, adjustments = [], groupId, laneId, frozen }
                 type="button"
                 onClick={handleAdd}
                 className="inline-flex items-center gap-1.5 text-[11px] font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded px-2 py-1 transition-colors"
+                title="Voor kosten buiten het grootboek om — vereist toestemming van de teamleider"
               >
                 <Plus size={12} />
-                Kostenpost toevoegen
+                Kostenpost buiten grootboek toevoegen
+                <span className="text-slate-400 font-normal">·</span>
+                <span className="text-[10px] text-slate-500">vereist goedkeuring</span>
               </button>
             </td>
           </tr>
@@ -1132,7 +1165,6 @@ function PerTenantPreview({
 export default function LaneWorkflowView({ laneId, scopeAudienceId, onJumpToBookkeeping, onJumpToTenants }) {
   // Subscribe to edits — re-render whenever the user changes anything.
   useEditsVersion();
-  const [previewTenancyId, setPreviewTenancyId] = useState(null);
 
   const flow = getCostFlow();
   const lane = flow.lanes.find((l) => l.id === laneId);
@@ -1336,40 +1368,27 @@ export default function LaneWorkflowView({ laneId, scopeAudienceId, onJumpToBook
           <YoYTable byYear={yoyByYear} />
         </Section>
 
-        {/* Stap 4 — Verdeling & afrekening */}
-        <Section
-          title="4 · Verdeling & afrekening"
-          subtitle={
-            scopeAudienceId
-              ? "Gefilterd op één doelgroep — open de banner hierboven om alle afrekeningen te zien."
-              : "Resultaat per doelgroep nadat de verdeelsleutel is toegepast"
-          }
-        >
-          <SettlementsList
-            settlements={settlements}
-            siblingGroups={flow.siblingGroups || []}
-            groupId={groupId}
-            frozen={frozen}
-          />
-        </Section>
-
-        {/* Stap 5 — Voorbeeld per huurder.
-         * De "klopt mijn configuratie?"-checkpoint: vijf representatieve
-         * huurperiodes uit de volledige lijst, klikbaar voor het complete
-         * per-woning overzicht. Het master overzicht staat in de Huurders-tab. */}
-        {groupId && (
-          <Section
-            title="5 · Voorbeeld per huurder"
-            subtitle="Een paar representatieve huurperiodes voor dit component. Wijzig hierboven iets en deze rijen werken live mee. Klik een rij voor het volledige per-woning overzicht."
+        {/* Verwijzing naar de Huurders-tab — dáár staat het resultaat per
+         * huurperiode en de verdeelsleutel-uitkomst. Geen Step 4 of 5 in
+         * het afrekenproces zelf: die zijn dubbel met de Huurders-tab en
+         * de canvas. */}
+        {onJumpToTenants && (
+          <button
+            type="button"
+            onClick={onJumpToTenants}
+            className="w-full text-left rounded-lg border border-slate-200 bg-white hover:bg-slate-50 hover:border-slate-300 transition-colors p-3 flex items-center gap-3"
           >
-            <PerTenantPreview
-              groupId={groupId}
-              laneId={laneId}
-              scopeAudienceId={scopeAudienceId}
-              onOpenTenancy={(tid) => setPreviewTenancyId(tid)}
-              onJumpToTenants={onJumpToTenants}
-            />
-          </Section>
+            <div className="flex-1 min-w-0">
+              <div className="text-[12px] font-medium text-slate-900">
+                Bekijk de uitkomst per huurder →
+              </div>
+              <div className="text-[11px] text-slate-500 mt-0.5">
+                Het resultaat per VHE en huurperiode — kosten, voorschot en
+                saldo voor elk component — staat in de Huurders-tab.
+              </div>
+            </div>
+            <ChevronRight size={14} className="text-slate-400 shrink-0" />
+          </button>
         )}
 
         {/* Goedkeuren & vergrendelen action bar */}
@@ -1416,14 +1435,6 @@ export default function LaneWorkflowView({ laneId, scopeAudienceId, onJumpToBook
           </div>
         )}
       </div>
-
-      {previewTenancyId && groupId && (
-        <TenancyDetailSheet
-          groupId={groupId}
-          tenancyId={previewTenancyId}
-          onClose={() => setPreviewTenancyId(null)}
-        />
-      )}
     </div>
   );
 }
