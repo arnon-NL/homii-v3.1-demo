@@ -461,12 +461,32 @@ function ReadOnlyCurrencyCell({ value, hint = "Uit grootboek" }) {
 }
 
 function CostSourcesTable({ sources, adjustments = [], groupId, laneId, frozen }) {
-  // Werkelijk = sources + adjustments (signed). Begroting only sources —
-  // adjustments are corrections that, by definition, weren't budgeted.
-  const totalActual =
-    sources.reduce((s, n) => s + (n.amount || 0), 0) +
-    adjustments.reduce((s, n) => s + (n.amount || 0), 0);
-  const totalBudgeted = sources.reduce((s, n) => s + (n.budgetedAmount || 0), 0);
+  // Drie subtotalen — gespiegeld aan de structuur in het hoofdcomponent
+  // (LaneWorkflowView): grootboek-bronnen vs buiten-grootboek bronnen +
+  // correcties. Begroting telt alleen grootboek-bronnen (buiten-grootboek
+  // posten zijn per definitie unbudgeted).
+  const grootboekSources = sources.filter((n) => !n.addedByUser);
+  const manualSources = sources.filter((n) => n.addedByUser);
+  const totalGrootboekActual = grootboekSources.reduce(
+    (s, n) => s + (n.amount || 0),
+    0
+  );
+  const totalManualActual = manualSources.reduce(
+    (s, n) => s + (n.amount || 0),
+    0
+  );
+  const totalAdjustmentsActual = adjustments.reduce(
+    (s, n) => s + (n.amount || 0),
+    0
+  );
+  const totalBuitenGrootboekActual = totalManualActual + totalAdjustmentsActual;
+  const totalActual = totalGrootboekActual + totalBuitenGrootboekActual;
+  const totalBudgeted = grootboekSources.reduce(
+    (s, n) => s + (n.budgetedAmount || 0),
+    0
+  );
+  const hasBuitenGrootboek =
+    manualSources.length > 0 || adjustments.length > 0;
 
   function handleAdd() {
     if (!groupId || !laneId) return;
@@ -578,9 +598,16 @@ function CostSourcesTable({ sources, adjustments = [], groupId, laneId, frozen }
               : null;
           const overrun = v != null && v > 0.005;
           const under = v != null && v < -0.005;
-          const isNew = !!s.addedByUser;
+          const isManual = !!s.addedByUser;
+          // Buiten-grootboek bronnen krijgen dezelfde violet rij-tint als
+          // correcties — visueel één laag "wat is buiten het grootboek
+          // toegevoegd?" Begroting "—" want unbudgeted, Werkelijk wél
+          // bewerkbaar (geen grootboek-bron achter de waarde).
+          const rowClass = isManual
+            ? "group hover:bg-violet-50/40 bg-violet-50/20"
+            : "group hover:bg-slate-50/60";
           return (
-            <tr key={s.id} className="group hover:bg-slate-50/60">
+            <tr key={s.id} className={rowClass}>
               <td className="px-3 py-2">
                 <div className="flex items-center gap-1.5 min-w-0">
                   <EditableTextCell
@@ -591,13 +618,13 @@ function CostSourcesTable({ sources, adjustments = [], groupId, laneId, frozen }
                       setNodeField(groupId, s.id, "supplier", val)
                     }
                   />
-                  {isNew && (
+                  {isManual && (
                     <span
-                      className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded-full bg-violet-50 border border-violet-200 text-violet-700 text-[9px] font-semibold uppercase tracking-wider"
-                      title="Toegevoegd in deze sessie"
+                      className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded-full bg-violet-100 border border-violet-200 text-violet-700 text-[9px] font-semibold uppercase tracking-wider"
+                      title="Handmatig toegevoegd buiten het grootboek om — vereist toestemming teamleider"
                     >
                       <Sparkles size={9} />
-                      Nieuw
+                      Buiten grootboek
                     </span>
                   )}
                 </div>
@@ -617,17 +644,36 @@ function CostSourcesTable({ sources, adjustments = [], groupId, laneId, frozen }
                 />
               </td>
               <td className="px-3 py-2">
-                <EditableCurrencyCell
-                  value={s.budgetedAmount}
-                  disabled={frozen}
-                  onCommit={(val) =>
-                    setNodeField(groupId, s.id, "budgetedAmount", val)
-                  }
-                />
+                {isManual ? (
+                  // Posten buiten grootboek staan niet in de jaarlijkse
+                  // begroting — toon nadrukkelijk "—".
+                  <div className="text-right text-[11px] tabular-nums text-slate-300 px-1.5 py-0.5">—</div>
+                ) : (
+                  <EditableCurrencyCell
+                    value={s.budgetedAmount}
+                    disabled={frozen}
+                    onCommit={(val) =>
+                      setNodeField(groupId, s.id, "budgetedAmount", val)
+                    }
+                  />
+                )}
               </td>
               <td className="px-3 py-2">
-                {/* Werkelijk = uitkomst uit het grootboek, niet bewerkbaar */}
-                <ReadOnlyCurrencyCell value={s.amount} />
+                {isManual ? (
+                  // Buiten-grootboek bron — handmatig ingevoerd bedrag,
+                  // dus wél bewerkbaar (in tegenstelling tot grootboek-bronnen).
+                  <EditableCurrencyCell
+                    value={s.amount}
+                    disabled={frozen}
+                    onCommit={(val) =>
+                      setNodeField(groupId, s.id, "amount", val)
+                    }
+                  />
+                ) : (
+                  // Grootboek-bron — werkelijk komt uit het grootboek,
+                  // niet bewerkbaar.
+                  <ReadOnlyCurrencyCell value={s.amount} />
+                )}
               </td>
               <td
                 className={`px-3 py-2 text-right tabular-nums text-[11px] ${
@@ -751,9 +797,40 @@ function CostSourcesTable({ sources, adjustments = [], groupId, laneId, frozen }
             </td>
           </tr>
         )}
-        <tr className="bg-slate-50/40">
-          <td className="px-3 py-2 text-slate-600 font-semibold" colSpan={2}>
-            Totaal
+        {/* Subtotalen — gegroepeerd. Tonen we alleen wanneer er
+         *   daadwerkelijk buiten-grootboek posten zijn; anders is het ene
+         *   eindtotaal voldoende en is de breakdown alleen ruis. */}
+        {hasBuitenGrootboek && (
+          <>
+            <tr className="border-t border-slate-200 text-slate-500">
+              <td className="px-3 py-1.5 text-[10px] uppercase tracking-widest font-semibold" colSpan={2}>
+                Subtotaal grootboek
+              </td>
+              <td className="px-3 py-1.5 text-right tabular-nums">
+                {fmtEur(totalBudgeted)}
+              </td>
+              <td className="px-3 py-1.5 text-right tabular-nums">
+                {fmtEur(totalGrootboekActual)}
+              </td>
+              <td colSpan={2} />
+            </tr>
+            <tr className="text-violet-700 bg-violet-50/30">
+              <td className="px-3 py-1.5 text-[10px] uppercase tracking-widest font-semibold" colSpan={2}>
+                Subtotaal buiten grootboek
+              </td>
+              <td className="px-3 py-1.5 text-right tabular-nums text-slate-300">
+                —
+              </td>
+              <td className="px-3 py-1.5 text-right tabular-nums">
+                {fmtSignedEur(totalBuitenGrootboekActual)}
+              </td>
+              <td colSpan={2} />
+            </tr>
+          </>
+        )}
+        <tr className="bg-slate-50/60 border-t border-slate-200">
+          <td className="px-3 py-2 text-slate-700 font-semibold" colSpan={2}>
+            Totaal werkelijk
           </td>
           <td className="px-3 py-2 text-right tabular-nums text-slate-700 font-semibold">
             {fmtEur(totalBudgeted)}
@@ -769,7 +846,7 @@ function CostSourcesTable({ sources, adjustments = [], groupId, laneId, frozen }
 }
 
 /* ─── Ledger comparison panel ── */
-function LedgerComparisonPanel({ ledgerAccount, enteredTotal, bookedTotal, onOpenBookkeeping }) {
+function LedgerComparisonPanel({ ledgerAccount, enteredTotal, bookedTotal, buitenGrootboekTotal = 0, onOpenBookkeeping }) {
   if (!ledgerAccount) {
     return (
       <div className="px-4 py-3 text-[11px] text-slate-500 italic">
@@ -823,6 +900,8 @@ function LedgerComparisonPanel({ ledgerAccount, enteredTotal, bookedTotal, onOpe
           <span className="font-medium">
             {matches
               ? "Sluit aan — ingevoerd totaal en geboekt totaal komen overeen."
+              : Math.abs(buitenGrootboekTotal - drift) < 1
+              ? `Verschil ${fmtSignedEur(drift)} — verklaard door ${fmtSignedEur(buitenGrootboekTotal)} aan posten buiten het grootboek.`
               : `Verschil ${fmtSignedEur(drift)} tussen ingevoerd en geboekt totaal.`}
           </span>
         </div>
@@ -1217,18 +1296,30 @@ export default function LaneWorkflowView({ laneId, scopeAudienceId, onJumpToBook
       )
     : false;
 
-  // Werkelijk-totaal = sources + adjustments (signed). Mirrors what
-  // active() in costFlow.js folds into the settlement amount.
-  const totalSources = sources.reduce((s, n) => s + (n.amount || 0), 0);
+  // Werkelijk-totaal in drie lagen:
+  //   • Grootboek          — alleen sources die uit het grootboek komen
+  //                           (addedByUser !== true). Dit is het bedrag
+  //                           dat de Grootboek-controle moet zien als
+  //                           "Geboekt in ERP" — buiten-grootboek items
+  //                           tellen hier dus NIET mee.
+  //   • Buiten grootboek   — handmatig toegevoegde sources + correcties.
+  //   • Totaal werkelijk   — som van beide. Mirror van wat active() in
+  //                           costFlow.js in de settlement-amount vouwt.
+  const totalGrootboek = sources
+    .filter((n) => !n.addedByUser)
+    .reduce((s, n) => s + (n.amount || 0), 0);
+  const totalManualSources = sources
+    .filter((n) => n.addedByUser)
+    .reduce((s, n) => s + (n.amount || 0), 0);
   const totalAdjustments = adjustments.reduce(
     (s, n) => s + (n.amount || 0),
     0
   );
-  const totalActual = totalSources + totalAdjustments;
-  const totalBudgeted = sources.reduce(
-    (s, n) => s + (n.budgetedAmount || 0),
-    0
-  );
+  const totalBuitenGrootboek = totalManualSources + totalAdjustments;
+  const totalActual = totalGrootboek + totalBuitenGrootboek;
+  const totalBudgeted = sources
+    .filter((n) => !n.addedByUser)
+    .reduce((s, n) => s + (n.budgetedAmount || 0), 0);
 
   // Component-level identity is derived: service code from settlements,
   // ledger account from the first source's anchor.
@@ -1248,10 +1339,11 @@ export default function LaneWorkflowView({ laneId, scopeAudienceId, onJumpToBook
     return m;
   }, [sources]);
 
-  // Phase 2: ERP-booked total is the same as entered total (we don't have a
-  // separate ledger source yet — Phase 3 fills this in from the Bookkeeping
-  // tab data). Showing equality here is honest about that.
-  const bookedTotal = totalActual;
+  // ERP-booked total = alleen wat in het grootboek staat. Handmatig
+  // toegevoegde kostenposten en correcties zitten per definitie NIET in
+  // het ERP, dus die mogen niet meetellen — anders verbergt de
+  // Grootboek-controle juist de drift die hij hoort te tonen.
+  const bookedTotal = totalGrootboek;
 
   if (!lane) {
     return (
@@ -1356,6 +1448,7 @@ export default function LaneWorkflowView({ laneId, scopeAudienceId, onJumpToBook
             ledgerAccount={ledgerAccount}
             enteredTotal={totalActual}
             bookedTotal={bookedTotal}
+            buitenGrootboekTotal={totalBuitenGrootboek}
             onOpenBookkeeping={onJumpToBookkeeping}
           />
         </Section>
