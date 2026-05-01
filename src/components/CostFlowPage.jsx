@@ -99,6 +99,10 @@ const NODE_SIZES = {
   source:      { w: 208, h: 84 },
   settlement:  { w: 220, h: 84 },
   split:       { w: 164, h: 60 },
+  // The current taxonomy uses "adjustment" + "marker"; the older "deduction"
+  // / "addition" / "passthrough" entries stay as fallbacks for legacy data.
+  adjustment:  { w: 200, h: 56 },
+  marker:      { w: 152, h: 32 },
   deduction:   { w: 184, h: 48 },
   addition:    { w: 184, h: 48 },
   passthrough: { w: 152, h: 24 },
@@ -2021,6 +2025,56 @@ function Canvas({
           );
         })}
 
+        {/* Phase 7 — settlement-prefix + button.
+         *  The most common edit users want is "drop a correction right
+         *  before this settlement" — i.e. on the largest edge feeding it.
+         *  Surface a dedicated + on the settlement's left edge so they
+         *  don't have to hunt for the right edge midpoint. The button
+         *  opens AdjustmentEditor pointed at (largestIncomingFrom → settlement). */}
+        {editMode && positionedNodes.map((node) => {
+          if (node.type !== "settlement" || node.outOfScope) return null;
+          if (collapsedLaneIds && collapsedLaneIds.has(node.laneId)) return null;
+          if (focusVisibility && !focusVisibility.nodes.has(node.id)) return null;
+          if (groupId && isLaneFrozen(groupId, node.laneId)) return null;
+          // Find the dominant incoming edge — fall back to any edge if
+          // none have a stored amount.
+          let primary = null;
+          for (const e of flow.edges) {
+            if (e.to !== node.id) continue;
+            if (!primary || (e.amount || 0) > (primary.amount || 0)) primary = e;
+          }
+          if (!primary) return null;
+          const fromN = nodeById[primary.from];
+          if (!fromN) return null;
+          if (fromN.laneId !== node.laneId) return null; // skip cross-lane edges
+          return (
+            <button
+              key={`settle-add-${node.id}`}
+              type="button"
+              onMouseDown={(e) => e.stopPropagation()}
+              onClick={(e) => {
+                e.stopPropagation();
+                setAdjustTarget({
+                  fromNode: fromN,
+                  toNode: node,
+                  // Anchor the popover at the settlement's left edge so it
+                  // visually attaches to the right thing.
+                  midX: node._x - 4,
+                  midY: node._y + node._h / 2,
+                });
+              }}
+              className="absolute z-20 inline-flex items-center justify-center w-6 h-6 rounded-full border border-emerald-300 bg-white text-emerald-700 hover:bg-emerald-50 hover:border-emerald-500 shadow-sm opacity-90 hover:opacity-100 transition-all"
+              style={{
+                left: node._x - 12,
+                top: node._y + node._h / 2 - 12,
+              }}
+              title="Correctie toevoegen vóór deze afrekening"
+            >
+              <Plus size={13} strokeWidth={2.5} />
+            </button>
+          );
+        })}
+
         {/* Phase 7 — edge-+ overlay (insert adjustment on edge).
          *  One round button per edge midpoint, only in edit mode, only on
          *  edges where both endpoints' lane is unlocked. Click opens the
@@ -2082,27 +2136,28 @@ function Canvas({
               if (!groupId) return;
               const fromN = adjustTarget.fromNode;
               const toN = adjustTarget.toNode;
-              // Compute placement: column halfway between the endpoints,
-              // first free row in that column inside the lane (avoids
-              // overlap with existing nodes).
-              const newCol = Math.max(
-                0,
-                Math.floor(((fromN.col ?? 0) + (toN.col ?? 0)) / 2)
-              );
-              const occupied = new Set();
+              // Placement model: an adjustment sits visually between two
+              // existing columns. We make space by shifting the to-node
+              // (and every node to its right within the same lane) by +1,
+              // then place the adjustment in the column the to-node just
+              // vacated. Same row as the to-node so the edge runs straight.
+              const targetCol = toN.col ?? 0;
+              const targetRow = toN.row ?? 0;
               for (const n of flow.nodes) {
-                if (n.laneId === fromN.laneId && (n.col ?? 0) === newCol) {
-                  occupied.add(n.row ?? 0);
+                if (
+                  n.laneId === fromN.laneId &&
+                  (n.col ?? 0) >= targetCol &&
+                  n.id !== fromN.id // never shift the from-node
+                ) {
+                  setNodeField(groupId, n.id, "col", (n.col ?? 0) + 1);
                 }
               }
-              let newRow = Math.min(fromN.row ?? 0, toN.row ?? 0);
-              while (occupied.has(newRow)) newRow++;
               insertAdjustmentOnEdge(
                 groupId,
                 fromN.id,
                 toN.id,
                 fromN.laneId,
-                { amount, reason, col: newCol, row: newRow }
+                { amount, reason, col: targetCol, row: targetRow }
               );
               setAdjustTarget(null);
             }}
