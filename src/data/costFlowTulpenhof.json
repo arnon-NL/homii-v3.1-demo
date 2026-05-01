@@ -1,0 +1,296 @@
+{
+  "group": {
+    "id": "GRP-tulpenhof",
+    "kind": "complex",
+    "name": "Tulpenhof",
+    "city": "Utrecht",
+    "vheCount": 36,
+    "sourceComplexes": ["ZW-001"],
+    "blocks": [
+      { "id": "GRP-tulpenhof-voorhuis", "name": "Voorhuis (16 woningen)", "vheCount": 16 },
+      { "id": "GRP-tulpenhof-achterhuis", "name": "Achterhuis (20 woningen)", "vheCount": 20 }
+    ]
+  },
+  "period": 2024,
+  "siblingGroups": [
+    { "id": "GRP-tulpenhof", "name": "Tulpenhof — alle woningen", "vheCount": 36, "kind": "complex", "active": true },
+    { "id": "GRP-tulpenhof-voorhuis", "name": "Voorhuis", "vheCount": 16, "kind": "block" },
+    { "id": "GRP-tulpenhof-achterhuis", "name": "Achterhuis", "vheCount": 20, "kind": "block" },
+    { "id": "GRP-tulpenhof-tuin", "name": "Tuin-deelnemers (begane grond)", "vheCount": 12, "kind": "subgroup" }
+  ],
+  "lanes": [
+    { "id": "lane-stadsverwarming", "title": "Stadsverwarming", "category": "energy", "complexity": "simple" },
+    { "id": "lane-verlichting-voor", "title": "Verlichting Voorhuis", "category": "energy", "complexity": "simple" },
+    { "id": "lane-verlichting-achter", "title": "Verlichting Achterhuis", "category": "energy", "complexity": "simple" },
+    { "id": "lane-schoonmaak", "title": "Schoonmaak trappenhuis", "category": "cleaning", "complexity": "simple" },
+    { "id": "lane-tuin", "title": "Tuinonderhoud", "category": "other", "complexity": "simple" }
+  ],
+  "nodes": [
+    {
+      "id": "src-stadsverwarming-vattenfall",
+      "laneId": "lane-stadsverwarming",
+      "type": "source",
+      "col": 0, "row": 0,
+      "label": "Levering warmte",
+      "sourceKind": "contracted",
+      "cadence": "monthly",
+      "identifier": "Vattenfall — leveringscontract",
+      "supplier": "Vattenfall",
+      "amount": 19500,
+      "budgetedAmount": 18900,
+      "evidenceCount": 12,
+      "yoyComparison": [
+        { "year": 2024, "amount": 19500 },
+        { "year": 2023, "amount": 18420 },
+        { "year": 2022, "amount": 16880 }
+      ],
+      "supplierBreakdown": [
+        { "name": "Vattenfall", "role": "warmteleverancier", "amount": 19500, "evidenceCount": 12, "status": "matched" }
+      ],
+      "temporalCoverage": { "expectedMonths": 12, "bookedMonths": 12, "missing": [], "cadence": "monthly" },
+      "anchors": [
+        { "ledgerAccount": "8501000-ZW001-SV001-", "amount": 19500, "status": "matched" }
+      ]
+    },
+    {
+      "id": "src-stadsverwarming-ista",
+      "laneId": "lane-stadsverwarming",
+      "type": "source",
+      "col": 0, "row": 1,
+      "label": "Meterstanden + administratie",
+      "sourceKind": "recurring",
+      "cadence": "annual",
+      "identifier": "Ista — verbruiksadministratie",
+      "supplier": "Ista",
+      "amount": 3900,
+      "budgetedAmount": 3850,
+      "evidenceCount": 1,
+      "yoyComparison": [
+        { "year": 2024, "amount": 3900 },
+        { "year": 2023, "amount": 3780 }
+      ],
+      "supplierBreakdown": [
+        { "name": "Ista", "role": "verbruiksadministratie", "amount": 3900, "evidenceCount": 1, "status": "matched" }
+      ],
+      "temporalCoverage": { "expectedMonths": 1, "bookedMonths": 1, "missing": [], "cadence": "annual" },
+      "anchors": [
+        { "ledgerAccount": "8501500-ZW001-SV001-", "amount": 3900, "status": "matched" }
+      ]
+    },
+    {
+      "id": "settle-stadsverwarming",
+      "laneId": "lane-stadsverwarming",
+      "type": "settlement",
+      "col": 1, "row": 0,
+      "label": "Stadsverwarming / SV001",
+      "subLabel": "Hele complex — 36 woningen",
+      "groupId": "GRP-tulpenhof",
+      "serviceCode": "SV001",
+      "vheCount": 36,
+      "amount": 23400,
+      "advance": 22500,
+      "delta": -900,
+      "settlementStatus": "proposed",
+      "yoyComparison": [
+        { "year": 2024, "actual": 23400, "advance": 22500, "delta": -900 },
+        { "year": 2023, "actual": 22200, "advance": 22200, "delta": 0 }
+      ],
+      "distribution": { "method": "per_vhe", "denominator": 36, "unit": "VHE" }
+    },
+    {
+      "id": "src-verlichting-voor",
+      "laneId": "lane-verlichting-voor",
+      "type": "source",
+      "col": 0, "row": 0,
+      "label": "Elektra Voorhuis",
+      "sourceKind": "contracted",
+      "cadence": "monthly",
+      "identifier": "Eneco — leveringscontract",
+      "supplier": "Eneco",
+      "amount": 1312,
+      "budgetedAmount": 1300,
+      "evidenceCount": 12,
+      "yoyComparison": [
+        { "year": 2024, "amount": 1312 },
+        { "year": 2023, "amount": 1408 }
+      ],
+      "supplierBreakdown": [
+        { "name": "Eneco", "role": "energieleverancier", "amount": 1312, "evidenceCount": 12, "status": "matched" }
+      ],
+      "temporalCoverage": { "expectedMonths": 12, "bookedMonths": 12, "missing": [], "cadence": "monthly" },
+      "anchors": [
+        { "ledgerAccount": "8507000-ZW001-EL010-", "amount": 1312, "status": "matched" }
+      ]
+    },
+    {
+      "id": "settle-verlichting-voor",
+      "laneId": "lane-verlichting-voor",
+      "type": "settlement",
+      "col": 1, "row": 0,
+      "label": "Verlichting Voorhuis / EL010",
+      "subLabel": "Voorhuis — 16 woningen",
+      "groupId": "GRP-tulpenhof-voorhuis",
+      "serviceCode": "EL010",
+      "vheCount": 16,
+      "amount": 1312,
+      "advance": 1344,
+      "delta": 32,
+      "settlementStatus": "proposed",
+      "yoyComparison": [
+        { "year": 2024, "actual": 1312, "advance": 1344, "delta": 32 },
+        { "year": 2023, "actual": 1408, "advance": 1344, "delta": -64 }
+      ],
+      "distribution": { "method": "per_vhe", "denominator": 16, "unit": "VHE" }
+    },
+    {
+      "id": "src-verlichting-achter",
+      "laneId": "lane-verlichting-achter",
+      "type": "source",
+      "col": 0, "row": 0,
+      "label": "Elektra Achterhuis",
+      "sourceKind": "contracted",
+      "cadence": "monthly",
+      "identifier": "Eneco — leveringscontract",
+      "supplier": "Eneco",
+      "amount": 1760,
+      "budgetedAmount": 1700,
+      "evidenceCount": 12,
+      "yoyComparison": [
+        { "year": 2024, "amount": 1760 },
+        { "year": 2023, "amount": 1820 }
+      ],
+      "supplierBreakdown": [
+        { "name": "Eneco", "role": "energieleverancier", "amount": 1760, "evidenceCount": 12, "status": "matched" }
+      ],
+      "temporalCoverage": { "expectedMonths": 12, "bookedMonths": 12, "missing": [], "cadence": "monthly" },
+      "anchors": [
+        { "ledgerAccount": "8507000-ZW001-EL011-", "amount": 1760, "status": "matched" }
+      ]
+    },
+    {
+      "id": "settle-verlichting-achter",
+      "laneId": "lane-verlichting-achter",
+      "type": "settlement",
+      "col": 1, "row": 0,
+      "label": "Verlichting Achterhuis / EL011",
+      "subLabel": "Achterhuis — 20 woningen",
+      "groupId": "GRP-tulpenhof-achterhuis",
+      "serviceCode": "EL011",
+      "vheCount": 20,
+      "amount": 1760,
+      "advance": 1680,
+      "delta": -80,
+      "settlementStatus": "proposed",
+      "yoyComparison": [
+        { "year": 2024, "actual": 1760, "advance": 1680, "delta": -80 },
+        { "year": 2023, "actual": 1820, "advance": 1680, "delta": -140 }
+      ],
+      "distribution": { "method": "per_vhe", "denominator": 20, "unit": "VHE" }
+    },
+    {
+      "id": "src-schoonmaak",
+      "laneId": "lane-schoonmaak",
+      "type": "source",
+      "col": 0, "row": 0,
+      "label": "Schoonmaak algemene ruimtes",
+      "sourceKind": "recurring",
+      "cadence": "monthly",
+      "identifier": "Asito — schoonmaakcontract",
+      "supplier": "Asito",
+      "amount": 7128,
+      "budgetedAmount": 7200,
+      "evidenceCount": 12,
+      "yoyComparison": [
+        { "year": 2024, "amount": 7128 },
+        { "year": 2023, "amount": 6960 }
+      ],
+      "supplierBreakdown": [
+        { "name": "Asito", "role": "schoonmaakbedrijf", "amount": 7128, "evidenceCount": 12, "status": "matched" }
+      ],
+      "temporalCoverage": { "expectedMonths": 12, "bookedMonths": 12, "missing": [], "cadence": "monthly" },
+      "anchors": [
+        { "ledgerAccount": "8512000-ZW001-SC020-", "amount": 7128, "status": "matched" }
+      ]
+    },
+    {
+      "id": "settle-schoonmaak",
+      "laneId": "lane-schoonmaak",
+      "type": "settlement",
+      "col": 1, "row": 0,
+      "label": "Schoonmaak / SC020",
+      "subLabel": "Hele complex — 36 woningen",
+      "groupId": "GRP-tulpenhof",
+      "serviceCode": "SC020",
+      "vheCount": 36,
+      "amount": 7128,
+      "advance": 7200,
+      "delta": 72,
+      "settlementStatus": "proposed",
+      "yoyComparison": [
+        { "year": 2024, "actual": 7128, "advance": 7200, "delta": 72 },
+        { "year": 2023, "actual": 6960, "advance": 7200, "delta": 240 }
+      ],
+      "distribution": { "method": "per_vhe", "denominator": 36, "unit": "VHE" }
+    },
+    {
+      "id": "src-tuin",
+      "laneId": "lane-tuin",
+      "type": "source",
+      "col": 0, "row": 0,
+      "label": "Tuinonderhoud",
+      "sourceKind": "recurring",
+      "cadence": "monthly",
+      "identifier": "Donker Groen — onderhoudscontract",
+      "supplier": "Donker Groen",
+      "amount": 1440,
+      "budgetedAmount": 1500,
+      "evidenceCount": 12,
+      "yoyComparison": [
+        { "year": 2024, "amount": 1440 },
+        { "year": 2023, "amount": 1380 }
+      ],
+      "supplierBreakdown": [
+        { "name": "Donker Groen", "role": "groenvoorziening", "amount": 1440, "evidenceCount": 12, "status": "matched" }
+      ],
+      "temporalCoverage": { "expectedMonths": 12, "bookedMonths": 12, "missing": [], "cadence": "monthly" },
+      "anchors": [
+        { "ledgerAccount": "8516000-ZW001-TU030-", "amount": 1440, "status": "matched" }
+      ]
+    },
+    {
+      "id": "settle-tuin",
+      "laneId": "lane-tuin",
+      "type": "settlement",
+      "col": 1, "row": 0,
+      "label": "Tuinonderhoud / TU030",
+      "subLabel": "Tuin-deelnemers — 12 woningen begane grond",
+      "groupId": "GRP-tulpenhof-tuin",
+      "serviceCode": "TU030",
+      "vheCount": 12,
+      "amount": 1440,
+      "advance": 1440,
+      "delta": 0,
+      "settlementStatus": "proposed",
+      "yoyComparison": [
+        { "year": 2024, "actual": 1440, "advance": 1440, "delta": 0 },
+        { "year": 2023, "actual": 1380, "advance": 1380, "delta": 0 }
+      ],
+      "distribution": { "method": "per_vhe", "denominator": 12, "unit": "VHE" }
+    }
+  ],
+  "edges": [
+    { "from": "src-stadsverwarming-vattenfall", "to": "settle-stadsverwarming", "amount": 19500 },
+    { "from": "src-stadsverwarming-ista",       "to": "settle-stadsverwarming", "amount": 3900 },
+    { "from": "src-verlichting-voor",           "to": "settle-verlichting-voor", "amount": 1312 },
+    { "from": "src-verlichting-achter",         "to": "settle-verlichting-achter", "amount": 1760 },
+    { "from": "src-schoonmaak",                 "to": "settle-schoonmaak", "amount": 7128 },
+    { "from": "src-tuin",                       "to": "settle-tuin", "amount": 1440 }
+  ],
+  "trustSummary": {
+    "totalExpected": 35040,
+    "totalAnchored": 35040,
+    "wrongAccountAmount": 0,
+    "manualAdjustmentAmount": 0,
+    "issuesCount": 0
+  }
+}

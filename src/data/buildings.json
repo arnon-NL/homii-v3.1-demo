@@ -1,0 +1,32 @@
+[
+  {
+    "id": "GRP-tulpenhof",
+    "complex": "Tulpenhof",
+    "complexId": "ZW-001",
+    "location": "Utrecht",
+    "vhe": 36,
+    "components": 5,
+    "utilities": ["heating"],
+    "budgetTotal": 35160,
+    "budgetSpent": 34890,
+    "dataQuality": "ok",
+    "status": "active",
+    "onboardingStatus": "live",
+    "useNewDetail": true
+  },
+  {
+    "id": "GRP-bloemkwartier",
+    "complex": "Bloemkwartier",
+    "complexId": "ZW-002",
+    "location": "Zwolle",
+    "vhe": 59,
+    "components": 8,
+    "utilities": ["gas", "heating", "electricity"],
+    "budgetTotal": 79620,
+    "budgetSpent": 80315,
+    "dataQuality": "ok",
+    "status": "active",
+    "onboardingStatus": "live",
+    "useNewDetail": true
+  }
+]

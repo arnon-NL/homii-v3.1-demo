@@ -1,0 +1,436 @@
+{
+  "group": {
+    "id": "GRP-bloemkwartier",
+    "kind": "complex",
+    "name": "Bloemkwartier",
+    "city": "Zwolle",
+    "vheCount": 56,
+    "sourceComplexes": ["ZW-002"],
+    "blocks": [
+      { "id": "GRP-bloemkwartier-main", "name": "Bloemkwartier (woningen + BOG)", "vheCount": 59 }
+    ]
+  },
+  "period": 2024,
+  "siblingGroups": [
+    { "id": "GRP-bloemkwartier",                "name": "Bloemkwartier — alle woningen", "vheCount": 56, "kind": "complex", "active": true },
+    { "id": "GRP-bloemkwartier-cv",             "name": "CV-aansluiting (gas)",          "vheCount": 24, "kind": "subgroup" },
+    { "id": "GRP-bloemkwartier-stadsverwarming","name": "Stadsverwarming",                "vheCount": 32, "kind": "subgroup" },
+    { "id": "GRP-bloemkwartier-galerij",        "name": "Galerij-deelnemers",             "vheCount": 32, "kind": "subgroup" },
+    { "id": "GRP-bloemkwartier-bog",            "name": "Commerciële ruimtes (BOG)",     "vheCount": 3,  "kind": "commercial" }
+  ],
+  "lanes": [
+    { "id": "lane-cv-gas",         "title": "CV-gas",                "category": "energy",   "complexity": "simple" },
+    { "id": "lane-stadsverwarming","title": "Stadsverwarming",       "category": "energy",   "complexity": "simple" },
+    { "id": "lane-elektra",        "title": "Algemeen elektra",      "category": "energy",   "complexity": "simple" },
+    { "id": "lane-water",          "title": "Water",                  "category": "energy",   "complexity": "simple" },
+    { "id": "lane-schoonmaak",     "title": "Schoonmaak galerij",    "category": "cleaning", "complexity": "simple" },
+    { "id": "lane-tuin",           "title": "Tuinonderhoud",          "category": "other",    "complexity": "simple" },
+    { "id": "lane-signaal",        "title": "Signaallevering",        "category": "other",    "complexity": "simple" },
+    { "id": "lane-bog-elektra",    "title": "Elektra BOG",            "category": "energy",   "complexity": "simple" }
+  ],
+  "nodes": [
+    {
+      "id": "src-cv-gas",
+      "laneId": "lane-cv-gas",
+      "type": "source",
+      "col": 0, "row": 0,
+      "label": "Levering gas (CV)",
+      "sourceKind": "contracted",
+      "cadence": "monthly",
+      "identifier": "Eneco — gascontract CV-blok",
+      "supplier": "Eneco",
+      "amount": 17280,
+      "budgetedAmount": 17000,
+      "evidenceCount": 12,
+      "yoyComparison": [
+        { "year": 2024, "amount": 17280 },
+        { "year": 2023, "amount": 15960 }
+      ],
+      "supplierBreakdown": [
+        { "name": "Eneco", "role": "gasleverancier", "amount": 17280, "evidenceCount": 12, "status": "matched" }
+      ],
+      "temporalCoverage": { "expectedMonths": 12, "bookedMonths": 12, "missing": [], "cadence": "monthly" },
+      "anchors": [
+        { "ledgerAccount": "8501100-ZW002-CV001-", "amount": 17280, "status": "matched" }
+      ]
+    },
+    {
+      "id": "settle-cv-gas",
+      "laneId": "lane-cv-gas",
+      "type": "settlement",
+      "col": 1, "row": 0,
+      "label": "CV-gas / CV001",
+      "subLabel": "CV-aansluiting — 24 woningen",
+      "groupId": "GRP-bloemkwartier-cv",
+      "serviceCode": "CV001",
+      "vheCount": 24,
+      "amount": 17280,
+      "advance": 17400,
+      "delta": 120,
+      "settlementStatus": "proposed",
+      "yoyComparison": [
+        { "year": 2024, "actual": 17280, "advance": 17400, "delta": 120 },
+        { "year": 2023, "actual": 15960, "advance": 16800, "delta": 840 }
+      ],
+      "distribution": { "method": "per_vhe", "denominator": 24, "unit": "VHE" }
+    },
+    {
+      "id": "src-stadsverwarming",
+      "laneId": "lane-stadsverwarming",
+      "type": "source",
+      "col": 0, "row": 0,
+      "label": "Levering warmte",
+      "sourceKind": "contracted",
+      "cadence": "monthly",
+      "identifier": "Vattenfall — warmtecontract",
+      "supplier": "Vattenfall",
+      "amount": 18760,
+      "budgetedAmount": 18500,
+      "evidenceCount": 12,
+      "yoyComparison": [
+        { "year": 2024, "amount": 18760 },
+        { "year": 2023, "amount": 17440 }
+      ],
+      "supplierBreakdown": [
+        { "name": "Vattenfall", "role": "warmteleverancier", "amount": 18760, "evidenceCount": 12, "status": "matched" }
+      ],
+      "temporalCoverage": { "expectedMonths": 12, "bookedMonths": 12, "missing": [], "cadence": "monthly" },
+      "anchors": [
+        { "ledgerAccount": "8501000-ZW002-SV001-", "amount": 18760, "status": "matched" }
+      ]
+    },
+    {
+      "id": "src-stadsverwarming-ista",
+      "laneId": "lane-stadsverwarming",
+      "type": "source",
+      "col": 0, "row": 1,
+      "label": "Meterstanden + administratie",
+      "sourceKind": "recurring",
+      "cadence": "annual",
+      "identifier": "Ista — verbruiksadministratie",
+      "supplier": "Ista",
+      "amount": 3000,
+      "budgetedAmount": 3000,
+      "evidenceCount": 1,
+      "yoyComparison": [
+        { "year": 2024, "amount": 3000 },
+        { "year": 2023, "amount": 2940 }
+      ],
+      "supplierBreakdown": [
+        { "name": "Ista", "role": "verbruiksadministratie", "amount": 3000, "evidenceCount": 1, "status": "matched" }
+      ],
+      "temporalCoverage": { "expectedMonths": 1, "bookedMonths": 1, "missing": [], "cadence": "annual" },
+      "anchors": [
+        { "ledgerAccount": "8501500-ZW002-SV001-", "amount": 3000, "status": "matched" }
+      ]
+    },
+    {
+      "id": "settle-stadsverwarming",
+      "laneId": "lane-stadsverwarming",
+      "type": "settlement",
+      "col": 1, "row": 0,
+      "label": "Stadsverwarming / SV001",
+      "subLabel": "Stadsverwarming — 32 woningen",
+      "groupId": "GRP-bloemkwartier-stadsverwarming",
+      "serviceCode": "SV001",
+      "vheCount": 32,
+      "amount": 21760,
+      "advance": 21000,
+      "delta": -760,
+      "settlementStatus": "proposed",
+      "yoyComparison": [
+        { "year": 2024, "actual": 21760, "advance": 21000, "delta": -760 },
+        { "year": 2023, "actual": 20380, "advance": 20800, "delta": 420 }
+      ],
+      "distribution": { "method": "per_vhe", "denominator": 32, "unit": "VHE" }
+    },
+    {
+      "id": "src-elektra",
+      "laneId": "lane-elektra",
+      "type": "source",
+      "col": 0, "row": 0,
+      "label": "Algemeen elektra",
+      "sourceKind": "contracted",
+      "cadence": "monthly",
+      "identifier": "Eneco — elektriciteit algemene ruimtes",
+      "supplier": "Eneco",
+      "amount": 5320,
+      "budgetedAmount": 5400,
+      "evidenceCount": 12,
+      "yoyComparison": [
+        { "year": 2024, "amount": 5320 },
+        { "year": 2023, "amount": 5680 }
+      ],
+      "supplierBreakdown": [
+        { "name": "Eneco", "role": "energieleverancier", "amount": 5320, "evidenceCount": 12, "status": "matched" }
+      ],
+      "temporalCoverage": { "expectedMonths": 12, "bookedMonths": 12, "missing": [], "cadence": "monthly" },
+      "anchors": [
+        { "ledgerAccount": "8507000-ZW002-EL001-", "amount": 5320, "status": "matched" }
+      ]
+    },
+    {
+      "id": "settle-elektra",
+      "laneId": "lane-elektra",
+      "type": "settlement",
+      "col": 1, "row": 0,
+      "label": "Algemeen elektra / EL001",
+      "subLabel": "Hele complex — 56 woningen",
+      "groupId": "GRP-bloemkwartier",
+      "serviceCode": "EL001",
+      "vheCount": 56,
+      "amount": 5320,
+      "advance": 5376,
+      "delta": 56,
+      "settlementStatus": "proposed",
+      "yoyComparison": [
+        { "year": 2024, "actual": 5320, "advance": 5376, "delta": 56 },
+        { "year": 2023, "actual": 5680, "advance": 5376, "delta": -304 }
+      ],
+      "distribution": { "method": "per_vhe", "denominator": 56, "unit": "VHE" }
+    },
+    {
+      "id": "src-water",
+      "laneId": "lane-water",
+      "type": "source",
+      "col": 0, "row": 0,
+      "label": "Drinkwater",
+      "sourceKind": "contracted",
+      "cadence": "quarterly",
+      "identifier": "Vitens — leveringscontract",
+      "supplier": "Vitens",
+      "amount": 19600,
+      "budgetedAmount": 19200,
+      "evidenceCount": 4,
+      "yoyComparison": [
+        { "year": 2024, "amount": 19600 },
+        { "year": 2023, "amount": 18760 }
+      ],
+      "supplierBreakdown": [
+        { "name": "Vitens", "role": "waterleverancier", "amount": 19600, "evidenceCount": 4, "status": "matched" }
+      ],
+      "temporalCoverage": { "expectedMonths": 12, "bookedMonths": 12, "missing": [], "cadence": "quarterly" },
+      "anchors": [
+        { "ledgerAccount": "8503000-ZW002-WT001-", "amount": 19600, "status": "matched" }
+      ]
+    },
+    {
+      "id": "settle-water",
+      "laneId": "lane-water",
+      "type": "settlement",
+      "col": 1, "row": 0,
+      "label": "Water / WT001",
+      "subLabel": "Hele complex — 56 woningen",
+      "groupId": "GRP-bloemkwartier",
+      "serviceCode": "WT001",
+      "vheCount": 56,
+      "amount": 19600,
+      "advance": 19200,
+      "delta": -400,
+      "settlementStatus": "proposed",
+      "yoyComparison": [
+        { "year": 2024, "actual": 19600, "advance": 19200, "delta": -400 },
+        { "year": 2023, "actual": 18760, "advance": 19200, "delta": 440 }
+      ],
+      "distribution": { "method": "per_vhe", "denominator": 56, "unit": "VHE" }
+    },
+    {
+      "id": "src-schoonmaak",
+      "laneId": "lane-schoonmaak",
+      "type": "source",
+      "col": 0, "row": 0,
+      "label": "Schoonmaak galerij",
+      "sourceKind": "recurring",
+      "cadence": "monthly",
+      "identifier": "CSU — schoonmaakcontract",
+      "supplier": "CSU",
+      "amount": 5760,
+      "budgetedAmount": 5760,
+      "evidenceCount": 12,
+      "yoyComparison": [
+        { "year": 2024, "amount": 5760 },
+        { "year": 2023, "amount": 5520 }
+      ],
+      "supplierBreakdown": [
+        { "name": "CSU", "role": "schoonmaakbedrijf", "amount": 5760, "evidenceCount": 12, "status": "matched" }
+      ],
+      "temporalCoverage": { "expectedMonths": 12, "bookedMonths": 12, "missing": [], "cadence": "monthly" },
+      "anchors": [
+        { "ledgerAccount": "8512000-ZW002-SC001-", "amount": 5760, "status": "matched" }
+      ]
+    },
+    {
+      "id": "settle-schoonmaak",
+      "laneId": "lane-schoonmaak",
+      "type": "settlement",
+      "col": 1, "row": 0,
+      "label": "Schoonmaak galerij / SC001",
+      "subLabel": "Galerij-deelnemers — 32 woningen",
+      "groupId": "GRP-bloemkwartier-galerij",
+      "serviceCode": "SC001",
+      "vheCount": 32,
+      "amount": 5760,
+      "advance": 5760,
+      "delta": 0,
+      "settlementStatus": "proposed",
+      "yoyComparison": [
+        { "year": 2024, "actual": 5760, "advance": 5760, "delta": 0 },
+        { "year": 2023, "actual": 5520, "advance": 5520, "delta": 0 }
+      ],
+      "distribution": { "method": "per_vhe", "denominator": 32, "unit": "VHE" }
+    },
+    {
+      "id": "src-tuin",
+      "laneId": "lane-tuin",
+      "type": "source",
+      "col": 0, "row": 0,
+      "label": "Tuinonderhoud",
+      "sourceKind": "recurring",
+      "cadence": "monthly",
+      "identifier": "Krinkels — onderhoudscontract",
+      "supplier": "Krinkels",
+      "amount": 7840,
+      "budgetedAmount": 7800,
+      "evidenceCount": 12,
+      "yoyComparison": [
+        { "year": 2024, "amount": 7840 },
+        { "year": 2023, "amount": 7560 }
+      ],
+      "supplierBreakdown": [
+        { "name": "Krinkels", "role": "groenvoorziening", "amount": 7840, "evidenceCount": 12, "status": "matched" }
+      ],
+      "temporalCoverage": { "expectedMonths": 12, "bookedMonths": 12, "missing": [], "cadence": "monthly" },
+      "anchors": [
+        { "ledgerAccount": "8516000-ZW002-TU001-", "amount": 7840, "status": "matched" }
+      ]
+    },
+    {
+      "id": "settle-tuin",
+      "laneId": "lane-tuin",
+      "type": "settlement",
+      "col": 1, "row": 0,
+      "label": "Tuinonderhoud / TU001",
+      "subLabel": "Hele complex — 56 woningen",
+      "groupId": "GRP-bloemkwartier",
+      "serviceCode": "TU001",
+      "vheCount": 56,
+      "amount": 7840,
+      "advance": 8000,
+      "delta": 160,
+      "settlementStatus": "proposed",
+      "yoyComparison": [
+        { "year": 2024, "actual": 7840, "advance": 8000, "delta": 160 },
+        { "year": 2023, "actual": 7560, "advance": 8000, "delta": 440 }
+      ],
+      "distribution": { "method": "per_vhe", "denominator": 56, "unit": "VHE" }
+    },
+    {
+      "id": "src-signaal",
+      "laneId": "lane-signaal",
+      "type": "source",
+      "col": 0, "row": 0,
+      "label": "Signaallevering (kabel-tv)",
+      "sourceKind": "recurring",
+      "cadence": "monthly",
+      "identifier": "Ziggo — collectieve aansluiting",
+      "supplier": "Ziggo",
+      "amount": 1008,
+      "budgetedAmount": 1080,
+      "evidenceCount": 12,
+      "yoyComparison": [
+        { "year": 2024, "amount": 1008 },
+        { "year": 2023, "amount": 960 }
+      ],
+      "supplierBreakdown": [
+        { "name": "Ziggo", "role": "signaalleverancier", "amount": 1008, "evidenceCount": 12, "status": "matched" }
+      ],
+      "temporalCoverage": { "expectedMonths": 12, "bookedMonths": 12, "missing": [], "cadence": "monthly" },
+      "anchors": [
+        { "ledgerAccount": "8514000-ZW002-SI001-", "amount": 1008, "status": "matched" }
+      ]
+    },
+    {
+      "id": "settle-signaal",
+      "laneId": "lane-signaal",
+      "type": "settlement",
+      "col": 1, "row": 0,
+      "label": "Signaallevering / SI001",
+      "subLabel": "Hele complex — 56 woningen",
+      "groupId": "GRP-bloemkwartier",
+      "serviceCode": "SI001",
+      "vheCount": 56,
+      "amount": 1008,
+      "advance": 1080,
+      "delta": 72,
+      "settlementStatus": "proposed",
+      "yoyComparison": [
+        { "year": 2024, "actual": 1008, "advance": 1080, "delta": 72 },
+        { "year": 2023, "actual": 960, "advance": 1080, "delta": 120 }
+      ],
+      "distribution": { "method": "per_vhe", "denominator": 56, "unit": "VHE" }
+    },
+    {
+      "id": "src-bog-elektra",
+      "laneId": "lane-bog-elektra",
+      "type": "source",
+      "col": 0, "row": 0,
+      "label": "Elektra BOG",
+      "sourceKind": "contracted",
+      "cadence": "monthly",
+      "identifier": "Eneco — separate BOG-meter",
+      "supplier": "Eneco",
+      "amount": 1350,
+      "budgetedAmount": 1200,
+      "evidenceCount": 12,
+      "yoyComparison": [
+        { "year": 2024, "amount": 1350 },
+        { "year": 2023, "amount": 1230 }
+      ],
+      "supplierBreakdown": [
+        { "name": "Eneco", "role": "energieleverancier", "amount": 1350, "evidenceCount": 12, "status": "matched" }
+      ],
+      "temporalCoverage": { "expectedMonths": 12, "bookedMonths": 12, "missing": [], "cadence": "monthly" },
+      "anchors": [
+        { "ledgerAccount": "8507100-ZW002-EL050-", "amount": 1350, "status": "matched" }
+      ]
+    },
+    {
+      "id": "settle-bog-elektra",
+      "laneId": "lane-bog-elektra",
+      "type": "settlement",
+      "col": 1, "row": 0,
+      "label": "Elektra BOG / EL050",
+      "subLabel": "Commerciële ruimtes — 3 BOG",
+      "groupId": "GRP-bloemkwartier-bog",
+      "serviceCode": "EL050",
+      "vheCount": 3,
+      "amount": 1350,
+      "advance": 1200,
+      "delta": -150,
+      "settlementStatus": "proposed",
+      "yoyComparison": [
+        { "year": 2024, "actual": 1350, "advance": 1200, "delta": -150 },
+        { "year": 2023, "actual": 1230, "advance": 1200, "delta": -30 }
+      ],
+      "distribution": { "method": "per_vhe", "denominator": 3, "unit": "BOG" }
+    }
+  ],
+  "edges": [
+    { "from": "src-cv-gas",                "to": "settle-cv-gas",          "amount": 17280 },
+    { "from": "src-stadsverwarming",       "to": "settle-stadsverwarming", "amount": 18760 },
+    { "from": "src-stadsverwarming-ista",  "to": "settle-stadsverwarming", "amount": 3000 },
+    { "from": "src-elektra",               "to": "settle-elektra",         "amount": 5320 },
+    { "from": "src-water",                 "to": "settle-water",           "amount": 19600 },
+    { "from": "src-schoonmaak",            "to": "settle-schoonmaak",      "amount": 5760 },
+    { "from": "src-tuin",                  "to": "settle-tuin",            "amount": 7840 },
+    { "from": "src-signaal",               "to": "settle-signaal",         "amount": 1008 },
+    { "from": "src-bog-elektra",           "to": "settle-bog-elektra",     "amount": 1350 }
+  ],
+  "trustSummary": {
+    "totalExpected": 79918,
+    "totalAnchored": 79918,
+    "wrongAccountAmount": 0,
+    "manualAdjustmentAmount": 0,
+    "issuesCount": 0
+  }
+}

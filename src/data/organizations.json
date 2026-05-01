@@ -1,0 +1,17 @@
+[
+  {
+    "id": "zonnestraal",
+    "name": "Zonnestraal Wonen",
+    "slug": "zonnestraal",
+    "logoText": "ZW",
+    "logoUrl": null,
+    "modules": ["serviceCharges"],
+    "dataDir": "",
+    "moduleConfig": {
+      "mode": "full",
+      "hasLedgerData": true,
+      "hasConsumptionData": true,
+      "hasNonUtilityServices": true
+    }
+  }
+]
