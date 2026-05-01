@@ -1,10 +1,12 @@
 // ═══════════════════════════════════════════════════════════════
 // orgData.js — Org-aware data registry
-// Preloads both Rochdale and Portaal datasets and provides
-// a getDataset(orgId) function for the data layer.
+// v3.1 demo build: only the Zonnestraal Wonen org. The legacy data
+// layer here is largely unused by the demo flow (the Cost-flow / Tenants
+// surfaces read directly from costFlow.json + perTenant.js synthesis),
+// but a few side surfaces still call getDataset(orgId), so we keep the
+// shape and feed it the empty-stub data files.
 // ═══════════════════════════════════════════════════════════════
 
-// --- Rochdale (default / root data) ---
 import rBuildings from "../../data/buildings.json";
 import rServices from "../../data/services.json";
 import rServiceCategories from "../../data/serviceCategories.json";
@@ -26,21 +28,6 @@ import rModuleConfig from "../../data/moduleConfig.json";
 import rTasks from "../../data/tasks.json";
 import rNotes from "../../data/notes.json";
 import rDistributions from "../../data/distributions.json";
-
-// --- Portaal (energy-only — no ledger or supplier data) ---
-import pBuildings from "../../data/portaal/buildings.json";
-import pServices from "../../data/portaal/services.json";
-import pServiceCategories from "../../data/portaal/serviceCategories.json";
-import pBuildingServices from "../../data/portaal/buildingServices.json";
-import pCostAttribution from "../../data/portaal/costAttribution.json";
-import pCostCategories from "../../data/portaal/costCategories.json";
-import pVhes from "../../data/portaal/vhes.json";
-import pMeters from "../../data/portaal/meters.json";
-import pDistributionMethods from "../../data/portaal/distributionMethods.json";
-import pDistributionModels from "../../data/portaal/distributionModels.json";
-import pHeatingSeasons from "../../data/portaal/heatingSeasons.json";
-import pSavedViews from "../../data/portaal/savedViews.json";
-import pModuleConfig from "../../data/portaal/moduleConfig.json";
 
 // ── Build indexes for a dataset ─────────────────────────────
 function buildIndexes(ds) {
@@ -146,8 +133,8 @@ function buildIndexes(ds) {
   return ds;
 }
 
-// ── Create dataset objects ──────────────────────────────────
-const rochdale = buildIndexes({
+// ── Create the single demo dataset ──────────────────────────
+const zonnestraal = buildIndexes({
   buildings: rBuildings,
   services: rServices,
   serviceCategories: rServiceCategories,
@@ -171,39 +158,16 @@ const rochdale = buildIndexes({
   distributions: rDistributions,
 });
 
-const portaal = buildIndexes({
-  buildings: pBuildings,
-  services: pServices,
-  serviceCategories: pServiceCategories,
-  buildingServices: pBuildingServices,
-  costAttribution: pCostAttribution,
-  costCategories: pCostCategories,
-  vhes: pVhes,
-  meters: pMeters,
-  ledgerEntries: [],          // energy-only: no ledger
-  suppliers: [],              // energy-only: no suppliers
-  supplierCategories: [],     // energy-only: no supplier categories
-  distributionMethods: pDistributionMethods,
-  distributionModels: pDistributionModels,
-  monthlyCloseStatuses: [],   // energy-only: no monthly close
-  savedViews: pSavedViews,
-  activities: [],             // energy-only: no activity feed
-  moduleConfig: pModuleConfig,
-  heatingSeasons: pHeatingSeasons,
-  tasks: [],                  // energy-only: no tasks
-  notes: [],                  // energy-only: no notes
-  distributions: [],          // energy-only: no distributions
-});
-
 const datasets = {
-  rochdale,
-  portaal,
+  zonnestraal,
 };
 
 /**
- * Get the dataset for an org. Falls back to rochdale.
+ * Get the dataset for an org. The v3.1 demo only registers
+ * "zonnestraal"; any other id falls back to it so legacy callers
+ * don't crash if they hold a stale org slug.
  */
 export function getDataset(orgId) {
-  return datasets[orgId] || rochdale;
+  return datasets[orgId] || zonnestraal;
 }
 
