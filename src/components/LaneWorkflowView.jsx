@@ -566,15 +566,7 @@ function CostSourcesTable({ sources, adjustments = [], groupId, laneId, frozen }
             </div>
           </th>
           <th className="text-right font-semibold px-3 py-2 w-32">
-            <div className="flex items-center justify-end gap-1">
-              <span>Werkelijk</span>
-              <span
-                className="inline-flex items-center px-1 py-0.5 rounded text-[8px] font-semibold tracking-wider text-slate-500 bg-slate-100 border border-slate-200 normal-case"
-                title="Uitkomst uit het grootboek — niet bewerkbaar"
-              >
-                Grootboek
-              </span>
-            </div>
+            Werkelijk
           </th>
           <th className="text-right font-semibold px-3 py-2 w-24">Afwijking</th>
           <th className="w-8" />
