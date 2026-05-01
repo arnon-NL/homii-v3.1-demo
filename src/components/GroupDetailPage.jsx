@@ -1202,22 +1202,51 @@ function TenantsTab({ flow, onJumpToCostFlow }) {
                 {lanes.map((lane) => {
                   const Icon = CATEGORY_ICON[lane.category] || FileText;
                   const locked = isLaneFrozen(groupId, lane.id);
+                  // Detect external distributor (Ista et al.) on this lane —
+                  // gives the column a sky tint so users see at a glance
+                  // which columns aren't computed by us.
+                  const externalSettlement = flow.nodes.find(
+                    (n) =>
+                      n.type === "settlement" &&
+                      n.laneId === lane.id &&
+                      !n.outOfScope &&
+                      (n.externalDistributor ||
+                        n.distribution?.method === "metered_ista")
+                  );
+                  const externalDistributor = externalSettlement
+                    ? externalSettlement.externalDistributor || "Ista"
+                    : null;
+                  // Stack tints: locked > external > default. Only one
+                  // visual treatment "wins" so the header stays readable.
+                  const headerClass = locked
+                    ? "border-emerald-200 bg-emerald-50/40 text-emerald-700"
+                    : externalDistributor
+                    ? "border-sky-200 bg-sky-50/40 text-sky-700"
+                    : "border-slate-200 text-slate-500";
                   return (
                     <th
                       key={lane.id}
-                      className={`text-right font-semibold uppercase tracking-widest text-[10px] px-3 py-2 border-b min-w-[110px] cursor-pointer hover:bg-slate-100 transition-colors ${
-                        locked
-                          ? "border-emerald-200 bg-emerald-50/40 text-emerald-700"
-                          : "border-slate-200 text-slate-500"
-                      }`}
+                      className={`text-right font-semibold uppercase tracking-widest text-[10px] px-3 py-2 border-b min-w-[110px] cursor-pointer hover:bg-slate-100 transition-colors ${headerClass}`}
                       onClick={() => onJumpToCostFlow?.(lane.id)}
-                      title={`${lane.title}${locked ? " · vergrendeld" : ""} — klik om te openen in Kostenstroom`}
+                      title={
+                        externalDistributor
+                          ? `${lane.title} · verdeling via ${externalDistributor}${locked ? " · vergrendeld" : ""} — klik om te openen in Kostenstroom`
+                          : `${lane.title}${locked ? " · vergrendeld" : ""} — klik om te openen in Kostenstroom`
+                      }
                     >
                       <div className="flex items-center justify-end gap-1">
                         {locked && <Lock size={9} className="opacity-80" />}
+                        {externalDistributor && !locked && (
+                          <Gauge size={9} className="opacity-80" />
+                        )}
                         <Icon size={10} className="opacity-70 shrink-0" />
                         <span className="truncate">{lane.title}</span>
                       </div>
+                      {externalDistributor && (
+                        <div className="text-[8px] font-normal normal-case tracking-normal opacity-75 mt-0.5">
+                          via {externalDistributor}
+                        </div>
+                      )}
                     </th>
                   );
                 })}

@@ -95,7 +95,8 @@
         { "year": 2024, "actual": 23400, "advance": 22500, "delta": -900 },
         { "year": 2023, "actual": 22200, "advance": 22200, "delta": 0 }
       ],
-      "distribution": { "method": "per_vhe", "denominator": 36, "unit": "VHE" }
+      "distribution": { "method": "metered_ista", "denominator": 36, "unit": "VHE" },
+      "externalDistributor": "Ista"
     },
     {
       "id": "src-verlichting-voor",

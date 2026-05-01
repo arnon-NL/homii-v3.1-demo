@@ -1346,6 +1346,21 @@ export default function LaneWorkflowView({ laneId, scopeAudienceId, onJumpToBook
   const variancePct =
     totalBudgeted !== 0 ? (totalActual - totalBudgeted) / totalBudgeted : 0;
 
+  // Ista (en vergelijkbare externe verdelers) handelt de per-woning
+  // splitsing zelf af — wij rekenen het bedrag intern niet op huurder-
+  // niveau uit, dat doet Ista op basis van warmtekostenmeters. Detectie
+  // is op de settlement-distributie of een expliciet `externalDistributor`
+  // veld op een settlement.
+  const externalDistributor = (() => {
+    const s = allSettlements.find(
+      (n) =>
+        n.externalDistributor ||
+        n.distribution?.method === "metered_ista"
+    );
+    if (!s) return null;
+    return s.externalDistributor || "Ista";
+  })();
+
   return (
     <div className="overflow-y-auto h-full bg-slate-50/30">
       <div className="px-6 py-5 max-w-[900px] mx-auto space-y-5">
@@ -1414,6 +1429,29 @@ export default function LaneWorkflowView({ laneId, scopeAudienceId, onJumpToBook
               <Unlock size={12} />
               Ontgrendelen
             </button>
+          </div>
+        )}
+
+        {/* Banner — externe verdeler (Ista, Techem, etc.).
+         * De corporatie betaalt het component-totaal en een service-fee;
+         * de externe verdeler splitst dit zelf per woning op basis van
+         * warmtekostenmeters. De per-huurder bedragen die je ziet in dit
+         * systeem zijn een schatting; de definitieve splitsing komt uit
+         * de eindafrekening van de externe partij. */}
+        {externalDistributor && (
+          <div className="rounded-lg border border-sky-200 bg-sky-50/60 px-3 py-2.5 flex items-start gap-2.5 text-[12px] text-sky-900">
+            <Gauge size={14} className="shrink-0 mt-0.5 text-sky-700" />
+            <div className="flex-1">
+              <div className="font-semibold">
+                Externe verdeling — {externalDistributor}
+              </div>
+              <div className="text-sky-800 text-[11px] mt-0.5">
+                {externalDistributor} splitst dit component zelf per
+                woning op basis van warmtekostenmeters. Wij verwerken alleen
+                het totaal en de service-fee; de definitieve bedragen per
+                huurder komen uit de eindafrekening van {externalDistributor}.
+              </div>
+            </div>
           </div>
         )}
 
