@@ -1,0 +1,785 @@
+{
+  "group": {
+    "id": "GRP-burghoutweg",
+    "kind": "complex",
+    "name": "Gerardt Burghoutweg",
+    "city": "Hilversum",
+    "vheCount": 66,
+    "sourceComplexes": [
+      "22101-01"
+    ],
+    "blocks": [
+      {
+        "id": "GRP-burghoutweg-paulus",
+        "name": "Paulus Emtinckweg 3-24",
+        "vheCount": 22
+      },
+      {
+        "id": "GRP-burghoutweg-gerardt",
+        "name": "Gerardt Burghoutweg 3-46",
+        "vheCount": 44
+      }
+    ]
+  },
+  "period": 2025,
+  "siblingGroups": [
+    {
+      "id": "GRP-burghoutweg",
+      "name": "G. Burghoutweg",
+      "vheCount": 66,
+      "kind": "complex",
+      "active": true
+    },
+    {
+      "id": "GRP-burghoutweg-cv",
+      "name": "CV-heated units",
+      "vheCount": 61,
+      "kind": "subgroup"
+    }
+  ],
+  "lanes": [
+    {
+      "id": "lane-glas",
+      "title": "Glasverzekering",
+      "category": "other",
+      "complexity": "simple"
+    },
+    {
+      "id": "lane-cv",
+      "title": "24-hour central heating service",
+      "category": "energy",
+      "complexity": "simple"
+    },
+    {
+      "id": "lane-riolering",
+      "title": "Sewer surcharge",
+      "category": "other",
+      "complexity": "simple"
+    },
+    {
+      "id": "lane-goten",
+      "title": "Gutter cleaning",
+      "category": "cleaning",
+      "complexity": "simple"
+    },
+    {
+      "id": "lane-ventilation",
+      "title": "Mechanical ventilation",
+      "category": "energy",
+      "complexity": "simple"
+    },
+    {
+      "id": "lane-wijkbeheerder",
+      "title": "Wijkbeheerder",
+      "category": "management",
+      "complexity": "simple"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "src-glas",
+      "laneId": "lane-glas",
+      "type": "source",
+      "col": 0,
+      "row": 0,
+      "label": "Window cleaning",
+      "sourceKind": "recurring",
+      "cadence": "annual",
+      "identifier": "AON group glass policy",
+      "supplier": "AON",
+      "amount": 1145.9,
+      "evidenceCount": 1,
+      "yoyComparison": [
+        {
+          "year": 2025,
+          "amount": 1145.9
+        },
+        {
+          "year": 2024,
+          "amount": 1118
+        },
+        {
+          "year": 2023,
+          "amount": 1090.2
+        }
+      ],
+      "supplierBreakdown": [
+        {
+          "name": "AON",
+          "role": "insurer",
+          "amount": 1145.9,
+          "evidenceCount": 1,
+          "status": "matched"
+        }
+      ],
+      "temporalCoverage": {
+        "expectedMonths": 1,
+        "bookedMonths": 1,
+        "missing": [],
+        "note": "Annual premium booked in full",
+        "cadence": "annual"
+      },
+      "anchors": [
+        {
+          "ledgerAccount": "8507000-22101001-GDG036-",
+          "amount": 1145.9,
+          "status": "matched"
+        }
+      ],
+      "budgetedAmount": 1237.57
+    },
+    {
+      "id": "settle-glas",
+      "laneId": "lane-glas",
+      "type": "settlement",
+      "col": 1,
+      "row": 0,
+      "label": "Glasverzekering / GDG036",
+      "subLabel": "Whole complex — 66 VHE",
+      "groupId": "GRP-burghoutweg",
+      "serviceCode": "GDG036",
+      "vheCount": 66,
+      "amount": 1145.9,
+      "advance": 1240.8,
+      "delta": -94.9,
+      "settlementStatus": "proposed",
+      "yoyComparison": [
+        {
+          "year": 2025,
+          "actual": 1145.9,
+          "advance": 1240.8,
+          "delta": -94.9
+        },
+        {
+          "year": 2024,
+          "actual": 1118,
+          "advance": 1118,
+          "delta": 0
+        },
+        {
+          "year": 2023,
+          "actual": 1090.2,
+          "advance": 1090.2,
+          "delta": 0
+        }
+      ],
+      "newAdvanceRecommendation": {
+        "perVheJan": 1.54,
+        "perVheJul": 1.58,
+        "totalAnnual": 1235.04,
+        "generalIncrease": 0.027,
+        "expectedCost2025": 1240.8,
+        "rationale": "Premium pass-through with mid-year step-up for indexation"
+      },
+      "regulation": "Servicekosten Besluit Art. 1",
+      "distribution": {
+        "method": "per_vhe",
+        "denominator": 66,
+        "unit": "VHE"
+      }
+    },
+    {
+      "id": "src-cv",
+      "laneId": "lane-cv",
+      "type": "source",
+      "col": 0,
+      "row": 0,
+      "label": "24-hour central heating service",
+      "sourceKind": "contracted",
+      "cadence": "annual",
+      "identifier": "Bonarius — service contract",
+      "supplier": "Bonarius",
+      "amount": 487,
+      "evidenceCount": 4,
+      "yoyComparison": [
+        {
+          "year": 2025,
+          "amount": 487
+        },
+        {
+          "year": 2024,
+          "amount": 1180.4
+        },
+        {
+          "year": 2023,
+          "amount": 1095.2
+        }
+      ],
+      "supplierBreakdown": [
+        {
+          "name": "Bonarius",
+          "role": "CV service",
+          "amount": 487,
+          "evidenceCount": 4,
+          "status": "matched_partial",
+          "note": "Q3+Q4 invoices not yet received"
+        }
+      ],
+      "temporalCoverage": {
+        "expectedMonths": 12,
+        "bookedMonths": 6,
+        "missing": [
+          "Jul",
+          "Aug",
+          "Sep",
+          "Oct",
+          "Nov",
+          "Dec"
+        ],
+        "note": "Six months booked",
+        "cadence": "monthly"
+      },
+      "manualNotes": [
+        {
+          "kind": "warn",
+          "text": "Cost dropped sharply vs 2024 — investigate whether Bonarius contract is still active for all 61 CV-heated VHE"
+        },
+        {
+          "kind": "info",
+          "text": "5 residents own their own CV boiler and don't pay this service (66 → 61 audience)"
+        }
+      ],
+      "anchors": [
+        {
+          "ledgerAccount": "8507000-22101001-GDG115-",
+          "amount": 487,
+          "status": "matched_partial",
+          "note": "6 of 12 months booked"
+        }
+      ],
+      "flags": [
+        {
+          "kind": "warning",
+          "note": "Half-year billing gap — large refund expected"
+        }
+      ],
+      "budgetedAmount": 477.26
+    },
+    {
+      "id": "settle-cv",
+      "laneId": "lane-cv",
+      "type": "settlement",
+      "col": 1,
+      "row": 0,
+      "label": "24h CV service / GDG115",
+      "subLabel": "CV-heated units — 61 VHE",
+      "groupId": "GRP-burghoutweg-cv",
+      "serviceCode": "GDG115",
+      "vheCount": 61,
+      "amount": 487,
+      "advance": 1166.32,
+      "delta": -679.32,
+      "settlementStatus": "proposed",
+      "yoyComparison": [
+        {
+          "year": 2025,
+          "actual": 487,
+          "advance": 1166.32,
+          "delta": -679.32
+        },
+        {
+          "year": 2024,
+          "actual": 1180.4,
+          "advance": 1190,
+          "delta": -9.6
+        },
+        {
+          "year": 2023,
+          "actual": 1095.2,
+          "advance": 1100,
+          "delta": -4.8
+        }
+      ],
+      "newAdvanceRecommendation": {
+        "perVheJan": 1.64,
+        "perVheJul": 1.72,
+        "totalAnnual": 1230.96,
+        "generalIncrease": 0.0506,
+        "expectedCost2025": 1199.87,
+        "rationale": "Continue 5% Bonarius indexation; resolve 2025 billing gap first",
+        "marginNote": "Refund this year is exceptional — investigate before next settlement"
+      },
+      "regulation": "Servicekosten Besluit Art. 1",
+      "audienceNote": "5 residents own their CV boiler privately — 66 - 5 = 61 paying audience",
+      "distribution": {
+        "method": "per_vhe",
+        "denominator": 61,
+        "unit": "VHE"
+      }
+    },
+    {
+      "id": "src-riolering",
+      "laneId": "lane-riolering",
+      "type": "source",
+      "col": 0,
+      "row": 0,
+      "label": "Sewer maintenance",
+      "sourceKind": "recurring",
+      "cadence": "annual",
+      "identifier": "RRS / AORC drain service",
+      "supplier": "RRS / AORC",
+      "amount": 1159.28,
+      "evidenceCount": 1,
+      "yoyComparison": [
+        {
+          "year": 2025,
+          "amount": 1159.28
+        },
+        {
+          "year": 2024,
+          "amount": 1095.4
+        },
+        {
+          "year": 2023,
+          "amount": 1010.8
+        }
+      ],
+      "supplierBreakdown": [
+        {
+          "name": "RRS / AORC",
+          "role": "sewer maintenance",
+          "amount": 1159.28,
+          "evidenceCount": 1,
+          "status": "matched"
+        }
+      ],
+      "temporalCoverage": {
+        "expectedMonths": 1,
+        "bookedMonths": 1,
+        "missing": [],
+        "note": "Annual fee booked",
+        "cadence": "annual"
+      },
+      "anchors": [
+        {
+          "ledgerAccount": "8507000-22101001-GDG122-",
+          "amount": 1159.28,
+          "status": "matched"
+        }
+      ],
+      "budgetedAmount": 1112.91
+    },
+    {
+      "id": "settle-riolering",
+      "laneId": "lane-riolering",
+      "type": "settlement",
+      "col": 1,
+      "row": 0,
+      "label": "Sewer surcharge / GDG122",
+      "subLabel": "Whole complex — 66 VHE",
+      "groupId": "GRP-burghoutweg",
+      "serviceCode": "GDG122",
+      "vheCount": 66,
+      "amount": 1159.28,
+      "advance": 902.88,
+      "delta": 256.4,
+      "settlementStatus": "proposed",
+      "yoyComparison": [
+        {
+          "year": 2025,
+          "actual": 1159.28,
+          "advance": 902.88,
+          "delta": 256.4
+        },
+        {
+          "year": 2024,
+          "actual": 1095.4,
+          "advance": 1100,
+          "delta": -4.6
+        },
+        {
+          "year": 2023,
+          "actual": 1010.8,
+          "advance": 1020,
+          "delta": -9.2
+        }
+      ],
+      "newAdvanceRecommendation": {
+        "perVheJan": 1.58,
+        "perVheJul": 1.63,
+        "totalAnnual": 1268.16,
+        "generalIncrease": 0.0269,
+        "expectedCost2025": 1255.32,
+        "rationale": "Step-up to align with 2025 actual; previous voorschot was set too low"
+      },
+      "regulation": "Servicekosten Besluit Art. 1",
+      "distribution": {
+        "method": "per_vhe",
+        "denominator": 66,
+        "unit": "VHE"
+      }
+    },
+    {
+      "id": "src-goten",
+      "laneId": "lane-goten",
+      "type": "source",
+      "col": 0,
+      "row": 0,
+      "label": "Gutter cleaning",
+      "sourceKind": "contracted",
+      "cadence": "annual",
+      "identifier": "Goten reinigen — service contract",
+      "supplier": "Local cleaner",
+      "amount": 218.55,
+      "evidenceCount": 1,
+      "yoyComparison": [
+        {
+          "year": 2025,
+          "amount": 218.55
+        },
+        {
+          "year": 2024,
+          "amount": 1380.2
+        },
+        {
+          "year": 2023,
+          "amount": 1290.5
+        }
+      ],
+      "supplierBreakdown": [
+        {
+          "name": "Local cleaner",
+          "role": "gutter cleaning",
+          "amount": 218.55,
+          "evidenceCount": 1,
+          "status": "matched_partial",
+          "note": "Only one cleaning visit booked vs annual contract"
+        }
+      ],
+      "temporalCoverage": {
+        "expectedMonths": 1,
+        "bookedMonths": 1,
+        "missing": [],
+        "note": "Annual contract — single invoice",
+        "cadence": "annual"
+      },
+      "manualNotes": [
+        {
+          "kind": "warn",
+          "text": "Cost ~80% below 2024 — confirm whether the full annual cleaning happened"
+        }
+      ],
+      "anchors": [
+        {
+          "ledgerAccount": "8507000-22101001-GDG124-",
+          "amount": 218.55,
+          "status": "matched_partial"
+        }
+      ],
+      "flags": [
+        {
+          "kind": "warning",
+          "note": "Suspiciously low spend vs prior years"
+        }
+      ],
+      "budgetedAmount": 222.92
+    },
+    {
+      "id": "settle-goten",
+      "laneId": "lane-goten",
+      "type": "settlement",
+      "col": 1,
+      "row": 0,
+      "label": "Gutter cleaning / GDG124",
+      "subLabel": "Whole complex — 66 VHE",
+      "groupId": "GRP-burghoutweg",
+      "serviceCode": "GDG124",
+      "vheCount": 66,
+      "amount": 218.55,
+      "advance": 1235.52,
+      "delta": -1016.97,
+      "settlementStatus": "proposed",
+      "yoyComparison": [
+        {
+          "year": 2025,
+          "actual": 218.55,
+          "advance": 1235.52,
+          "delta": -1016.97
+        },
+        {
+          "year": 2024,
+          "actual": 1380.2,
+          "advance": 1380.2,
+          "delta": 0
+        },
+        {
+          "year": 2023,
+          "actual": 1290.5,
+          "advance": 1290.5,
+          "delta": 0
+        }
+      ],
+      "newAdvanceRecommendation": {
+        "perVheJan": 1.56,
+        "perVheJul": 2,
+        "totalAnnual": 1410.48,
+        "generalIncrease": 0.045,
+        "expectedCost2025": 1514.7,
+        "rationale": "Step-up assumes full cleaning resumes",
+        "marginNote": "Large refund this year because contract underperformed — verify supplier"
+      },
+      "regulation": "Servicekosten Besluit Art. 1",
+      "distribution": {
+        "method": "per_vhe",
+        "denominator": 66,
+        "unit": "VHE"
+      }
+    },
+    {
+      "id": "src-ventilation",
+      "laneId": "lane-ventilation",
+      "type": "source",
+      "col": 0,
+      "row": 0,
+      "label": "Mechanical ventilation",
+      "sourceKind": "contracted",
+      "cadence": "annual",
+      "identifier": "Eltag MV service contract",
+      "supplier": "Eltag",
+      "amount": 1326.47,
+      "evidenceCount": 1,
+      "yoyComparison": [
+        {
+          "year": 2025,
+          "amount": 1326.47
+        },
+        {
+          "year": 2024,
+          "amount": 1280.9
+        },
+        {
+          "year": 2023,
+          "amount": 1240.3
+        }
+      ],
+      "supplierBreakdown": [
+        {
+          "name": "Eltag",
+          "role": "MV maintenance",
+          "amount": 1326.47,
+          "evidenceCount": 1,
+          "status": "matched"
+        }
+      ],
+      "temporalCoverage": {
+        "expectedMonths": 1,
+        "bookedMonths": 1,
+        "missing": [],
+        "note": "Annual fee booked",
+        "cadence": "annual"
+      },
+      "anchors": [
+        {
+          "ledgerAccount": "8507000-22101001-GDG128-",
+          "amount": 1326.47,
+          "status": "matched"
+        }
+      ],
+      "budgetedAmount": 1406.06
+    },
+    {
+      "id": "settle-ventilation",
+      "laneId": "lane-ventilation",
+      "type": "settlement",
+      "col": 1,
+      "row": 0,
+      "label": "Mechanical ventilation / GDG128",
+      "subLabel": "Whole complex — 66 VHE",
+      "groupId": "GRP-burghoutweg",
+      "serviceCode": "GDG128",
+      "vheCount": 66,
+      "amount": 1326.47,
+      "advance": 1362.24,
+      "delta": -35.77,
+      "settlementStatus": "proposed",
+      "yoyComparison": [
+        {
+          "year": 2025,
+          "actual": 1326.47,
+          "advance": 1362.24,
+          "delta": -35.77
+        },
+        {
+          "year": 2024,
+          "actual": 1280.9,
+          "advance": 1290,
+          "delta": -9.1
+        },
+        {
+          "year": 2023,
+          "actual": 1240.3,
+          "advance": 1245,
+          "delta": -4.7
+        }
+      ],
+      "newAdvanceRecommendation": {
+        "perVheJan": 1.76,
+        "perVheJul": 1.83,
+        "totalAnnual": 1422.96,
+        "generalIncrease": 0.0389,
+        "expectedCost2025": 1392.6,
+        "rationale": "Eltag indexation 3.89%"
+      },
+      "regulation": "Servicekosten Besluit Art. 1",
+      "distribution": {
+        "method": "per_vhe",
+        "denominator": 66,
+        "unit": "VHE"
+      }
+    },
+    {
+      "id": "src-wijkbeheerder",
+      "laneId": "lane-wijkbeheerder",
+      "type": "source",
+      "col": 0,
+      "row": 0,
+      "label": "Wijkbeheerder",
+      "sourceKind": "internal",
+      "cadence": "annual",
+      "identifier": "Internal labour allocation",
+      "supplier": "Internal",
+      "amount": 479.26,
+      "evidenceCount": 1,
+      "yoyComparison": [
+        {
+          "year": 2025,
+          "amount": 479.26
+        },
+        {
+          "year": 2024,
+          "amount": 2480
+        },
+        {
+          "year": 2023,
+          "amount": 2350.4
+        }
+      ],
+      "supplierBreakdown": [
+        {
+          "name": "Internal labour",
+          "role": "neighbourhood manager",
+          "amount": 479.26,
+          "evidenceCount": 1,
+          "status": "matched_partial"
+        }
+      ],
+      "temporalCoverage": {
+        "expectedMonths": 1,
+        "bookedMonths": 1,
+        "missing": [],
+        "note": "Year-end allocation booked",
+        "cadence": "annual"
+      },
+      "manualNotes": [
+        {
+          "kind": "warn",
+          "text": "Allocation ~80% below 2024 — verify hours allocated to this complex"
+        }
+      ],
+      "anchors": [
+        {
+          "ledgerAccount": "8507000-22101001-GDG131-",
+          "amount": 479.26,
+          "status": "matched_partial"
+        }
+      ],
+      "flags": [
+        {
+          "kind": "warning",
+          "note": "Significantly lower allocation than prior years"
+        }
+      ],
+      "budgetedAmount": 464.88
+    },
+    {
+      "id": "settle-wijkbeheerder",
+      "laneId": "lane-wijkbeheerder",
+      "type": "settlement",
+      "col": 1,
+      "row": 0,
+      "label": "Wijkbeheerder / GDG131",
+      "subLabel": "Whole complex — 66 VHE",
+      "groupId": "GRP-burghoutweg",
+      "serviceCode": "GDG131",
+      "vheCount": 66,
+      "amount": 479.26,
+      "advance": 2732.4,
+      "delta": -2253.14,
+      "settlementStatus": "proposed",
+      "yoyComparison": [
+        {
+          "year": 2025,
+          "actual": 479.26,
+          "advance": 2732.4,
+          "delta": -2253.14
+        },
+        {
+          "year": 2024,
+          "actual": 2480,
+          "advance": 2530,
+          "delta": -50
+        },
+        {
+          "year": 2023,
+          "actual": 2350.4,
+          "advance": 2400,
+          "delta": -49.6
+        }
+      ],
+      "newAdvanceRecommendation": {
+        "perVheJan": 3.75,
+        "perVheJul": 3.86,
+        "totalAnnual": 3018.96,
+        "generalIncrease": 0.06,
+        "expectedCost2025": 3019.5,
+        "rationale": "+6% labour-cost indexation",
+        "marginNote": "Massive refund driven by under-allocation — investigate hours-allocation method"
+      },
+      "regulation": "Servicekosten Besluit Art. 1",
+      "distribution": {
+        "method": "per_vhe",
+        "denominator": 66,
+        "unit": "VHE"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "src-glas",
+      "to": "settle-glas",
+      "amount": 1145.9
+    },
+    {
+      "from": "src-cv",
+      "to": "settle-cv",
+      "amount": 487
+    },
+    {
+      "from": "src-riolering",
+      "to": "settle-riolering",
+      "amount": 1159.28
+    },
+    {
+      "from": "src-goten",
+      "to": "settle-goten",
+      "amount": 218.55
+    },
+    {
+      "from": "src-ventilation",
+      "to": "settle-ventilation",
+      "amount": 1326.47
+    },
+    {
+      "from": "src-wijkbeheerder",
+      "to": "settle-wijkbeheerder",
+      "amount": 479.26
+    }
+  ],
+  "trustSummary": {
+    "totalExpected": 4816.46,
+    "totalAnchored": 4816.46,
+    "wrongAccountAmount": 0,
+    "manualAdjustmentAmount": 0,
+    "issuesCount": 3
+  }
+}

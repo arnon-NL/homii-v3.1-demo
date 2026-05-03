@@ -1,0 +1,2135 @@
+{
+  "group": {
+    "id": "GRP-carolina",
+    "kind": "complex",
+    "name": "Sciencepark II — Carolina",
+    "city": "Amsterdam",
+    "vheCount": 605,
+    "sourceComplexes": [
+      "4636 / PRP-000418",
+      "4636 / PRP-001445"
+    ],
+    "blocks": [
+      {
+        "id": "GRP-carolina-main",
+        "name": "Carolina MacGillavrylaan 2082-3198",
+        "vheCount": 605
+      }
+    ]
+  },
+  "period": 2024,
+  "siblingGroups": [
+    {
+      "id": "GRP-carolina",
+      "name": "Carolina (residential)",
+      "vheCount": 605,
+      "kind": "complex",
+      "active": true
+    },
+    {
+      "id": "GRP-carolina-tax",
+      "name": "Tax base — 95 households",
+      "vheCount": 95,
+      "kind": "subgroup"
+    },
+    {
+      "id": "GRP-carolina-bog",
+      "name": "Commercial spaces (BOG)",
+      "vheCount": 2,
+      "kind": "commercial"
+    },
+    {
+      "id": "GRP-carolina-woonwerk",
+      "name": "Woon-werk (0.9 share)",
+      "vheCount": 20,
+      "kind": "subgroup"
+    }
+  ],
+  "lanes": [
+    {
+      "id": "lane-gemenergie",
+      "title": "Communal energy",
+      "category": "energy",
+      "complexity": "simple"
+    },
+    {
+      "id": "lane-glas",
+      "title": "Glasbewassing",
+      "category": "cleaning",
+      "complexity": "simple"
+    },
+    {
+      "id": "lane-vuil",
+      "title": "Waste & cleaning",
+      "category": "cleaning",
+      "complexity": "medium"
+    },
+    {
+      "id": "lane-tuin",
+      "title": "Garden maintenance",
+      "category": "other",
+      "complexity": "simple"
+    },
+    {
+      "id": "lane-elektra",
+      "title": "Electricity",
+      "category": "energy",
+      "complexity": "complex"
+    },
+    {
+      "id": "lane-gas",
+      "title": "Gas / heating",
+      "category": "energy",
+      "complexity": "complex"
+    },
+    {
+      "id": "lane-water",
+      "title": "Water",
+      "category": "energy",
+      "complexity": "medium"
+    },
+    {
+      "id": "lane-elektrapp",
+      "title": "Electrical equipment",
+      "category": "other",
+      "complexity": "simple"
+    },
+    {
+      "id": "lane-signaal",
+      "title": "Signal delivery (TV)",
+      "category": "other",
+      "complexity": "simple"
+    },
+    {
+      "id": "lane-afval",
+      "title": "Waste tax (Afvalstoffen)",
+      "category": "other",
+      "complexity": "simple"
+    },
+    {
+      "id": "lane-zuivering",
+      "title": "Water purification tax",
+      "category": "other",
+      "complexity": "simple"
+    },
+    {
+      "id": "lane-inventaris",
+      "title": "Inventory depreciation",
+      "category": "other",
+      "complexity": "simple"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "src-gemenergie-greenchoice",
+      "laneId": "lane-gemenergie",
+      "type": "source",
+      "col": 0,
+      "row": 0,
+      "label": "Communal area energy",
+      "subLabel": "energy supply",
+      "sourceKind": "metered",
+      "cadence": "monthly",
+      "identifier": "Greenchoice — energy supply",
+      "supplier": "Greenchoice",
+      "amount": 60050,
+      "evidenceCount": 12,
+      "anchors": [
+        {
+          "ledgerAccount": "8012100.01_010.000",
+          "amount": 60050,
+          "status": "matched",
+          "note": "Posted under Communal area energy (8012100.01_010.000) — Greenchoice invoices"
+        }
+      ],
+      "budgetedAmount": 64253.5
+    },
+    {
+      "id": "src-gemenergie-liander",
+      "laneId": "lane-gemenergie",
+      "type": "source",
+      "col": 0,
+      "row": 1,
+      "label": "Communal area energy",
+      "subLabel": "grid operator",
+      "sourceKind": "metered",
+      "cadence": "monthly",
+      "identifier": "Liander — grid operator",
+      "supplier": "Liander",
+      "amount": 30020.59,
+      "evidenceCount": 12,
+      "anchors": [
+        {
+          "ledgerAccount": "8012100.01_010.000",
+          "amount": 30020.59,
+          "status": "matched",
+          "note": "Posted under Communal area energy (8012100.01_010.000) — Liander invoices"
+        }
+      ],
+      "budgetedAmount": 28819.77
+    },
+    {
+      "id": "settle-gemenergie",
+      "laneId": "lane-gemenergie",
+      "type": "settlement",
+      "col": 1,
+      "row": 0,
+      "label": "Communal energy / GDG012",
+      "subLabel": "Whole complex — 605 VHE",
+      "groupId": "GRP-carolina",
+      "serviceCode": "GDG012",
+      "vheCount": 605,
+      "amount": 90070.59,
+      "advance": 37752,
+      "delta": -52318.59,
+      "settlementStatus": "proposed",
+      "yoyComparison": [
+        {
+          "year": 2024,
+          "actual": 90070.59,
+          "advance": 37752,
+          "delta": -52318.59
+        },
+        {
+          "year": 2023,
+          "actual": 78420.3,
+          "advance": 75600,
+          "delta": -2820.3
+        },
+        {
+          "year": 2022,
+          "actual": 72150.2,
+          "advance": 70800,
+          "delta": -1350.2
+        }
+      ],
+      "newAdvanceRecommendation": {
+        "perVheJan": 5.2,
+        "perVheJul": 5.2,
+        "totalAnnual": 37752,
+        "generalIncrease": 0,
+        "expectedCost2025": 90000,
+        "rationale": "Hold flat — voorschot stays at €5.20/month",
+        "marginNote": "Voorschot is structurally too low — large collect this year. Consider step-up."
+      },
+      "regulation": "Servicekosten Besluit Art. 1",
+      "audienceNote": "Workflow caveat: VHE 2414 (AMOLF) has no doelgroep configured, so the system auto-includes it in this 605 VHE distribution. Before approving this afrekening, set 'correspondentie per' to 'geen' on VHE 2414, discard its line, then restore correspondence to 'email'. This rule applies to ALL residential settlements in this complex.",
+      "flags": [
+        {
+          "kind": "warning",
+          "note": "AMOLF VHE 2414 must be excluded — discard its line before sending. Applies to every residential settlement in Carolina."
+        }
+      ],
+      "distribution": {
+        "method": "per_vhe",
+        "denominator": 605,
+        "unit": "VHE"
+      }
+    },
+    {
+      "id": "src-glas",
+      "laneId": "lane-glas",
+      "type": "source",
+      "col": 0,
+      "row": 0,
+      "label": "Window cleaning",
+      "sourceKind": "contracted",
+      "cadence": "quarterly",
+      "identifier": "ZZD glasbewassing — service contract",
+      "supplier": "ZZD",
+      "amount": 14187.99,
+      "evidenceCount": 4,
+      "yoyComparison": [
+        {
+          "year": 2024,
+          "amount": 14187.99
+        },
+        {
+          "year": 2023,
+          "amount": 13950.2
+        },
+        {
+          "year": 2022,
+          "amount": 13420.1
+        }
+      ],
+      "supplierBreakdown": [
+        {
+          "name": "ZZD",
+          "role": "window cleaning contractor",
+          "amount": 14187.99,
+          "evidenceCount": 4,
+          "status": "matched"
+        }
+      ],
+      "temporalCoverage": {
+        "expectedQuarters": 4,
+        "bookedQuarters": 4,
+        "missing": [],
+        "cadence": "quarterly"
+      },
+      "anchors": [
+        {
+          "ledgerAccount": "8012100.01_020.000",
+          "amount": 14187.99,
+          "status": "matched"
+        }
+      ],
+      "budgetedAmount": 15323.03
+    },
+    {
+      "id": "settle-glas-res",
+      "laneId": "lane-glas",
+      "type": "settlement",
+      "col": 1,
+      "row": 0,
+      "label": "Glasbewassing / GDG028",
+      "subLabel": "Residential — 605 VHE",
+      "groupId": "GRP-carolina",
+      "serviceCode": "GDG028",
+      "vheCount": 605,
+      "amount": 14187.99,
+      "advance": 29766,
+      "delta": 15578.01,
+      "settlementStatus": "proposed",
+      "yoyComparison": [
+        {
+          "year": 2024,
+          "actual": 14187.99,
+          "advance": 29766,
+          "delta": 15578.01
+        },
+        {
+          "year": 2023,
+          "actual": 13950.2,
+          "advance": 14000,
+          "delta": 49.8
+        },
+        {
+          "year": 2022,
+          "actual": 13420.1,
+          "advance": 13500,
+          "delta": 79.9
+        }
+      ],
+      "newAdvanceRecommendation": {
+        "perVheJan": 4.1,
+        "perVheJul": 4.1,
+        "totalAnnual": 29766,
+        "generalIncrease": 0,
+        "expectedCost2025": 29766,
+        "rationale": "Hold flat — voorschot is way over actual but planned indexation will catch up",
+        "marginNote": "Voorschot vs actual gap of €15.6k — investigate planned vs actual cleanings"
+      },
+      "regulation": "Servicekosten Besluit Art. 1",
+      "distribution": {
+        "method": "per_vhe",
+        "denominator": 605,
+        "unit": "VHE"
+      }
+    },
+    {
+      "id": "settle-glas-bog",
+      "laneId": "lane-glas",
+      "type": "settlement",
+      "col": 1,
+      "row": 1,
+      "label": "Glasbewassing / GDG028",
+      "subLabel": "BOG — Spar (full year)",
+      "groupId": "GRP-carolina-bog",
+      "serviceCode": "GDG028",
+      "vheCount": 1,
+      "amount": 0,
+      "advance": 240,
+      "delta": -240,
+      "settlementStatus": "proposed",
+      "yoyComparison": [
+        {
+          "year": 2024,
+          "actual": 0,
+          "advance": 240,
+          "delta": -240
+        }
+      ],
+      "regulation": "Servicekosten Besluit Art. 1",
+      "audienceNote": "Spar Holding only — Maslow/Bica do not pay glasbewassing",
+      "distribution": {
+        "method": "single",
+        "note": "Single recipient"
+      }
+    },
+    {
+      "id": "src-vuil",
+      "laneId": "lane-vuil",
+      "type": "source",
+      "col": 0,
+      "row": 0,
+      "label": "Cleaning service",
+      "sourceKind": "contracted",
+      "cadence": "monthly",
+      "identifier": "Maron — service contract",
+      "supplier": "Maron",
+      "amount": 67154.75,
+      "evidenceCount": 12,
+      "yoyComparison": [
+        {
+          "year": 2024,
+          "amount": 67154.75
+        },
+        {
+          "year": 2023,
+          "amount": 64200.3
+        },
+        {
+          "year": 2022,
+          "amount": 61300.2
+        }
+      ],
+      "supplierBreakdown": [
+        {
+          "name": "Maron",
+          "role": "cleaning contractor",
+          "amount": 67154.75,
+          "evidenceCount": 12,
+          "status": "matched"
+        }
+      ],
+      "temporalCoverage": {
+        "expectedMonths": 12,
+        "bookedMonths": 12,
+        "missing": [],
+        "cadence": "monthly"
+      },
+      "manualNotes": [
+        {
+          "kind": "info",
+          "text": "Rate stepped up from €5,446.45/month (Jan-Jun) to €5,746/month (Jul-Dec) — contract escalator"
+        }
+      ],
+      "anchors": [
+        {
+          "ledgerAccount": "8012100.01_030.000",
+          "amount": 67154.75,
+          "status": "matched"
+        }
+      ],
+      "budgetedAmount": 62453.92
+    },
+    {
+      "id": "settle-vuil-res",
+      "laneId": "lane-vuil",
+      "type": "settlement",
+      "col": 1,
+      "row": 0,
+      "label": "Waste & cleaning / GDG029",
+      "subLabel": "Residential — 605 VHE",
+      "groupId": "GRP-carolina",
+      "serviceCode": "GDG029",
+      "vheCount": 605,
+      "amount": 67154.75,
+      "advance": 48642,
+      "delta": -18512.75,
+      "settlementStatus": "proposed",
+      "yoyComparison": [
+        {
+          "year": 2024,
+          "actual": 67154.75,
+          "advance": 48642,
+          "delta": -18512.75
+        },
+        {
+          "year": 2023,
+          "actual": 64200.3,
+          "advance": 65000,
+          "delta": 799.7
+        },
+        {
+          "year": 2022,
+          "actual": 61300.2,
+          "advance": 62000,
+          "delta": 699.8
+        }
+      ],
+      "newAdvanceRecommendation": {
+        "perVheJan": 6.7,
+        "perVheJul": 6.7,
+        "totalAnnual": 48642,
+        "generalIncrease": 0.0578,
+        "expectedCost2025": 71000,
+        "rationale": "Step-up needed — voorschot is structurally below actual cost",
+        "marginNote": "€18.5k collect this year — voorschot too low for indexed Maron contract"
+      },
+      "regulation": "Servicekosten Besluit Art. 1",
+      "distribution": {
+        "method": "per_vhe",
+        "denominator": 605,
+        "unit": "VHE"
+      }
+    },
+    {
+      "id": "settle-vuil-bog",
+      "laneId": "lane-vuil",
+      "type": "settlement",
+      "col": 1,
+      "row": 1,
+      "label": "Waste & cleaning / GDG029",
+      "subLabel": "BOG — combined",
+      "groupId": "GRP-carolina-bog",
+      "serviceCode": "GDG029",
+      "vheCount": 2,
+      "amount": 1080.14,
+      "advance": 2880,
+      "delta": 1799.86,
+      "settlementStatus": "proposed",
+      "yoyComparison": [
+        {
+          "year": 2024,
+          "actual": 1080.14,
+          "advance": 2880,
+          "delta": 1799.86
+        }
+      ],
+      "regulation": "Servicekosten Besluit Art. 1",
+      "audienceNote": "Spar + BOG II combined; Maslow/Bica share BOG II portion",
+      "distribution": {
+        "method": "per_vhe",
+        "denominator": 2,
+        "unit": "VHE"
+      }
+    },
+    {
+      "id": "src-tuin",
+      "laneId": "lane-tuin",
+      "type": "source",
+      "col": 0,
+      "row": 0,
+      "label": "Garden maintenance",
+      "sourceKind": "contracted",
+      "cadence": "quarterly",
+      "identifier": "vd Tol — service contract",
+      "supplier": "vd Tol",
+      "amount": 10299.62,
+      "evidenceCount": 4,
+      "yoyComparison": [
+        {
+          "year": 2024,
+          "amount": 10299.62
+        },
+        {
+          "year": 2023,
+          "amount": 9850.2
+        },
+        {
+          "year": 2022,
+          "amount": 9420.1
+        }
+      ],
+      "supplierBreakdown": [
+        {
+          "name": "vd Tol",
+          "role": "garden maintenance",
+          "amount": 10299.62,
+          "evidenceCount": 4,
+          "status": "matched"
+        }
+      ],
+      "temporalCoverage": {
+        "expectedQuarters": 4,
+        "bookedQuarters": 4,
+        "missing": [],
+        "cadence": "quarterly"
+      },
+      "anchors": [
+        {
+          "ledgerAccount": "8012100.01_060",
+          "amount": 10299.62,
+          "status": "matched"
+        }
+      ],
+      "budgetedAmount": 10093.63
+    },
+    {
+      "id": "settle-tuin",
+      "laneId": "lane-tuin",
+      "type": "settlement",
+      "col": 1,
+      "row": 0,
+      "label": "Garden / GDG038",
+      "subLabel": "Whole complex — 605 VHE",
+      "groupId": "GRP-carolina",
+      "serviceCode": "GDG038",
+      "vheCount": 605,
+      "amount": 10299.62,
+      "advance": 9438,
+      "delta": -861.62,
+      "settlementStatus": "proposed",
+      "yoyComparison": [
+        {
+          "year": 2024,
+          "actual": 10299.62,
+          "advance": 9438,
+          "delta": -861.62
+        },
+        {
+          "year": 2023,
+          "actual": 9850.2,
+          "advance": 9800,
+          "delta": -50.2
+        },
+        {
+          "year": 2022,
+          "actual": 9420.1,
+          "advance": 9400,
+          "delta": -20.1
+        }
+      ],
+      "newAdvanceRecommendation": {
+        "perVheJan": 1.3,
+        "perVheJul": 1.3,
+        "totalAnnual": 9438,
+        "generalIncrease": 0.154,
+        "expectedCost2025": 10890,
+        "rationale": "+15% step-up planned for 2025"
+      },
+      "regulation": "Servicekosten Besluit Art. 1",
+      "distribution": {
+        "method": "per_vhe",
+        "denominator": 605,
+        "unit": "VHE"
+      }
+    },
+    {
+      "id": "src-elektra-greenchoice",
+      "laneId": "lane-elektra",
+      "type": "source",
+      "col": 0,
+      "row": 0,
+      "label": "Electricity supply",
+      "subLabel": "energy commodity",
+      "sourceKind": "metered",
+      "cadence": "monthly",
+      "identifier": "Greenchoice — energy commodity",
+      "supplier": "Greenchoice",
+      "utility": "electricity",
+      "amount": 407405.1,
+      "evidenceCount": 12,
+      "anchors": [
+        {
+          "ledgerAccount": "8012100.01_150.000",
+          "amount": 407405.1,
+          "status": "matched",
+          "note": "Posted under Electricity supply (8012100.01_150.000) — Greenchoice invoices"
+        }
+      ],
+      "budgetedAmount": 419627.25
+    },
+    {
+      "id": "src-elektra-liander",
+      "laneId": "lane-elektra",
+      "type": "source",
+      "col": 0,
+      "row": 1,
+      "label": "Electricity supply",
+      "subLabel": "grid operator",
+      "sourceKind": "metered",
+      "cadence": "monthly",
+      "identifier": "Liander — grid operator",
+      "supplier": "Liander",
+      "utility": "electricity",
+      "amount": 61464.84,
+      "evidenceCount": 12,
+      "anchors": [
+        {
+          "ledgerAccount": "8012100.01_150.000",
+          "amount": 61464.84,
+          "status": "matched",
+          "note": "Posted under Electricity supply (8012100.01_150.000) — Liander invoices"
+        }
+      ],
+      "budgetedAmount": 65152.73
+    },
+    {
+      "id": "src-elektra-joulz",
+      "laneId": "lane-elektra",
+      "type": "source",
+      "col": 0,
+      "row": 2,
+      "label": "Electricity supply",
+      "subLabel": "transport",
+      "sourceKind": "metered",
+      "cadence": "monthly",
+      "identifier": "Joulz — transport",
+      "supplier": "Joulz",
+      "utility": "electricity",
+      "amount": 1016.9,
+      "evidenceCount": 1,
+      "anchors": [
+        {
+          "ledgerAccount": "8012100.01_150.000",
+          "amount": 1016.9,
+          "status": "matched",
+          "note": "Posted under Electricity supply (8012100.01_150.000) — Joulz invoices"
+        }
+      ],
+      "budgetedAmount": 945.72
+    },
+    {
+      "id": "src-elektra-kenter",
+      "laneId": "lane-elektra",
+      "type": "source",
+      "col": 0,
+      "row": 3,
+      "label": "Electricity supply",
+      "subLabel": "oil-trafo rental",
+      "sourceKind": "metered",
+      "cadence": "monthly",
+      "identifier": "Kenter — oil-trafo rental",
+      "supplier": "Kenter",
+      "utility": "electricity",
+      "amount": 10745.64,
+      "evidenceCount": 24,
+      "anchors": [
+        {
+          "ledgerAccount": "8012100.01_150.000",
+          "amount": 10745.64,
+          "status": "matched",
+          "note": "Posted under Electricity supply (8012100.01_150.000) — Kenter invoices"
+        }
+      ],
+      "budgetedAmount": 10638.18
+    },
+    {
+      "id": "src-elektra-reinforce",
+      "laneId": "lane-elektra",
+      "type": "source",
+      "col": 0,
+      "row": 4,
+      "label": "Electricity supply",
+      "subLabel": "metering service",
+      "sourceKind": "metered",
+      "cadence": "monthly",
+      "identifier": "Reinforce — metering service",
+      "supplier": "Reinforce",
+      "utility": "electricity",
+      "amount": 4127.2,
+      "evidenceCount": 8,
+      "anchors": [
+        {
+          "ledgerAccount": "8012100.01_150.000",
+          "amount": 4127.2,
+          "status": "matched_partial",
+          "note": "Sep-Dec invoices not yet received"
+        }
+      ],
+      "manualNotes": [
+        {
+          "kind": "info",
+          "text": "Sep-Dec invoices not yet received"
+        }
+      ],
+      "budgetedAmount": 4085.93
+    },
+    {
+      "id": "split-elektra",
+      "laneId": "lane-elektra",
+      "type": "split",
+      "col": 1,
+      "row": 0,
+      "label": "Allocate by share key",
+      "subLabel": "Residential / BOG / Wasserette / Heating",
+      "rule": "by_count",
+      "ruleSpec": {
+        "residential": 605,
+        "wasserette": 2,
+        "BOG": 2,
+        "heating-pump-load": 1
+      },
+      "amount": 484759.68
+    },
+    {
+      "id": "passthrough-elektra-res-pre",
+      "laneId": "lane-elektra",
+      "type": "marker",
+      "col": 2,
+      "row": 0,
+      "label": "Residential variable + meteropname",
+      "amount": 154322.12
+    },
+    {
+      "id": "deduction-reb",
+      "laneId": "lane-elektra",
+      "type": "adjustment",
+      "col": 3,
+      "row": 0,
+      "label": "Vaste kosten per VHE (REB refund netted)",
+      "subLabel": "Naheffing REB −€288,561 + BTW −€54,543 + REB delta +€28,833, allocated per VHE × 554",
+      "amount": -309201.63,
+      "anchors": [
+        {
+          "ledgerAccount": "8012100.01_150.000",
+          "amount": -309201.63,
+          "status": "matched",
+          "note": "Tax authority refund + BTW + REB delta, applied as per-VHE vaste"
+        }
+      ],
+      "flags": [
+        {
+          "kind": "warning",
+          "note": "One-off windfall — not representative of typical year"
+        }
+      ]
+    },
+    {
+      "id": "settle-elektra-res",
+      "laneId": "lane-elektra",
+      "type": "settlement",
+      "col": 4,
+      "row": 0,
+      "label": "Electricity / GDG069",
+      "subLabel": "Residential — 605 VHE",
+      "groupId": "GRP-carolina",
+      "serviceCode": "GDG069",
+      "vheCount": 605,
+      "amount": -154879.5,
+      "advance": 29700,
+      "delta": -184579.5,
+      "settlementStatus": "proposed",
+      "yoyComparison": [
+        {
+          "year": 2024,
+          "actual": -154879.5,
+          "advance": 29700,
+          "delta": -184579.5
+        },
+        {
+          "year": 2023,
+          "actual": 132450.2,
+          "advance": 130000,
+          "delta": -2450.2
+        },
+        {
+          "year": 2022,
+          "actual": 121330.1,
+          "advance": 120000,
+          "delta": -1330.1
+        }
+      ],
+      "newAdvanceRecommendation": {
+        "perVheJan": 4.09,
+        "perVheJul": 4.09,
+        "totalAnnual": 29700,
+        "generalIncrease": 0,
+        "expectedCost2025": 134000,
+        "rationale": "Hold voorschot — REB refund was one-off",
+        "marginNote": "Don't lower voorschot based on this year's negative cost — refund won't repeat"
+      },
+      "regulation": "Servicekosten Besluit Art. 1",
+      "audienceNote": "Massive refund this year due to REB tax windfall — €305 per VHE",
+      "distribution": {
+        "method": "per_vhe",
+        "denominator": 605,
+        "unit": "VHE"
+      }
+    },
+    {
+      "id": "passthrough-elektra-bog",
+      "laneId": "lane-elektra",
+      "type": "marker",
+      "col": 2,
+      "row": 1,
+      "label": "BOG share",
+      "amount": 58527.74
+    },
+    {
+      "id": "settle-elektra-bog-3192",
+      "laneId": "lane-elektra",
+      "type": "settlement",
+      "col": 4,
+      "row": 1,
+      "label": "Electricity / GDG069",
+      "subLabel": "BOG I — 3192-3194-3196 (Spar → Bica)",
+      "groupId": "GRP-carolina-bog",
+      "serviceCode": "GDG069",
+      "vheCount": 1,
+      "amount": 46500.74,
+      "advance": 9000,
+      "delta": -37500.74,
+      "settlementStatus": "proposed",
+      "yoyComparison": [
+        {
+          "year": 2024,
+          "actual": 46500.74,
+          "advance": 9000,
+          "delta": -37500.74
+        }
+      ],
+      "regulation": "Servicekosten Besluit Art. 1",
+      "audienceNote": "BOG unit 3192-3194-3196 — Spar Holding for part of the year, succeeded by Bica. Excel allocates the unit's total electricity cost as a single line; tenant changeover handled in invoicing. Workflow: BOG facturen are discarded by the system; manually create the invoice + specificatie before sending.",
+      "flags": [
+        {
+          "kind": "info",
+          "note": "BOG facturen need manual creation — auto-generated factuur is discarded; produce specificatie separately."
+        }
+      ],
+      "distribution": {
+        "method": "single",
+        "note": "Single BOG unit (tenant changed mid-year — Spar → Bica)"
+      }
+    },
+    {
+      "id": "settle-elektra-bog-3198-maslow",
+      "laneId": "lane-elektra",
+      "type": "settlement",
+      "col": 4,
+      "row": 2,
+      "label": "Electricity / GDG069",
+      "subLabel": "BOG II — 3198-3200 (Maslow, Jan–Jul)",
+      "groupId": "GRP-carolina-bog",
+      "serviceCode": "GDG069",
+      "vheCount": 1,
+      "amount": 11934.97,
+      "advance": 2333,
+      "delta": -9601.97,
+      "settlementStatus": "proposed",
+      "yoyComparison": [
+        {
+          "year": 2024,
+          "actual": 11934.97,
+          "advance": 2333,
+          "delta": -9601.97
+        }
+      ],
+      "regulation": "Servicekosten Besluit Art. 1",
+      "audienceNote": "Maslow Jan–Jul 2024 — 7/12 of the year before unit handover. Allocation includes Maslow's variable + EB belast deel + 7/12 of the meteropname charge.",
+      "distribution": {
+        "method": "single",
+        "note": "Single recipient (Jan–Jul slice)"
+      }
+    },
+    {
+      "id": "settle-elektra-bog-3198-new",
+      "laneId": "lane-elektra",
+      "type": "settlement",
+      "col": 4,
+      "row": 3,
+      "label": "Electricity / GDG069",
+      "subLabel": "BOG II — 3198-3200 (new tenant, Aug–Dec)",
+      "groupId": "GRP-carolina-bog",
+      "serviceCode": "GDG069",
+      "vheCount": 1,
+      "amount": 92.03,
+      "advance": 250,
+      "delta": -157.97,
+      "settlementStatus": "proposed",
+      "yoyComparison": [
+        {
+          "year": 2024,
+          "actual": 92.03,
+          "advance": 250,
+          "delta": -157.97
+        }
+      ],
+      "regulation": "Servicekosten Besluit Art. 1",
+      "audienceNote": "New tenant Aug–Dec 2024 — succeeded Maslow. The very small amount reflects: minimal variable consumption + 5/12 meteropname charge only, after the high-usage months had already been billed to Maslow.",
+      "distribution": {
+        "method": "single",
+        "note": "Single recipient (Aug–Dec slice)"
+      }
+    },
+    {
+      "id": "passthrough-elektra-wasserette",
+      "laneId": "lane-elektra",
+      "type": "marker",
+      "col": 2,
+      "row": 4,
+      "label": "Wasserette share",
+      "amount": 19829.95
+    },
+    {
+      "id": "out-of-scope-wasserette",
+      "laneId": "lane-elektra",
+      "type": "settlement",
+      "col": 4,
+      "row": 4,
+      "label": "Wasserette electricity",
+      "subLabel": "Settles via PRP-001445",
+      "groupId": "GRP-carolina-wasserette",
+      "outOfScope": true,
+      "amount": 19829.95,
+      "distribution": {
+        "method": "single",
+        "note": "Out-of-scope recipient"
+      }
+    },
+    {
+      "id": "passthrough-elektra-to-gas",
+      "laneId": "lane-elektra",
+      "type": "marker",
+      "col": 2,
+      "row": 5,
+      "label": "→ Transfer to Gas (heating)",
+      "amount": 158570.34
+    },
+    {
+      "id": "src-gas-equans",
+      "laneId": "lane-gas",
+      "type": "source",
+      "col": 0,
+      "row": 0,
+      "label": "District heating",
+      "subLabel": "Heating + warm water + vastrecht",
+      "sourceKind": "metered",
+      "cadence": "monthly",
+      "identifier": "Equans heating contract",
+      "supplier": "Equans",
+      "utility": "gas",
+      "amount": 237068.4,
+      "evidenceCount": 12,
+      "expectedConsumption": 7581,
+      "consumptionUnit": "GJ",
+      "yoyComparison": [
+        {
+          "year": 2024,
+          "amount": 237068.4
+        },
+        {
+          "year": 2023,
+          "amount": 246700
+        },
+        {
+          "year": 2022,
+          "amount": 250500
+        }
+      ],
+      "temporalCoverage": {
+        "expectedMonths": 12,
+        "bookedMonths": 12,
+        "missing": [],
+        "cadence": "monthly"
+      },
+      "manualNotes": [
+        {
+          "kind": "warn",
+          "text": "Gas invoices shared with Sciencepark I complex — verify split allocation each year"
+        }
+      ],
+      "anchors": [
+        {
+          "ledgerAccount": "8012100.01_160.000",
+          "amount": 201729.62,
+          "status": "matched",
+          "note": "Vaste kosten — booked under cost component GDG070 (gas)"
+        }
+      ],
+      "budgetedAmount": 253662.99
+    },
+    {
+      "id": "src-gas-kamstrup",
+      "laneId": "lane-gas",
+      "type": "source",
+      "col": 0,
+      "row": 1,
+      "label": "Meter readings",
+      "subLabel": "Kamstrup heat-meter service",
+      "sourceKind": "contracted",
+      "cadence": "annual",
+      "identifier": "Kamstrup meter-reading contract",
+      "supplier": "Kamstrup",
+      "utility": "gas",
+      "amount": 1682.8,
+      "evidenceCount": 2,
+      "yoyComparison": [
+        {
+          "year": 2024,
+          "amount": 1682.8
+        },
+        {
+          "year": 2023,
+          "amount": 1600.2
+        },
+        {
+          "year": 2022,
+          "amount": 1600.3
+        }
+      ],
+      "anchors": [
+        {
+          "ledgerAccount": "8012100.01_160.000",
+          "amount": 1682.8,
+          "status": "matched",
+          "note": "Posted on the same gas component (GDG070) ledger account"
+        }
+      ],
+      "budgetedAmount": 1800.79
+    },
+    {
+      "id": "addition-gas-from-elektra",
+      "laneId": "lane-gas",
+      "type": "adjustment",
+      "col": 1,
+      "row": 0,
+      "label": "← From Electricity (heat-pump load)",
+      "subLabel": "Cross-lane transfer from Electricity",
+      "amount": 158570.34,
+      "manualNotes": [
+        {
+          "kind": "info",
+          "text": "The Greenchoice electricity meter feeds the heat-installation pumps. €158,570 of electricity cost is reallocated to the gas/heating service via Axxerion."
+        }
+      ]
+    },
+    {
+      "id": "passthrough-gas-total",
+      "laneId": "lane-gas",
+      "type": "marker",
+      "col": 2,
+      "row": 0,
+      "label": "Total heating cost",
+      "amount": 397321.54
+    },
+    {
+      "id": "deduction-gas-to-water",
+      "laneId": "lane-gas",
+      "type": "adjustment",
+      "col": 3,
+      "row": 0,
+      "label": "→ Transfer to Water (warm water)",
+      "subLabel": "Warm-water cost transferred out",
+      "amount": -123675.73,
+      "manualNotes": [
+        {
+          "kind": "info",
+          "text": "The cost of heating up the cold water leaves the Gas service and flows into the Water service so tenants pay for warm water on the water bill."
+        }
+      ]
+    },
+    {
+      "id": "passthrough-gas-net",
+      "laneId": "lane-gas",
+      "type": "marker",
+      "col": 4,
+      "row": 0,
+      "label": "Net residential gas",
+      "amount": 273645.81
+    },
+    {
+      "id": "settle-gas-res",
+      "laneId": "lane-gas",
+      "type": "settlement",
+      "col": 5,
+      "row": 0,
+      "label": "Gas / GDG070",
+      "subLabel": "Residential — 605 VHE",
+      "groupId": "GRP-carolina",
+      "serviceCode": "GDG070",
+      "vheCount": 605,
+      "amount": 271389.23,
+      "advance": 247519.8,
+      "delta": -23869.43,
+      "settlementStatus": "proposed",
+      "yoyComparison": [
+        {
+          "year": 2024,
+          "actual": 271389.23,
+          "advance": 247519.8,
+          "delta": -23869.43
+        },
+        {
+          "year": 2023,
+          "actual": 248300.2,
+          "advance": 250000,
+          "delta": 1699.8
+        },
+        {
+          "year": 2022,
+          "actual": 252100.3,
+          "advance": 245000,
+          "delta": -7100.3
+        }
+      ],
+      "newAdvanceRecommendation": {
+        "perVheJan": 22.73,
+        "perVheJul": 45.46,
+        "totalAnnual": 330039.6,
+        "generalIncrease": 1,
+        "expectedCost2025": 285000,
+        "rationale": "100% mid-year step-up planned (€22.73 → €45.46 per month)",
+        "marginNote": "Voorschot doubling reflects post-2024 Equans rate review"
+      },
+      "regulation": "Servicekosten Besluit Art. 1",
+      "distribution": {
+        "method": "per_vhe",
+        "denominator": 605,
+        "unit": "VHE"
+      }
+    },
+    {
+      "id": "settle-gas-bog-3192",
+      "laneId": "lane-gas",
+      "type": "settlement",
+      "col": 5,
+      "row": 1,
+      "label": "Gas / GDG070",
+      "subLabel": "BOG I — 3192-3194-3196",
+      "groupId": "GRP-carolina-bog",
+      "serviceCode": "GDG070",
+      "vheCount": 1,
+      "amount": 984.13,
+      "advance": 4000,
+      "delta": -3015.87,
+      "settlementStatus": "proposed",
+      "yoyComparison": [
+        {
+          "year": 2024,
+          "actual": 984.13,
+          "advance": 4000,
+          "delta": -3015.87
+        }
+      ],
+      "regulation": "Servicekosten Besluit Art. 1",
+      "audienceNote": "BOG unit 3192-3194-3196 — Spar then Bica.",
+      "distribution": {
+        "method": "single",
+        "note": "Single BOG unit (tenant changed mid-year)"
+      }
+    },
+    {
+      "id": "settle-gas-bog-3198-maslow",
+      "laneId": "lane-gas",
+      "type": "settlement",
+      "col": 5,
+      "row": 2,
+      "label": "Gas / GDG070",
+      "subLabel": "BOG II — 3198-3200 (Maslow, Jan–Jul)",
+      "groupId": "GRP-carolina-bog",
+      "serviceCode": "GDG070",
+      "vheCount": 1,
+      "amount": 1003.88,
+      "advance": 2625,
+      "delta": -1621.12,
+      "settlementStatus": "proposed",
+      "yoyComparison": [
+        {
+          "year": 2024,
+          "actual": 1003.88,
+          "advance": 2625,
+          "delta": -1621.12
+        }
+      ],
+      "regulation": "Servicekosten Besluit Art. 1",
+      "audienceNote": "Maslow Jan–Jul slice (7/12 of warmte vastrecht).",
+      "distribution": {
+        "method": "single",
+        "note": "Single recipient (Jan–Jul slice)"
+      }
+    },
+    {
+      "id": "settle-gas-bog-3198-new",
+      "laneId": "lane-gas",
+      "type": "settlement",
+      "col": 5,
+      "row": 3,
+      "label": "Gas / GDG070",
+      "subLabel": "BOG II — 3198-3200 (new tenant, Aug–Dec)",
+      "groupId": "GRP-carolina-bog",
+      "serviceCode": "GDG070",
+      "vheCount": 1,
+      "amount": 268.57,
+      "advance": 875,
+      "delta": -606.43,
+      "settlementStatus": "proposed",
+      "yoyComparison": [
+        {
+          "year": 2024,
+          "actual": 268.57,
+          "advance": 875,
+          "delta": -606.43
+        }
+      ],
+      "regulation": "Servicekosten Besluit Art. 1",
+      "audienceNote": "New tenant Aug–Dec slice (5/12 of warmte vastrecht).",
+      "distribution": {
+        "method": "single",
+        "note": "Single recipient (Aug–Dec slice)"
+      }
+    },
+    {
+      "id": "src-water",
+      "laneId": "lane-water",
+      "type": "source",
+      "col": 0,
+      "row": 0,
+      "label": "Drinking water",
+      "sourceKind": "metered",
+      "cadence": "termijn",
+      "identifier": "Two main meters — 123050846 (#2554) + 133050856 (#2082)",
+      "supplier": "Waternet",
+      "utility": "water",
+      "amount": 61459.71,
+      "evidenceCount": 8,
+      "expectedConsumption": 31119,
+      "consumptionUnit": "m³",
+      "yoyComparison": [
+        {
+          "year": 2024,
+          "amount": 61459.71
+        },
+        {
+          "year": 2023,
+          "amount": 59820.4
+        },
+        {
+          "year": 2022,
+          "amount": 58200.1
+        }
+      ],
+      "supplierBreakdown": [
+        {
+          "name": "Waternet",
+          "role": "water supply",
+          "amount": 61459.71,
+          "evidenceCount": 8,
+          "status": "matched"
+        }
+      ],
+      "temporalCoverage": {
+        "expectedMonths": 4,
+        "bookedMonths": 4,
+        "missing": [],
+        "note": "Quarterly termijn billing",
+        "cadence": "quarterly"
+      },
+      "manualNotes": [
+        {
+          "kind": "info",
+          "text": "Two supply meters — Kamstrup-measured consumption is 26,638 m³, total on invoice is 31,119 m³ (4,481 m³ delta — leak/loss)"
+        }
+      ],
+      "anchors": [
+        {
+          "ledgerAccount": "8012100.01_200.000",
+          "amount": 8591.38,
+          "status": "matched",
+          "note": "Vaste kosten"
+        }
+      ],
+      "budgetedAmount": 59615.92
+    },
+    {
+      "id": "addition-water-from-gas",
+      "laneId": "lane-water",
+      "type": "adjustment",
+      "col": 1,
+      "row": 0,
+      "label": "← From Gas (warm water)",
+      "subLabel": "Cross-lane transfer from Gas",
+      "amount": 123675.73,
+      "manualNotes": [
+        {
+          "kind": "info",
+          "text": "The cost of heating cold water (calculated in the Gas service) is added here so warm-water consumption is settled on the water bill."
+        }
+      ]
+    },
+    {
+      "id": "passthrough-water-net",
+      "laneId": "lane-water",
+      "type": "marker",
+      "col": 2,
+      "row": 0,
+      "label": "Net water cost",
+      "amount": 185135.44
+    },
+    {
+      "id": "settle-water-res",
+      "laneId": "lane-water",
+      "type": "settlement",
+      "col": 3,
+      "row": 0,
+      "label": "Water / GDG074",
+      "subLabel": "Residential — 605 VHE",
+      "groupId": "GRP-carolina",
+      "serviceCode": "GDG074",
+      "vheCount": 605,
+      "amount": 169795.66,
+      "advance": 215985,
+      "delta": 46189.34,
+      "settlementStatus": "proposed",
+      "yoyComparison": [
+        {
+          "year": 2024,
+          "actual": 169795.66,
+          "advance": 215985,
+          "delta": 46189.34
+        },
+        {
+          "year": 2023,
+          "actual": 159820.4,
+          "advance": 162000,
+          "delta": 2179.6
+        },
+        {
+          "year": 2022,
+          "actual": 158200.1,
+          "advance": 160000,
+          "delta": 1799.9
+        }
+      ],
+      "newAdvanceRecommendation": {
+        "perVheJan": 29.75,
+        "perVheJul": 29.75,
+        "totalAnnual": 215985,
+        "generalIncrease": 0,
+        "expectedCost2025": 175000,
+        "rationale": "Hold flat — refund this year was driven by lower-than-budgeted hot-water consumption"
+      },
+      "regulation": "Servicekosten Besluit Art. 1",
+      "distribution": {
+        "method": "per_vhe",
+        "denominator": 605,
+        "unit": "VHE"
+      }
+    },
+    {
+      "id": "src-elektrapp",
+      "laneId": "lane-elektrapp",
+      "type": "source",
+      "col": 0,
+      "row": 0,
+      "label": "Electrical equipment",
+      "sourceKind": "recurring",
+      "cadence": "annual",
+      "identifier": "Video server + intercom — 5-year depreciation (now zero)",
+      "supplier": "Internal",
+      "amount": 0,
+      "evidenceCount": 0,
+      "yoyComparison": [
+        {
+          "year": 2024,
+          "amount": 0
+        },
+        {
+          "year": 2023,
+          "amount": 0
+        },
+        {
+          "year": 2022,
+          "amount": 280.4
+        }
+      ],
+      "supplierBreakdown": [
+        {
+          "name": "Internal",
+          "role": "depreciation",
+          "amount": 0,
+          "evidenceCount": 0,
+          "status": "matched",
+          "note": "Fully depreciated since end of 2023"
+        }
+      ],
+      "temporalCoverage": {
+        "expectedMonths": 1,
+        "bookedMonths": 1,
+        "missing": [],
+        "cadence": "annual"
+      },
+      "manualNotes": [
+        {
+          "kind": "warn",
+          "text": "Voorschot still being collected (€7.20/yr × 605 = €4,356) but equipment is fully depreciated. Recommend dropping voorschot."
+        }
+      ],
+      "anchors": [
+        {
+          "ledgerAccount": "8012100.01_230",
+          "amount": 0,
+          "status": "matched"
+        }
+      ],
+      "flags": [
+        {
+          "kind": "warning",
+          "note": "Voorschot collected but no actual cost — full refund expected"
+        }
+      ],
+      "budgetedAmount": 0
+    },
+    {
+      "id": "settle-elektrapp",
+      "laneId": "lane-elektrapp",
+      "type": "settlement",
+      "col": 1,
+      "row": 0,
+      "label": "Electrical eq / GDG078",
+      "subLabel": "Whole complex — 605 VHE",
+      "groupId": "GRP-carolina",
+      "serviceCode": "GDG078",
+      "vheCount": 605,
+      "amount": 0,
+      "advance": 4356,
+      "delta": -4356,
+      "settlementStatus": "proposed",
+      "yoyComparison": [
+        {
+          "year": 2024,
+          "actual": 0,
+          "advance": 4356,
+          "delta": -4356
+        }
+      ],
+      "newAdvanceRecommendation": {
+        "perVheJan": 0,
+        "perVheJul": 0,
+        "totalAnnual": 0,
+        "generalIncrease": -1,
+        "expectedCost2025": 0,
+        "rationale": "Drop voorschot to zero — equipment fully depreciated"
+      },
+      "regulation": "Servicekosten Besluit Art. 1",
+      "distribution": {
+        "method": "per_vhe",
+        "denominator": 605,
+        "unit": "VHE"
+      }
+    },
+    {
+      "id": "src-signaal-itt-desk",
+      "laneId": "lane-signaal",
+      "type": "source",
+      "col": 0,
+      "row": 0,
+      "label": "TV signal delivery",
+      "subLabel": "fac. aansluiting + instandhouding",
+      "sourceKind": "pass_through",
+      "cadence": "ad_hoc",
+      "identifier": "ITT-desk — fac. aansluiting + instandhouding",
+      "supplier": "ITT-desk",
+      "amount": 216.36,
+      "evidenceCount": 2,
+      "anchors": [
+        {
+          "ledgerAccount": "8012100.01_240",
+          "amount": 216.36,
+          "status": "matched",
+          "note": "Posted under TV signal delivery (8012100.01_240) — ITT-desk invoices"
+        }
+      ],
+      "budgetedAmount": 218.52
+    },
+    {
+      "id": "src-signaal-technica",
+      "laneId": "lane-signaal",
+      "type": "source",
+      "col": 0,
+      "row": 1,
+      "label": "TV signal delivery",
+      "subLabel": "signal delivery",
+      "sourceKind": "pass_through",
+      "cadence": "ad_hoc",
+      "identifier": "Technica — signal delivery",
+      "supplier": "Technica",
+      "amount": 397.43,
+      "evidenceCount": 1,
+      "anchors": [
+        {
+          "ledgerAccount": "8012100.01_240",
+          "amount": 397.43,
+          "status": "matched",
+          "note": "Posted under TV signal delivery (8012100.01_240) — Technica invoices"
+        }
+      ],
+      "budgetedAmount": 421.28
+    },
+    {
+      "id": "settle-signaal",
+      "laneId": "lane-signaal",
+      "type": "settlement",
+      "col": 1,
+      "row": 0,
+      "label": "Signal / GDG080",
+      "subLabel": "Whole complex — 605 VHE",
+      "groupId": "GRP-carolina",
+      "serviceCode": "GDG080",
+      "vheCount": 605,
+      "amount": 613.79,
+      "advance": 363,
+      "delta": -250.79,
+      "settlementStatus": "proposed",
+      "yoyComparison": [
+        {
+          "year": 2024,
+          "actual": 613.79,
+          "advance": 363,
+          "delta": -250.79
+        }
+      ],
+      "newAdvanceRecommendation": {
+        "perVheJan": 0.05,
+        "perVheJul": 0.05,
+        "totalAnnual": 363,
+        "generalIncrease": 0,
+        "expectedCost2025": 600,
+        "rationale": "Hold flat — small variance"
+      },
+      "regulation": "Servicekosten Besluit Art. 1",
+      "distribution": {
+        "method": "per_vhe",
+        "denominator": 605,
+        "unit": "VHE"
+      }
+    },
+    {
+      "id": "src-afval",
+      "laneId": "lane-afval",
+      "type": "source",
+      "col": 0,
+      "row": 0,
+      "label": "Waste tax",
+      "sourceKind": "recurring",
+      "cadence": "annual",
+      "identifier": "Gemeente Amsterdam — per-unit waste tax",
+      "supplier": "Gemeente Amsterdam",
+      "amount": 20636,
+      "evidenceCount": 46,
+      "yoyComparison": [
+        {
+          "year": 2024,
+          "amount": 20636
+        },
+        {
+          "year": 2023,
+          "amount": 20310
+        },
+        {
+          "year": 2022,
+          "amount": 19500
+        }
+      ],
+      "supplierBreakdown": [
+        {
+          "name": "Gemeente Amsterdam",
+          "role": "waste tax",
+          "amount": 20636,
+          "evidenceCount": 46,
+          "status": "matched_partial",
+          "note": "44 invoices for self-contained units; #2372 received but should be billed to specific VHE"
+        }
+      ],
+      "temporalCoverage": {
+        "expectedMonths": 1,
+        "bookedMonths": 1,
+        "missing": [],
+        "cadence": "annual"
+      },
+      "manualNotes": [
+        {
+          "kind": "warn",
+          "text": "44 individual aanslagen received — gemeente sends per-VHE bills for multi-person households at €469 each + single-person at €352. One bill (#2372) needs reallocation."
+        }
+      ],
+      "anchors": [
+        {
+          "ledgerAccount": "8012100.01_260.000",
+          "amount": 20988,
+          "status": "matched_partial",
+          "note": "Includes €352 to be reallocated to nr 2372"
+        }
+      ],
+      "budgetedAmount": 22286.88
+    },
+    {
+      "id": "settle-afval",
+      "laneId": "lane-afval",
+      "type": "settlement",
+      "col": 1,
+      "row": 0,
+      "label": "Afval / GDG088",
+      "subLabel": "Tax audience — 95 SKE",
+      "groupId": "GRP-carolina-tax",
+      "serviceCode": "GDG088",
+      "vheCount": 95,
+      "amount": 20636,
+      "advance": 20149.5,
+      "delta": -486.5,
+      "settlementStatus": "proposed",
+      "yoyComparison": [
+        {
+          "year": 2024,
+          "actual": 20636,
+          "advance": 20149.5,
+          "delta": -486.5
+        },
+        {
+          "year": 2023,
+          "actual": 20310,
+          "advance": 20300,
+          "delta": -10
+        },
+        {
+          "year": 2022,
+          "actual": 19500,
+          "advance": 19400,
+          "delta": -100
+        }
+      ],
+      "newAdvanceRecommendation": {
+        "perVheJan": 19,
+        "perVheJul": 19,
+        "totalAnnual": 21660,
+        "generalIncrease": 0,
+        "expectedCost2025": 21660,
+        "rationale": "Voorschot step-up to €19/month (gemeente tarief held flat at €469 — 2025 tarief unchanged from 2024)"
+      },
+      "regulation": "Servicekosten Besluit Art. 1",
+      "audienceNote": "Only 95 self-contained households (SKE) pay this — students in shared kitchens are exempt",
+      "distribution": {
+        "method": "per_vhe",
+        "denominator": 95,
+        "unit": "VHE"
+      }
+    },
+    {
+      "id": "src-zuivering",
+      "laneId": "lane-zuivering",
+      "type": "source",
+      "col": 0,
+      "row": 0,
+      "label": "Wastewater purification tax",
+      "sourceKind": "recurring",
+      "cadence": "annual",
+      "identifier": "Waternet — water-purification levy",
+      "supplier": "Waternet",
+      "amount": 8706.75,
+      "evidenceCount": 95,
+      "yoyComparison": [
+        {
+          "year": 2024,
+          "amount": 8706.75
+        },
+        {
+          "year": 2023,
+          "amount": 8350.2
+        },
+        {
+          "year": 2022,
+          "amount": 8050.1
+        }
+      ],
+      "supplierBreakdown": [
+        {
+          "name": "Waternet",
+          "role": "purification levy",
+          "amount": 8706.75,
+          "evidenceCount": 95,
+          "status": "matched"
+        }
+      ],
+      "temporalCoverage": {
+        "expectedMonths": 1,
+        "bookedMonths": 1,
+        "missing": [],
+        "cadence": "annual"
+      },
+      "manualNotes": [
+        {
+          "kind": "info",
+          "text": "Waternet bills per individual VHE. Self-contained units pay; shared units do not."
+        }
+      ],
+      "anchors": [
+        {
+          "ledgerAccount": "8012100.01_280.000",
+          "amount": 8706.75,
+          "status": "matched"
+        }
+      ],
+      "budgetedAmount": 9229.16
+    },
+    {
+      "id": "settle-zuivering",
+      "laneId": "lane-zuivering",
+      "type": "settlement",
+      "col": 1,
+      "row": 0,
+      "label": "Zuivering / GDG090",
+      "subLabel": "Tax audience — 95 SKE",
+      "groupId": "GRP-carolina-tax",
+      "serviceCode": "GDG090",
+      "vheCount": 95,
+      "amount": 8706.75,
+      "advance": 7182,
+      "delta": -1524.75,
+      "settlementStatus": "proposed",
+      "yoyComparison": [
+        {
+          "year": 2024,
+          "actual": 8706.75,
+          "advance": 7182,
+          "delta": -1524.75
+        },
+        {
+          "year": 2023,
+          "actual": 8350.2,
+          "advance": 8000,
+          "delta": -350.2
+        },
+        {
+          "year": 2022,
+          "actual": 8050.1,
+          "advance": 7800,
+          "delta": -250.1
+        }
+      ],
+      "newAdvanceRecommendation": {
+        "perVheJan": 4.95,
+        "perVheJul": 7.65,
+        "totalAnnual": 9576,
+        "generalIncrease": 0.155,
+        "expectedCost2025": 8815.05,
+        "rationale": "Mid-year step-up to track 2025 Waternet tariff"
+      },
+      "regulation": "Servicekosten Besluit Art. 1",
+      "audienceNote": "Only 95 SKE pay — same audience as Afvalstoffenheffing",
+      "distribution": {
+        "method": "per_vhe",
+        "denominator": 95,
+        "unit": "VHE"
+      }
+    },
+    {
+      "id": "src-inventaris",
+      "laneId": "lane-inventaris",
+      "type": "source",
+      "col": 0,
+      "row": 0,
+      "label": "Inventory depreciation",
+      "sourceKind": "internal",
+      "cadence": "annual",
+      "identifier": "Vloerafwerking + meubels gem ruimten — 15-yr depreciation",
+      "supplier": "Internal",
+      "amount": 15700.69,
+      "evidenceCount": 1,
+      "yoyComparison": [
+        {
+          "year": 2024,
+          "amount": 15700.69
+        },
+        {
+          "year": 2023,
+          "amount": 15700.69
+        },
+        {
+          "year": 2022,
+          "amount": 15700.69
+        }
+      ],
+      "supplierBreakdown": [
+        {
+          "name": "Internal",
+          "role": "depreciation calculation",
+          "amount": 15700.69,
+          "evidenceCount": 1,
+          "status": "matched",
+          "note": "€2.16/month/VHE × 605 × 12; depreciation runs Aug 2013 → Jul 2028"
+        }
+      ],
+      "temporalCoverage": {
+        "expectedMonths": 1,
+        "bookedMonths": 1,
+        "missing": [],
+        "cadence": "annual"
+      },
+      "anchors": [
+        {
+          "ledgerAccount": "8497.40.4636",
+          "amount": 15700.69,
+          "status": "matched"
+        }
+      ],
+      "budgetedAmount": 14915.66
+    },
+    {
+      "id": "settle-inventaris",
+      "laneId": "lane-inventaris",
+      "type": "settlement",
+      "col": 1,
+      "row": 0,
+      "label": "Inventory / GDG097",
+      "subLabel": "Whole complex — 605 VHE",
+      "groupId": "GRP-carolina",
+      "serviceCode": "GDG097",
+      "vheCount": 605,
+      "amount": 15700.69,
+      "advance": 15700.69,
+      "delta": -0.01,
+      "settlementStatus": "proposed",
+      "yoyComparison": [
+        {
+          "year": 2024,
+          "actual": 15700.69,
+          "advance": 15700.69,
+          "delta": -0.01
+        },
+        {
+          "year": 2023,
+          "actual": 15700.69,
+          "advance": 15700.69,
+          "delta": 0
+        },
+        {
+          "year": 2022,
+          "actual": 15700.69,
+          "advance": 15700.69,
+          "delta": 0
+        }
+      ],
+      "newAdvanceRecommendation": {
+        "perVheJan": 2.16,
+        "perVheJul": 2.16,
+        "totalAnnual": 15700.69,
+        "generalIncrease": 0,
+        "expectedCost2025": 15700.69,
+        "rationale": "Fixed depreciation schedule — no change until 2028"
+      },
+      "regulation": "Servicekosten Besluit Art. 1",
+      "distribution": {
+        "method": "per_vhe",
+        "denominator": 605,
+        "unit": "VHE"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "src-glas",
+      "to": "settle-glas-res",
+      "amount": 14187.99
+    },
+    {
+      "from": "src-glas",
+      "to": "settle-glas-bog",
+      "amount": 0
+    },
+    {
+      "from": "src-vuil",
+      "to": "settle-vuil-res",
+      "amount": 67154.75
+    },
+    {
+      "from": "src-vuil",
+      "to": "settle-vuil-bog",
+      "amount": 1080.14
+    },
+    {
+      "from": "src-tuin",
+      "to": "settle-tuin",
+      "amount": 10299.62
+    },
+    {
+      "from": "split-elektra",
+      "to": "passthrough-elektra-res-pre",
+      "amount": 154322.12,
+      "edgeLabel": "res"
+    },
+    {
+      "from": "passthrough-elektra-res-pre",
+      "to": "deduction-reb",
+      "amount": 154322.12
+    },
+    {
+      "from": "deduction-reb",
+      "to": "settle-elektra-res",
+      "amount": -154879.5,
+      "edgeLabel": "post-REB"
+    },
+    {
+      "from": "split-elektra",
+      "to": "passthrough-elektra-bog",
+      "amount": 58527.74,
+      "edgeLabel": "BOG"
+    },
+    {
+      "from": "passthrough-elektra-bog",
+      "to": "settle-elektra-bog-3192",
+      "amount": 46500.74,
+      "edgeLabel": "BOG I"
+    },
+    {
+      "from": "passthrough-elektra-bog",
+      "to": "settle-elektra-bog-3198-maslow",
+      "amount": 11934.97,
+      "edgeLabel": "Maslow Jan-Jul"
+    },
+    {
+      "from": "passthrough-elektra-bog",
+      "to": "settle-elektra-bog-3198-new",
+      "amount": 92.03,
+      "edgeLabel": "new tenant Aug-Dec"
+    },
+    {
+      "from": "split-elektra",
+      "to": "passthrough-elektra-wasserette",
+      "amount": 19829.95,
+      "edgeLabel": "wasserette"
+    },
+    {
+      "from": "passthrough-elektra-wasserette",
+      "to": "out-of-scope-wasserette",
+      "amount": 19829.95
+    },
+    {
+      "from": "split-elektra",
+      "to": "passthrough-elektra-to-gas",
+      "amount": 158570.34,
+      "edgeLabel": "→ gas"
+    },
+    {
+      "from": "passthrough-elektra-to-gas",
+      "to": "addition-gas-from-elektra",
+      "amount": 158570.34,
+      "edgeLabel": "cross-lane"
+    },
+    {
+      "from": "src-gas-equans",
+      "to": "addition-gas-from-elektra",
+      "amount": 237068.4
+    },
+    {
+      "from": "src-gas-kamstrup",
+      "to": "addition-gas-from-elektra",
+      "amount": 1682.8
+    },
+    {
+      "from": "addition-gas-from-elektra",
+      "to": "passthrough-gas-total",
+      "amount": 397321.54
+    },
+    {
+      "from": "passthrough-gas-total",
+      "to": "deduction-gas-to-water",
+      "amount": 397321.54
+    },
+    {
+      "from": "deduction-gas-to-water",
+      "to": "passthrough-gas-net",
+      "amount": 273645.81
+    },
+    {
+      "from": "deduction-gas-to-water",
+      "to": "addition-water-from-gas",
+      "amount": 123675.73,
+      "edgeLabel": "cross-lane"
+    },
+    {
+      "from": "passthrough-gas-net",
+      "to": "settle-gas-res",
+      "amount": 271389.23,
+      "edgeLabel": "res"
+    },
+    {
+      "from": "passthrough-gas-net",
+      "to": "settle-gas-bog-3192",
+      "amount": 984.13,
+      "edgeLabel": "BOG I"
+    },
+    {
+      "from": "passthrough-gas-net",
+      "to": "settle-gas-bog-3198-maslow",
+      "amount": 1003.88,
+      "edgeLabel": "Maslow Jan-Jul"
+    },
+    {
+      "from": "passthrough-gas-net",
+      "to": "settle-gas-bog-3198-new",
+      "amount": 268.57,
+      "edgeLabel": "new tenant Aug-Dec"
+    },
+    {
+      "from": "src-water",
+      "to": "addition-water-from-gas",
+      "amount": 61459.71
+    },
+    {
+      "from": "addition-water-from-gas",
+      "to": "passthrough-water-net",
+      "amount": 185135.44
+    },
+    {
+      "from": "passthrough-water-net",
+      "to": "settle-water-res",
+      "amount": 169795.66
+    },
+    {
+      "from": "src-elektrapp",
+      "to": "settle-elektrapp",
+      "amount": 0
+    },
+    {
+      "from": "src-afval",
+      "to": "settle-afval",
+      "amount": 20636
+    },
+    {
+      "from": "src-zuivering",
+      "to": "settle-zuivering",
+      "amount": 8706.75
+    },
+    {
+      "from": "src-inventaris",
+      "to": "settle-inventaris",
+      "amount": 15700.69
+    },
+    {
+      "from": "src-elektra-greenchoice",
+      "to": "split-elektra",
+      "amount": 407405.1
+    },
+    {
+      "from": "src-elektra-liander",
+      "to": "split-elektra",
+      "amount": 61464.84
+    },
+    {
+      "from": "src-elektra-joulz",
+      "to": "split-elektra",
+      "amount": 1016.9
+    },
+    {
+      "from": "src-elektra-kenter",
+      "to": "split-elektra",
+      "amount": 10745.64
+    },
+    {
+      "from": "src-elektra-reinforce",
+      "to": "split-elektra",
+      "amount": 4127.2
+    },
+    {
+      "from": "src-gemenergie-greenchoice",
+      "to": "settle-gemenergie",
+      "amount": 60050
+    },
+    {
+      "from": "src-gemenergie-liander",
+      "to": "settle-gemenergie",
+      "amount": 30020.59
+    },
+    {
+      "from": "src-signaal-itt-desk",
+      "to": "settle-signaal",
+      "amount": 216.36
+    },
+    {
+      "from": "src-signaal-technica",
+      "to": "settle-signaal",
+      "amount": 397.43
+    }
+  ],
+  "trustSummary": {
+    "totalExpected": 605314.94,
+    "totalAnchored": 605314.94,
+    "wrongAccountAmount": 0,
+    "manualAdjustmentAmount": 288560.91,
+    "issuesCount": 4
+  }
+}

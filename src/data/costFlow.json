@@ -1,0 +1,1633 @@
+{
+  "group": {
+    "id": "GRP-zev-complex",
+    "kind": "complex",
+    "name": "Zeverijnstraat 30-484",
+    "city": "Hilversum",
+    "vheCount": 216,
+    "sourceComplexes": [
+      "2379",
+      "2380"
+    ],
+    "blocks": [
+      {
+        "id": "GRP-zev-blok1",
+        "name": "Blok 1 (294-484)",
+        "vheCount": 96,
+        "addressRange": "20379000000..20379000096"
+      },
+      {
+        "id": "GRP-zev-blok2",
+        "name": "Blok 2 (30-268)",
+        "vheCount": 120,
+        "addressRange": "20379000220..20379099999"
+      }
+    ]
+  },
+  "period": 2024,
+  "siblingGroups": [
+    {
+      "id": "GRP-zev-complex",
+      "name": "Zeverijnstraat 30-484",
+      "vheCount": 216,
+      "kind": "complex",
+      "active": true
+    },
+    {
+      "id": "GRP-zev-blok1",
+      "name": "Blok 1",
+      "vheCount": 96,
+      "kind": "block"
+    },
+    {
+      "id": "GRP-zev-blok2",
+      "name": "Blok 2",
+      "vheCount": 120,
+      "kind": "block"
+    },
+    {
+      "id": "GRP-zev-riolering",
+      "name": "Riolering audience",
+      "vheCount": 117,
+      "kind": "subgroup"
+    },
+    {
+      "id": "GRP-zev-elec-shared",
+      "name": "Blok 1 + cpl 2380 elec",
+      "vheCount": 108,
+      "kind": "subgroup"
+    }
+  ],
+  "lanes": [
+    {
+      "id": "lane-elec-b1",
+      "title": "Lift & common electricity — Blok 1",
+      "category": "energy",
+      "complexity": "complex"
+    },
+    {
+      "id": "lane-elec-b2",
+      "title": "Lift & common electricity — Blok 2",
+      "category": "energy",
+      "complexity": "medium"
+    },
+    {
+      "id": "lane-gas-b1",
+      "title": "Gas — Blok 1 (270-484)",
+      "category": "energy",
+      "complexity": "medium"
+    },
+    {
+      "id": "lane-gas-b2",
+      "title": "Gas — Blok 2 (30-268)",
+      "category": "energy",
+      "complexity": "medium"
+    },
+    {
+      "id": "lane-cleaning",
+      "title": "Cleaning",
+      "category": "cleaning",
+      "complexity": "simple"
+    },
+    {
+      "id": "lane-huismeester",
+      "title": "Janitor / neighbourhood manager",
+      "category": "management",
+      "complexity": "simple"
+    },
+    {
+      "id": "lane-riolering",
+      "title": "Sewer unblocking",
+      "category": "other",
+      "complexity": "simple"
+    },
+    {
+      "id": "lane-glas",
+      "title": "Glass insurance",
+      "category": "other",
+      "complexity": "simple"
+    },
+    {
+      "id": "lane-admin",
+      "title": "Administration cost",
+      "category": "other",
+      "complexity": "simple"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "src-elec-b1-meter",
+      "laneId": "lane-elec-b1",
+      "type": "source",
+      "col": 0,
+      "row": 0,
+      "label": "Electricity supply (Block 1)",
+      "sourceKind": "metered",
+      "cadence": "monthly",
+      "identifier": "EAN 871685900010663190",
+      "supplier": "Engie",
+      "utility": "electricity",
+      "amount": 23116.37,
+      "expectedConsumption": 61882,
+      "consumptionUnit": "kWh",
+      "evidenceCount": 11,
+      "crossesComplex": true,
+      "yoyComparison": [
+        {
+          "year": 2024,
+          "amount": 23116.37
+        },
+        {
+          "year": 2023,
+          "amount": 24812.5
+        },
+        {
+          "year": 2022,
+          "amount": 22405.18
+        }
+      ],
+      "supplierBreakdown": [
+        {
+          "name": "Engie",
+          "role": "energy supply",
+          "amount": 23116.37,
+          "evidenceCount": 11,
+          "status": "matched_partial"
+        }
+      ],
+      "temporalCoverage": {
+        "expectedMonths": 12,
+        "bookedMonths": 10,
+        "missing": [
+          "Feb",
+          "Sep"
+        ],
+        "note": "Two months booked on different cost source — €2,646 elders geboekt"
+      },
+      "manualNotes": [
+        {
+          "kind": "info",
+          "text": "Submeter readings deduct 1,722 kWh (parking deck) and 1,768 kWh (Combonet) before settlement"
+        }
+      ],
+      "anchors": [
+        {
+          "ledgerAccount": "8507000-23790001-SV1370G-",
+          "amount": 12209.91,
+          "status": "matched_partial",
+          "note": "Two months booked elsewhere (€2,646.35)"
+        }
+      ],
+      "flags": [
+        {
+          "kind": "warning",
+          "note": "Meter feeds VHE in cpl 2380 (12 units) in addition to Blok 1"
+        }
+      ],
+      "budgetedAmount": 21729.39
+    },
+    {
+      "id": "split-elec-b1-80-20",
+      "laneId": "lane-elec-b1",
+      "type": "split",
+      "col": 1,
+      "row": 0,
+      "label": "80% / 20% split",
+      "subLabel": "Lift vs common (fixed)",
+      "rule": "fixed_pct",
+      "ruleSpec": {
+        "lift": 0.8,
+        "common": 0.2
+      },
+      "amount": 23116.37
+    },
+    {
+      "id": "passthrough-elec-b1-lift-pre",
+      "laneId": "lane-elec-b1",
+      "type": "marker",
+      "col": 2,
+      "row": 0,
+      "label": "Lift electra Blok 1",
+      "amount": 18493.1
+    },
+    {
+      "id": "deduction-elec-b1-lift",
+      "laneId": "lane-elec-b1",
+      "type": "adjustment",
+      "col": 3,
+      "row": 0,
+      "label": "Privégebruik deduction",
+      "subLabel": "Manual carve-out for commercial use",
+      "amount": -222.95,
+      "anchors": [],
+      "flags": [
+        {
+          "kind": "warning",
+          "note": "Excel-only deduction — not represented in ledger"
+        }
+      ]
+    },
+    {
+      "id": "settle-elec-b1-lift",
+      "laneId": "lane-elec-b1",
+      "type": "settlement",
+      "col": 4,
+      "row": 0,
+      "label": "Lift / SV1370G",
+      "subLabel": "Blok 1 — 96 VHE",
+      "groupId": "GRP-zev-blok1",
+      "serviceCode": "SV1370G",
+      "vheCount": 96,
+      "amount": 18270.15,
+      "advance": 17411.4,
+      "delta": 858.75,
+      "settlementStatus": "proposed",
+      "yoyComparison": [
+        {
+          "year": 2024,
+          "actual": 18270.15,
+          "advance": 17411.4,
+          "delta": 858.75
+        },
+        {
+          "year": 2023,
+          "actual": 12426.65,
+          "advance": 13638,
+          "delta": -1211.35
+        },
+        {
+          "year": 2022,
+          "actual": 2027.04,
+          "advance": 13558.55,
+          "delta": -11531.51
+        }
+      ],
+      "newAdvanceRecommendation": {
+        "perVheJan": 13,
+        "perVheJul": 13,
+        "totalAnnual": 14976,
+        "generalIncrease": -0.2,
+        "expectedCost2025": 14794.48,
+        "rationale": "−20% general decrease applied to 2024 base; per-VHE €13/month flat across the year",
+        "marginNote": "2022 settlement had a large credit due to underestimated lift maintenance"
+      },
+      "regulation": "Servicekosten Besluit Art. 1",
+      "distribution": {
+        "method": "per_vhe",
+        "denominator": 96,
+        "unit": "VHE"
+      }
+    },
+    {
+      "id": "passthrough-elec-b1-common-pre",
+      "laneId": "lane-elec-b1",
+      "type": "marker",
+      "col": 2,
+      "row": 1,
+      "label": "Common electra (20% of meter)",
+      "amount": 4623.27
+    },
+    {
+      "id": "split-elec-b1-by-count",
+      "laneId": "lane-elec-b1",
+      "type": "split",
+      "col": 3,
+      "row": 1,
+      "label": "96/108 vs 12/108",
+      "subLabel": "By VHE count (cross-complex)",
+      "rule": "by_count",
+      "ruleSpec": {
+        "GRP-zev-blok1": 96,
+        "GRP-zev-2380": 12,
+        "denominator": 108
+      },
+      "amount": 4623.27
+    },
+    {
+      "id": "addition-elec-b1-onderhoud",
+      "laneId": "lane-elec-b1",
+      "type": "adjustment",
+      "col": 4,
+      "row": 1,
+      "label": "Lighting maintenance",
+      "subLabel": "Maro invoices, booked on SV1372G",
+      "amount": 175.95,
+      "anchors": [
+        {
+          "ledgerAccount": "8507200-23790001-SV1372G-",
+          "amount": 175.95,
+          "status": "matched",
+          "note": "Project-kosten lines + LED armateur"
+        }
+      ]
+    },
+    {
+      "id": "settle-elec-b1-common",
+      "laneId": "lane-elec-b1",
+      "type": "settlement",
+      "col": 5,
+      "row": 1,
+      "label": "Common electra / SV1372G",
+      "subLabel": "Blok 1 — 96 VHE",
+      "groupId": "GRP-zev-blok1",
+      "serviceCode": "SV1372G",
+      "vheCount": 96,
+      "amount": 4285.52,
+      "advance": 5611.2,
+      "delta": -1325.68,
+      "settlementStatus": "proposed",
+      "yoyComparison": [
+        {
+          "year": 2024,
+          "actual": 4285.52,
+          "advance": 5611.2,
+          "delta": -1325.68
+        },
+        {
+          "year": 2023,
+          "actual": 3294.38,
+          "advance": 4557,
+          "delta": -1262.62
+        },
+        {
+          "year": 2022,
+          "actual": 450.45,
+          "advance": 4511.77,
+          "delta": -4061.32
+        }
+      ],
+      "newAdvanceRecommendation": {
+        "perVheJan": 4,
+        "perVheJul": 4,
+        "totalAnnual": 4608,
+        "generalIncrease": -0.2,
+        "expectedCost2025": 4247.66,
+        "rationale": "−20% on variable component (€3,287.66) + €960 fixed maintenance budget",
+        "marginNote": "Three consecutive years of credit — advance is structurally too high"
+      },
+      "regulation": "Servicekosten Besluit Art. 1",
+      "distribution": {
+        "method": "per_vhe",
+        "denominator": 96,
+        "unit": "VHE"
+      }
+    },
+    {
+      "id": "out-of-scope-elec-b1-2380",
+      "laneId": "lane-elec-b1",
+      "type": "settlement",
+      "col": 4,
+      "row": 2,
+      "label": "Cpl 2380 share (12 VHE)",
+      "subLabel": "Settled separately — out of this complex",
+      "groupId": "GRP-zev-2380",
+      "outOfScope": true,
+      "amount": 513.7,
+      "distribution": {
+        "method": "single",
+        "note": "Out-of-scope recipient"
+      }
+    },
+    {
+      "id": "src-elec-b2-meter",
+      "laneId": "lane-elec-b2",
+      "type": "source",
+      "col": 0,
+      "row": 0,
+      "label": "Electricity supply (Block 2)",
+      "sourceKind": "metered",
+      "cadence": "monthly",
+      "identifier": "EAN — Zeverijnstraat 30AV",
+      "supplier": "Engie",
+      "utility": "electricity",
+      "amount": 14696.02,
+      "evidenceCount": 9,
+      "yoyComparison": [
+        {
+          "year": 2024,
+          "amount": 14696.02
+        },
+        {
+          "year": 2023,
+          "amount": 16142.85
+        },
+        {
+          "year": 2022,
+          "amount": 15087.5
+        }
+      ],
+      "supplierBreakdown": [
+        {
+          "name": "Engie",
+          "role": "energy supply",
+          "amount": 14696.02,
+          "evidenceCount": 9,
+          "status": "matched"
+        }
+      ],
+      "temporalCoverage": {
+        "expectedMonths": 12,
+        "bookedMonths": 12,
+        "missing": [],
+        "note": "Full year booked — clean"
+      },
+      "anchors": [
+        {
+          "ledgerAccount": "8507000-23790001-SV1370G-",
+          "amount": 14696.02,
+          "status": "matched",
+          "note": null
+        }
+      ],
+      "budgetedAmount": 13520.34
+    },
+    {
+      "id": "split-elec-b2-80-20",
+      "laneId": "lane-elec-b2",
+      "type": "split",
+      "col": 1,
+      "row": 0,
+      "label": "80% / 20% split",
+      "subLabel": "Lift vs common (fixed)",
+      "rule": "fixed_pct",
+      "ruleSpec": {
+        "lift": 0.8,
+        "common": 0.2
+      },
+      "amount": 14696.02
+    },
+    {
+      "id": "passthrough-elec-b2-lift-pre",
+      "laneId": "lane-elec-b2",
+      "type": "marker",
+      "col": 2,
+      "row": 0,
+      "label": "Lift electra Blok 2",
+      "amount": 11756.82
+    },
+    {
+      "id": "deduction-elec-b2-lift",
+      "laneId": "lane-elec-b2",
+      "type": "adjustment",
+      "col": 3,
+      "row": 0,
+      "label": "Privégebruik deduction",
+      "amount": -456.24,
+      "flags": [
+        {
+          "kind": "warning",
+          "note": "Excel-only deduction"
+        }
+      ]
+    },
+    {
+      "id": "settle-elec-b2-lift",
+      "laneId": "lane-elec-b2",
+      "type": "settlement",
+      "col": 4,
+      "row": 0,
+      "label": "Lift / SV1370G",
+      "subLabel": "Blok 2 — 120 VHE",
+      "groupId": "GRP-zev-blok2",
+      "serviceCode": "SV1370G",
+      "vheCount": 120,
+      "amount": 11300.58,
+      "advance": 14400,
+      "delta": -3099.42,
+      "settlementStatus": "proposed",
+      "yoyComparison": [
+        {
+          "year": 2024,
+          "actual": 11300.58,
+          "advance": 14400,
+          "delta": -3099.42
+        },
+        {
+          "year": 2023,
+          "actual": 7115.54,
+          "advance": 15899.4,
+          "delta": -8783.86
+        },
+        {
+          "year": 2022,
+          "actual": 6916.54,
+          "advance": 15126,
+          "delta": -8209.46
+        }
+      ],
+      "newAdvanceRecommendation": {
+        "perVheJan": 12.1,
+        "perVheJul": 12.1,
+        "totalAnnual": 17424,
+        "generalIncrease": -0.2,
+        "expectedCost2025": 9405.45,
+        "rationale": "−20% on 2024 base; per-VHE €12.10/month",
+        "marginNote": "Persistent overcollection — recommend lower advance still on 2026 review"
+      },
+      "regulation": "Servicekosten Besluit Art. 1",
+      "distribution": {
+        "method": "per_vhe",
+        "denominator": 120,
+        "unit": "VHE"
+      }
+    },
+    {
+      "id": "passthrough-elec-b2-common-pre",
+      "laneId": "lane-elec-b2",
+      "type": "marker",
+      "col": 2,
+      "row": 1,
+      "label": "Common electra (20%)",
+      "amount": 2939.2
+    },
+    {
+      "id": "addition-elec-b2-onderhoud",
+      "laneId": "lane-elec-b2",
+      "type": "adjustment",
+      "col": 3,
+      "row": 1,
+      "label": "Lighting maintenance",
+      "subLabel": "Maro invoices, booked on SV1372G (Niet Daeb)",
+      "amount": 219.93,
+      "anchors": [
+        {
+          "ledgerAccount": "8507200-23790003-SV1372G-Niet Daeb",
+          "amount": 219.93,
+          "status": "matched",
+          "note": "Booked on Niet-DAEB sub-account"
+        }
+      ],
+      "flags": [
+        {
+          "kind": "warning",
+          "note": "Booked on Niet-DAEB sub-account — verify mapping"
+        }
+      ]
+    },
+    {
+      "id": "settle-elec-b2-common",
+      "laneId": "lane-elec-b2",
+      "type": "settlement",
+      "col": 4,
+      "row": 1,
+      "label": "Common electra / SV1372G",
+      "subLabel": "Blok 2 — 120 VHE",
+      "groupId": "GRP-zev-blok2",
+      "serviceCode": "SV1372G",
+      "vheCount": 120,
+      "amount": 3159.14,
+      "advance": 4608,
+      "delta": -1448.86,
+      "settlementStatus": "proposed",
+      "yoyComparison": [
+        {
+          "year": 2024,
+          "actual": 3159.14,
+          "advance": 4608,
+          "delta": -1448.86
+        },
+        {
+          "year": 2023,
+          "actual": 3852.84,
+          "advance": 5325.6,
+          "delta": -1472.76
+        },
+        {
+          "year": 2022,
+          "actual": 1729.13,
+          "advance": 5040,
+          "delta": -3310.87
+        }
+      ],
+      "newAdvanceRecommendation": {
+        "perVheJan": 3.9,
+        "perVheJul": 3.9,
+        "totalAnnual": 5616,
+        "generalIncrease": -0.2,
+        "expectedCost2025": 3551.36,
+        "rationale": "−20% on variable + €1,200 maintenance budget",
+        "marginNote": "Tighten advance further if 2025 actual lands around €3,500"
+      },
+      "regulation": "Servicekosten Besluit Art. 1",
+      "distribution": {
+        "method": "per_vhe",
+        "denominator": 120,
+        "unit": "VHE"
+      }
+    },
+    {
+      "id": "src-gas-b1-engie",
+      "laneId": "lane-gas-b1",
+      "type": "source",
+      "col": 0,
+      "row": 0,
+      "label": "Gas supply (Block 1)",
+      "subLabel": "energy supply",
+      "sourceKind": "metered",
+      "cadence": "monthly",
+      "identifier": "Engie — energy supply",
+      "supplier": "Engie",
+      "utility": "gas",
+      "amount": 92203.49,
+      "evidenceCount": 10,
+      "anchors": [
+        {
+          "ledgerAccount": "8507000-23970001-SV1351G-",
+          "amount": 92203.49,
+          "status": "wrong_account",
+          "note": "Booked on cpl 2397 (must be 2379)"
+        }
+      ],
+      "manualNotes": [
+        {
+          "kind": "info",
+          "text": "Booked on cpl 2397 (must be 2379)"
+        }
+      ],
+      "budgetedAmount": 96813.66
+    },
+    {
+      "id": "src-gas-b1-liander",
+      "laneId": "lane-gas-b1",
+      "type": "source",
+      "col": 0,
+      "row": 1,
+      "label": "Gas supply (Block 1)",
+      "subLabel": "grid operator",
+      "sourceKind": "metered",
+      "cadence": "monthly",
+      "identifier": "Liander — grid operator",
+      "supplier": "Liander",
+      "utility": "gas",
+      "amount": 5676.12,
+      "evidenceCount": 12,
+      "anchors": [
+        {
+          "ledgerAccount": "8507000-23970001-SV1351G-",
+          "amount": 5676.12,
+          "status": "matched",
+          "note": "Posted under Gas supply (Block 1) (8507000-23970001-SV1351G-) — Liander invoices"
+        }
+      ],
+      "budgetedAmount": 5335.55
+    },
+    {
+      "id": "src-gas-b1-anexo",
+      "laneId": "lane-gas-b1",
+      "type": "source",
+      "col": 0,
+      "row": 2,
+      "label": "Gas supply (Block 1)",
+      "subLabel": "supplier switch",
+      "sourceKind": "metered",
+      "cadence": "monthly",
+      "identifier": "Anexo — supplier switch",
+      "supplier": "Anexo",
+      "utility": "gas",
+      "amount": 1352.24,
+      "evidenceCount": 2,
+      "anchors": [
+        {
+          "ledgerAccount": "8507000-23970001-SV1351G-",
+          "amount": 1352.24,
+          "status": "matched",
+          "note": "Jan-Jun overlap window"
+        }
+      ],
+      "manualNotes": [
+        {
+          "kind": "info",
+          "text": "Jan-Jun overlap window"
+        }
+      ],
+      "budgetedAmount": 1379.28
+    },
+    {
+      "id": "settle-gas-b1",
+      "laneId": "lane-gas-b1",
+      "type": "settlement",
+      "col": 1,
+      "row": 0,
+      "label": "Gas / SV1351G",
+      "subLabel": "Blok 1 — 96 VHE",
+      "groupId": "GRP-zev-blok1",
+      "serviceCode": "SV1351G",
+      "vheCount": 96,
+      "amount": 99232.3,
+      "settlementStatus": "blocked",
+      "settlesViaIsta": true,
+      "yoyComparison": [
+        {
+          "year": 2024,
+          "actual": 99232.3,
+          "advance": null,
+          "delta": null
+        },
+        {
+          "year": 2023,
+          "actual": 108450,
+          "advance": null,
+          "delta": null
+        },
+        {
+          "year": 2022,
+          "actual": 132180,
+          "advance": null,
+          "delta": null
+        }
+      ],
+      "regulation": "Servicekosten Besluit Art. 1",
+      "audienceNote": "Per-VHE allocation handled by Ista based on heat-cost meters — not a flat per-VHE charge",
+      "distribution": {
+        "method": "metered_ista",
+        "denominator": 96,
+        "unit": "VHE",
+        "note": "Per-unit allocation by Ista based on heat-cost meters"
+      }
+    },
+    {
+      "id": "src-gas-b2-engie",
+      "laneId": "lane-gas-b2",
+      "type": "source",
+      "col": 0,
+      "row": 0,
+      "label": "Gas supply (Block 2)",
+      "subLabel": "energy supply",
+      "sourceKind": "metered",
+      "cadence": "monthly",
+      "identifier": "Engie — energy supply",
+      "supplier": "Engie",
+      "utility": "gas",
+      "amount": 92947.9,
+      "evidenceCount": 10,
+      "anchors": [
+        {
+          "ledgerAccount": "8507000-23790001-SV1351G-",
+          "amount": 92947.9,
+          "status": "matched",
+          "note": "Posted under Gas supply (Block 2) (8507000-23790001-SV1351G-) — Engie invoices"
+        }
+      ],
+      "budgetedAmount": 95736.34
+    },
+    {
+      "id": "src-gas-b2-liander",
+      "laneId": "lane-gas-b2",
+      "type": "source",
+      "col": 0,
+      "row": 1,
+      "label": "Gas supply (Block 2)",
+      "subLabel": "grid operator",
+      "sourceKind": "metered",
+      "cadence": "monthly",
+      "identifier": "Liander — grid operator",
+      "supplier": "Liander",
+      "utility": "gas",
+      "amount": 7241.4,
+      "evidenceCount": 13,
+      "anchors": [
+        {
+          "ledgerAccount": "8507000-23790001-SV1351G-",
+          "amount": 7241.4,
+          "status": "matched_partial",
+          "note": "1 invoice (€328.02) for Oostermeent-Noord wrongly booked here"
+        }
+      ],
+      "manualNotes": [
+        {
+          "kind": "info",
+          "text": "1 invoice (€328.02) for Oostermeent-Noord wrongly booked here"
+        }
+      ],
+      "budgetedAmount": 7096.57
+    },
+    {
+      "id": "src-gas-b2-anexo",
+      "laneId": "lane-gas-b2",
+      "type": "source",
+      "col": 0,
+      "row": 2,
+      "label": "Gas supply (Block 2)",
+      "subLabel": "supplier switch",
+      "sourceKind": "metered",
+      "cadence": "monthly",
+      "identifier": "Anexo — supplier switch",
+      "supplier": "Anexo",
+      "utility": "gas",
+      "amount": 1481.04,
+      "evidenceCount": 2,
+      "anchors": [
+        {
+          "ledgerAccount": "8507000-23790001-SV1351G-",
+          "amount": 1481.04,
+          "status": "matched",
+          "note": "Jan-Jun overlap window"
+        }
+      ],
+      "manualNotes": [
+        {
+          "kind": "info",
+          "text": "Jan-Jun overlap window"
+        }
+      ],
+      "budgetedAmount": 1481.04
+    },
+    {
+      "id": "src-gas-b2-ista",
+      "laneId": "lane-gas-b2",
+      "type": "source",
+      "col": 0,
+      "row": 3,
+      "label": "Gas supply (Block 2)",
+      "subLabel": "heat-cost metering",
+      "sourceKind": "metered",
+      "cadence": "monthly",
+      "identifier": "Ista — heat-cost metering",
+      "supplier": "Ista",
+      "utility": "gas",
+      "amount": 11378.82,
+      "evidenceCount": 6,
+      "anchors": [
+        {
+          "ledgerAccount": "8507000-23790001-SV1351G-",
+          "amount": 11378.82,
+          "status": "matched",
+          "note": "Per-VHE allocation, separate settlement"
+        }
+      ],
+      "manualNotes": [
+        {
+          "kind": "info",
+          "text": "Per-VHE allocation, separate settlement"
+        }
+      ],
+      "budgetedAmount": 11151.24
+    },
+    {
+      "id": "settle-gas-b2",
+      "laneId": "lane-gas-b2",
+      "type": "settlement",
+      "col": 1,
+      "row": 0,
+      "label": "Gas / SV1351G",
+      "subLabel": "Blok 2 — 120 VHE",
+      "groupId": "GRP-zev-blok2",
+      "serviceCode": "SV1351G",
+      "vheCount": 120,
+      "amount": 100393.71,
+      "settlementStatus": "blocked",
+      "settlesViaIsta": true,
+      "yoyComparison": [
+        {
+          "year": 2024,
+          "actual": 100393.71,
+          "advance": null,
+          "delta": null
+        },
+        {
+          "year": 2023,
+          "actual": 109820,
+          "advance": null,
+          "delta": null
+        },
+        {
+          "year": 2022,
+          "actual": 134510,
+          "advance": null,
+          "delta": null
+        }
+      ],
+      "regulation": "Servicekosten Besluit Art. 1",
+      "audienceNote": "Per-VHE allocation handled by Ista based on heat-cost meters — not a flat per-VHE charge",
+      "distribution": {
+        "method": "metered_ista",
+        "denominator": 120,
+        "unit": "VHE",
+        "note": "Per-unit allocation by Ista based on heat-cost meters"
+      }
+    },
+    {
+      "id": "src-cleaning",
+      "laneId": "lane-cleaning",
+      "type": "source",
+      "col": 0,
+      "row": 0,
+      "label": "Cleaning service",
+      "sourceKind": "contracted",
+      "cadence": "quarterly",
+      "identifier": "Service contract — A.D.V. Rolé en Van Slooten BV",
+      "supplier": "A.D.V. Rolé",
+      "amount": 69102.02,
+      "evidenceCount": 4,
+      "yoyComparison": [
+        {
+          "year": 2024,
+          "amount": 69102.02
+        },
+        {
+          "year": 2023,
+          "amount": 65006.84
+        },
+        {
+          "year": 2022,
+          "amount": 62029.3
+        }
+      ],
+      "supplierBreakdown": [
+        {
+          "name": "A.D.V. Rolé en Van Slooten BV",
+          "role": "cleaning contractor",
+          "amount": 69102.02,
+          "evidenceCount": 4,
+          "status": "matched"
+        }
+      ],
+      "temporalCoverage": {
+        "expectedQuarters": 4,
+        "bookedQuarters": 4,
+        "missing": [],
+        "note": "All four quarters booked on time",
+        "cadence": "quarterly"
+      },
+      "manualNotes": [
+        {
+          "kind": "info",
+          "text": "Indexation: +6.3% vs 2023, in line with the contract escalator"
+        }
+      ],
+      "anchors": [
+        {
+          "ledgerAccount": "8507000-23790001-SV1311G-",
+          "amount": 69102.02,
+          "status": "matched",
+          "note": "4 quarterly invoices — Q1, Q2, Q3, Q4"
+        }
+      ],
+      "budgetedAmount": 64955.9
+    },
+    {
+      "id": "settle-cleaning",
+      "laneId": "lane-cleaning",
+      "type": "settlement",
+      "col": 1,
+      "row": 0,
+      "label": "Cleaning / SV1311G",
+      "subLabel": "Whole complex — 216 VHE",
+      "groupId": "GRP-zev-complex",
+      "serviceCode": "SV1311G",
+      "vheCount": 216,
+      "amount": 69102.02,
+      "advance": 68688,
+      "delta": 414.02,
+      "settlementStatus": "proposed",
+      "yoyComparison": [
+        {
+          "year": 2024,
+          "actual": 69102.02,
+          "advance": 68688,
+          "delta": 414.02
+        },
+        {
+          "year": 2023,
+          "actual": 65006.84,
+          "advance": 67392,
+          "delta": -2385.16
+        },
+        {
+          "year": 2022,
+          "actual": 62029.3,
+          "advance": 67392,
+          "delta": -5362.7
+        }
+      ],
+      "newAdvanceRecommendation": {
+        "perVheJan": 27,
+        "perVheJul": 29,
+        "totalAnnual": 72576,
+        "generalIncrease": 0.06,
+        "expectedCost2025": 73455.45,
+        "rationale": "+6% contract escalator on 2024 base; mid-year step-up to keep advance close to actual",
+        "marginNote": "First year of small overshoot — advance well-calibrated"
+      },
+      "regulation": "Servicekosten Besluit Art. 1",
+      "distribution": {
+        "method": "per_vhe",
+        "denominator": 216,
+        "unit": "VHE"
+      }
+    },
+    {
+      "id": "src-huismeester",
+      "laneId": "lane-huismeester",
+      "type": "source",
+      "col": 0,
+      "row": 0,
+      "label": "Caretaker / wijkbeheerder",
+      "sourceKind": "internal",
+      "cadence": "annual",
+      "identifier": "Internal labour · Tobias MSSK000099",
+      "supplier": "Internal",
+      "amount": 7353.27,
+      "evidenceCount": 1,
+      "yoyComparison": [
+        {
+          "year": 2024,
+          "amount": 7353.27
+        },
+        {
+          "year": 2023,
+          "amount": 8872.13
+        },
+        {
+          "year": 2022,
+          "amount": 6294.61
+        }
+      ],
+      "supplierBreakdown": [
+        {
+          "name": "Internal labour",
+          "role": "janitor / neighbourhood manager",
+          "amount": 7353.27,
+          "evidenceCount": 1,
+          "status": "matched"
+        }
+      ],
+      "temporalCoverage": {
+        "expectedMonths": 1,
+        "bookedMonths": 1,
+        "missing": [],
+        "note": "Single annual booking — typical for internal labour cost",
+        "cadence": "annual"
+      },
+      "manualNotes": [
+        {
+          "kind": "warn",
+          "text": "Voorschot €11,664 vs actual €7,353 — large credit (-€4,311). Recommend lower 2025 advance."
+        },
+        {
+          "kind": "info",
+          "text": "Volatile year-on-year (€6,295 / €8,872 / €7,353). Drivers: hours allocation method changed mid-2023"
+        }
+      ],
+      "anchors": [
+        {
+          "ledgerAccount": "8507000-23790001-SV1313G-",
+          "amount": 7353.27,
+          "status": "matched"
+        }
+      ],
+      "budgetedAmount": 7868
+    },
+    {
+      "id": "settle-huismeester",
+      "laneId": "lane-huismeester",
+      "type": "settlement",
+      "col": 1,
+      "row": 0,
+      "label": "Huismeester / SV1313G",
+      "subLabel": "Whole complex — 216 VHE",
+      "groupId": "GRP-zev-complex",
+      "serviceCode": "SV1313G",
+      "vheCount": 216,
+      "amount": 7353.27,
+      "advance": 11664,
+      "delta": -4310.73,
+      "settlementStatus": "proposed",
+      "yoyComparison": [
+        {
+          "year": 2024,
+          "actual": 7353.27,
+          "advance": 11664,
+          "delta": -4310.73
+        },
+        {
+          "year": 2023,
+          "actual": 8872.13,
+          "advance": 11664,
+          "delta": -2791.87
+        },
+        {
+          "year": 2022,
+          "actual": 6294.61,
+          "advance": 11664,
+          "delta": -5369.39
+        }
+      ],
+      "newAdvanceRecommendation": {
+        "perVheJan": 4.5,
+        "perVheJul": 4,
+        "totalAnnual": 11016,
+        "generalIncrease": 0.06,
+        "expectedCost2025": 7757.7,
+        "rationale": "+6% on 2024 base; mid-year step-down to bring advance closer to actual",
+        "marginNote": "Three years of large credits — advance is structurally too high; consider €3-4/VHE/month flat"
+      },
+      "regulation": "Servicekosten Besluit Art. 1",
+      "distribution": {
+        "method": "per_vhe",
+        "denominator": 216,
+        "unit": "VHE"
+      }
+    },
+    {
+      "id": "src-riolering",
+      "laneId": "lane-riolering",
+      "type": "source",
+      "col": 0,
+      "row": 0,
+      "label": "Sewer maintenance",
+      "sourceKind": "pass_through",
+      "cadence": "ad_hoc",
+      "identifier": "Variable per-incident invoices",
+      "supplier": "On-demand",
+      "amount": 1300.56,
+      "evidenceCount": 1,
+      "yoyComparison": [
+        {
+          "year": 2024,
+          "amount": 1300.56
+        },
+        {
+          "year": 2023,
+          "amount": 991.72
+        },
+        {
+          "year": 2022,
+          "amount": 866.63
+        }
+      ],
+      "supplierBreakdown": [
+        {
+          "name": "Pass-through actuals",
+          "role": "ad-hoc service calls",
+          "amount": 1300.56,
+          "evidenceCount": 1,
+          "status": "matched"
+        }
+      ],
+      "temporalCoverage": {
+        "expectedMonths": null,
+        "bookedMonths": null,
+        "missing": [],
+        "note": "On-demand — billed when needed",
+        "cadence": "ad_hoc"
+      },
+      "manualNotes": [
+        {
+          "kind": "info",
+          "text": "Trending +33% vs 2023 — typical for ageing pipework. Audience is the 117-VHE subset that shares the relevant stack."
+        }
+      ],
+      "anchors": [
+        {
+          "ledgerAccount": "8507000-23790001-SN1402G-",
+          "amount": 1300.56,
+          "status": "matched"
+        }
+      ],
+      "budgetedAmount": 1248.54
+    },
+    {
+      "id": "settle-riolering",
+      "laneId": "lane-riolering",
+      "type": "settlement",
+      "col": 1,
+      "row": 0,
+      "label": "Riolering / SN1402G",
+      "subLabel": "117-VHE audience (custom group)",
+      "groupId": "GRP-zev-riolering",
+      "serviceCode": "SN1402G",
+      "vheCount": 117,
+      "amount": 1300.56,
+      "advance": 1300.56,
+      "delta": 0,
+      "settlementStatus": "proposed",
+      "yoyComparison": [
+        {
+          "year": 2024,
+          "actual": 1300.56,
+          "advance": 1300.56,
+          "delta": 0
+        },
+        {
+          "year": 2023,
+          "actual": 991.72,
+          "advance": 991.72,
+          "delta": 0
+        },
+        {
+          "year": 2022,
+          "actual": 866.63,
+          "advance": 866.63,
+          "delta": 0
+        }
+      ],
+      "newAdvanceRecommendation": {
+        "perVheJan": 1.1,
+        "perVheJul": 1.15,
+        "totalAnnual": 1579.5,
+        "generalIncrease": null,
+        "expectedCost2025": null,
+        "rationale": "Pass-through; advance moves with rolling actuals",
+        "marginNote": "Trend is +33% YoY — watch for further pipework deterioration"
+      },
+      "regulation": "Servicekosten Besluit Art. 1",
+      "audienceNote": "Cuts across Blok 1 + Blok 2 — only the 117 VHE on the affected sewer stack",
+      "audienceComposition": {
+        "byBlock": [
+          {
+            "blockId": "GRP-zev-blok1",
+            "blockName": "Blok 1",
+            "vheInGroup": 53,
+            "vheTotal": 96
+          },
+          {
+            "blockId": "GRP-zev-blok2",
+            "blockName": "Blok 2",
+            "vheInGroup": 64,
+            "vheTotal": 120
+          }
+        ],
+        "rationale": "Only VHEs connected to the affected riser stack — defined by the 1990 plumbing schematic"
+      },
+      "distribution": {
+        "method": "per_vhe",
+        "denominator": 117,
+        "unit": "VHE"
+      }
+    },
+    {
+      "id": "src-glas",
+      "laneId": "lane-glas",
+      "type": "source",
+      "col": 0,
+      "row": 0,
+      "label": "Window cleaning",
+      "sourceKind": "recurring",
+      "cadence": "annual",
+      "identifier": "Group glass insurance policy",
+      "supplier": "Group policy",
+      "amount": 3265.92,
+      "evidenceCount": 1,
+      "yoyComparison": [
+        {
+          "year": 2024,
+          "amount": 3265.92
+        },
+        {
+          "year": 2023,
+          "amount": 3265.92
+        },
+        {
+          "year": 2022,
+          "amount": 3122.7
+        }
+      ],
+      "supplierBreakdown": [
+        {
+          "name": "Group glass policy",
+          "role": "insurer",
+          "amount": 3265.92,
+          "evidenceCount": 1,
+          "status": "matched"
+        }
+      ],
+      "temporalCoverage": {
+        "expectedMonths": 1,
+        "bookedMonths": 1,
+        "missing": [],
+        "note": "Annual premium booked in full",
+        "cadence": "annual"
+      },
+      "manualNotes": [
+        {
+          "kind": "info",
+          "text": "Premium flat vs 2023 — no rate review this year."
+        }
+      ],
+      "anchors": [
+        {
+          "ledgerAccount": "8507000-23790001-SN1408G-",
+          "amount": 3265.92,
+          "status": "matched"
+        }
+      ],
+      "budgetedAmount": 3527.19
+    },
+    {
+      "id": "settle-glas",
+      "laneId": "lane-glas",
+      "type": "settlement",
+      "col": 1,
+      "row": 0,
+      "label": "Glasverzekering / SN1408G",
+      "subLabel": "Whole complex — 216 VHE",
+      "groupId": "GRP-zev-complex",
+      "serviceCode": "SN1408G",
+      "vheCount": 216,
+      "amount": 3265.92,
+      "advance": 3265.92,
+      "delta": 0,
+      "settlementStatus": "proposed",
+      "yoyComparison": [
+        {
+          "year": 2024,
+          "actual": 3265.92,
+          "advance": 3265.92,
+          "delta": 0
+        },
+        {
+          "year": 2023,
+          "actual": 3265.92,
+          "advance": 3265.92,
+          "delta": 0
+        },
+        {
+          "year": 2022,
+          "actual": 3122.7,
+          "advance": 3122.7,
+          "delta": 0
+        }
+      ],
+      "newAdvanceRecommendation": {
+        "perVheJan": 1.26,
+        "perVheJul": 1.32,
+        "totalAnnual": 3344.4,
+        "generalIncrease": null,
+        "expectedCost2025": null,
+        "rationale": "Premium pass-through with mid-year step-up for indexation",
+        "marginNote": "Cleanly settled three years running — no action"
+      },
+      "regulation": "Servicekosten Besluit Art. 1",
+      "distribution": {
+        "method": "per_vhe",
+        "denominator": 216,
+        "unit": "VHE"
+      }
+    },
+    {
+      "id": "src-admin",
+      "laneId": "lane-admin",
+      "type": "source",
+      "col": 0,
+      "row": 0,
+      "label": "Administrative cost",
+      "sourceKind": "internal",
+      "cadence": "annual",
+      "identifier": "Computed surcharge — 5% of settled cost base",
+      "supplier": "Internal",
+      "amount": 5901.86,
+      "evidenceCount": 1,
+      "yoyComparison": [
+        {
+          "year": 2024,
+          "amount": 5901.86
+        },
+        {
+          "year": 2023,
+          "amount": 5241.3
+        },
+        {
+          "year": 2022,
+          "amount": 4171.83
+        }
+      ],
+      "supplierBreakdown": [
+        {
+          "name": "Computed surcharge",
+          "role": "5% on settled cost base",
+          "amount": 5901.86,
+          "evidenceCount": 1,
+          "status": "matched"
+        }
+      ],
+      "temporalCoverage": {
+        "expectedMonths": 1,
+        "bookedMonths": 1,
+        "missing": [],
+        "note": "Calculated and booked at period close",
+        "cadence": "annual"
+      },
+      "manualNotes": [
+        {
+          "kind": "info",
+          "text": "+12.6% vs 2023 — driven by larger underlying cost base (cleaning + electricity)."
+        }
+      ],
+      "anchors": [
+        {
+          "ledgerAccount": "8507000-23790001-SV1398G-",
+          "amount": 5901.86,
+          "status": "matched"
+        }
+      ],
+      "budgetedAmount": 5488.73
+    },
+    {
+      "id": "settle-admin",
+      "laneId": "lane-admin",
+      "type": "settlement",
+      "col": 1,
+      "row": 0,
+      "label": "Admin / SV1398G",
+      "subLabel": "Whole complex — 216 VHE",
+      "groupId": "GRP-zev-complex",
+      "serviceCode": "SV1398G",
+      "vheCount": 216,
+      "amount": 5901.86,
+      "advance": 5451.14,
+      "delta": 450.72,
+      "settlementStatus": "proposed",
+      "yoyComparison": [
+        {
+          "year": 2024,
+          "actual": 5901.86,
+          "advance": 5451.14,
+          "delta": 450.72
+        },
+        {
+          "year": 2023,
+          "actual": 5241.3,
+          "advance": 5443.2,
+          "delta": -201.9
+        },
+        {
+          "year": 2022,
+          "actual": 4171.83,
+          "advance": 5443.2,
+          "delta": -1271.37
+        }
+      ],
+      "newAdvanceRecommendation": {
+        "perVheJan": 2.1,
+        "perVheJul": 2.5,
+        "totalAnnual": 5961.6,
+        "generalIncrease": null,
+        "expectedCost2025": 5901.86,
+        "rationale": "Mid-year step-up to track rising base cost",
+        "marginNote": "Expect upward drift while cleaning + electricity climb"
+      },
+      "regulation": "Servicekosten Besluit Art. 1",
+      "distribution": {
+        "method": "per_vhe",
+        "denominator": 216,
+        "unit": "VHE"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "src-elec-b1-meter",
+      "to": "split-elec-b1-80-20",
+      "amount": 23116.37
+    },
+    {
+      "from": "split-elec-b1-80-20",
+      "to": "passthrough-elec-b1-lift-pre",
+      "amount": 18493.1,
+      "edgeLabel": "80%"
+    },
+    {
+      "from": "passthrough-elec-b1-lift-pre",
+      "to": "deduction-elec-b1-lift",
+      "amount": 18493.1
+    },
+    {
+      "from": "deduction-elec-b1-lift",
+      "to": "settle-elec-b1-lift",
+      "amount": 18270.15
+    },
+    {
+      "from": "split-elec-b1-80-20",
+      "to": "passthrough-elec-b1-common-pre",
+      "amount": 4623.27,
+      "edgeLabel": "20%"
+    },
+    {
+      "from": "passthrough-elec-b1-common-pre",
+      "to": "split-elec-b1-by-count",
+      "amount": 4623.27
+    },
+    {
+      "from": "split-elec-b1-by-count",
+      "to": "addition-elec-b1-onderhoud",
+      "amount": 4109.58,
+      "edgeLabel": "96/108"
+    },
+    {
+      "from": "addition-elec-b1-onderhoud",
+      "to": "settle-elec-b1-common",
+      "amount": 4285.52
+    },
+    {
+      "from": "split-elec-b1-by-count",
+      "to": "out-of-scope-elec-b1-2380",
+      "amount": 513.7,
+      "edgeLabel": "12/108"
+    },
+    {
+      "from": "src-elec-b2-meter",
+      "to": "split-elec-b2-80-20",
+      "amount": 14696.02
+    },
+    {
+      "from": "split-elec-b2-80-20",
+      "to": "passthrough-elec-b2-lift-pre",
+      "amount": 11756.82,
+      "edgeLabel": "80%"
+    },
+    {
+      "from": "passthrough-elec-b2-lift-pre",
+      "to": "deduction-elec-b2-lift",
+      "amount": 11756.82
+    },
+    {
+      "from": "deduction-elec-b2-lift",
+      "to": "settle-elec-b2-lift",
+      "amount": 11300.58
+    },
+    {
+      "from": "split-elec-b2-80-20",
+      "to": "passthrough-elec-b2-common-pre",
+      "amount": 2939.2,
+      "edgeLabel": "20%"
+    },
+    {
+      "from": "passthrough-elec-b2-common-pre",
+      "to": "addition-elec-b2-onderhoud",
+      "amount": 2939.2
+    },
+    {
+      "from": "addition-elec-b2-onderhoud",
+      "to": "settle-elec-b2-common",
+      "amount": 3159.14
+    },
+    {
+      "from": "src-cleaning",
+      "to": "settle-cleaning",
+      "amount": 69102.02
+    },
+    {
+      "from": "src-huismeester",
+      "to": "settle-huismeester",
+      "amount": 7353.27
+    },
+    {
+      "from": "src-riolering",
+      "to": "settle-riolering",
+      "amount": 1300.56
+    },
+    {
+      "from": "src-glas",
+      "to": "settle-glas",
+      "amount": 3265.92
+    },
+    {
+      "from": "src-admin",
+      "to": "settle-admin",
+      "amount": 5901.86
+    },
+    {
+      "from": "src-gas-b1-engie",
+      "to": "settle-gas-b1",
+      "amount": 92203.49
+    },
+    {
+      "from": "src-gas-b1-liander",
+      "to": "settle-gas-b1",
+      "amount": 5676.12
+    },
+    {
+      "from": "src-gas-b1-anexo",
+      "to": "settle-gas-b1",
+      "amount": 1352.24
+    },
+    {
+      "from": "src-gas-b2-engie",
+      "to": "settle-gas-b2",
+      "amount": 92947.9
+    },
+    {
+      "from": "src-gas-b2-liander",
+      "to": "settle-gas-b2",
+      "amount": 7241.4
+    },
+    {
+      "from": "src-gas-b2-anexo",
+      "to": "settle-gas-b2",
+      "amount": 1481.04
+    },
+    {
+      "from": "src-gas-b2-ista",
+      "to": "settle-gas-b2",
+      "amount": 11378.82
+    }
+  ],
+  "trustSummary": {
+    "totalExpected": 326315.34,
+    "totalAnchored": 305973.85,
+    "wrongAccountAmount": 92203.49,
+    "manualAdjustmentAmount": 1075.07,
+    "issuesCount": 6
+  }
+}

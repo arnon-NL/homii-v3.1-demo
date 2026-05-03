@@ -1,0 +1,41 @@
+[
+  {
+    "id": "DM-1",
+    "name": {
+      "en": "ista metering",
+      "nl": "ista meting"
+    },
+    "description": {
+      "en": "Consumption metered by ista",
+      "nl": "Verbruik gemeten door ista"
+    },
+    "type": "metered",
+    "provider": "ista"
+  },
+  {
+    "id": "DM-2",
+    "name": {
+      "en": "Brunata WMS metering",
+      "nl": "Brunata WMS meting"
+    },
+    "description": {
+      "en": "Consumption metered by Brunata WMS",
+      "nl": "Verbruik gemeten door Brunata WMS"
+    },
+    "type": "metered",
+    "provider": "Brunata WMS"
+  },
+  {
+    "id": "DM-3",
+    "name": {
+      "en": "Techem metering",
+      "nl": "Techem meting"
+    },
+    "description": {
+      "en": "Consumption metered by Techem",
+      "nl": "Verbruik gemeten door Techem"
+    },
+    "type": "metered",
+    "provider": "Techem"
+  }
+]

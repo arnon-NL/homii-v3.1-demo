@@ -552,8 +552,7 @@ function CostSourcesTable({ sources, adjustments = [], groupId, laneId, frozen }
     <table className="w-full text-[11px]">
       <thead className="text-[10px] uppercase tracking-widest text-slate-500 bg-slate-50/60">
         <tr>
-          <th className="text-left font-semibold px-3 py-2">Leverancier</th>
-          <th className="text-left font-semibold px-3 py-2">Soort</th>
+          <th className="text-left font-semibold px-3 py-2">Leverancier · Grootboek</th>
           <th className="text-right font-semibold px-3 py-2 w-32">
             <div className="flex items-center justify-end gap-1">
               <span>Begroting</span>
@@ -573,13 +572,13 @@ function CostSourcesTable({ sources, adjustments = [], groupId, laneId, frozen }
         </tr>
       </thead>
       <tbody className="divide-y divide-slate-100">
-        {sources.length === 0 && (
+        {sources.length === 0 && adjustments.length === 0 && (
           <tr>
             <td
-              colSpan={6}
+              colSpan={5}
               className="px-4 py-5 text-center text-[11px] text-slate-500 italic"
             >
-              Nog geen kostenposten ingevoerd.
+              Geen boekingen gevonden voor dit component.
             </td>
           </tr>
         )}
@@ -619,21 +618,31 @@ function CostSourcesTable({ sources, adjustments = [], groupId, laneId, frozen }
                       Buiten grootboek
                     </span>
                   )}
+                  {!isManual && s.sourceKind && (
+                    // Sourcekind is admin-metadata over de leveranciersrelatie
+                    // (metered/contracted/recurring/etc). Klein chipje naast
+                    // de naam i.p.v. een aparte kolom — zelden gewijzigd.
+                    <span
+                      className="inline-flex items-center px-1.5 py-0.5 rounded text-[9px] font-medium uppercase tracking-wider text-slate-500 bg-slate-100 border border-slate-200"
+                      title="Soort leveranciersrelatie — admin-metadata"
+                    >
+                      {sourceKindLabel[s.sourceKind] || s.sourceKind}
+                    </span>
+                  )}
                 </div>
-                {s.subLabel && (
-                  <div className="text-[10px] text-slate-500 mt-0.5 px-1.5">
-                    {s.subLabel}
+                {/* Subtitel: grootboekrekening (1-op-1 anker naar de boeking)
+                 *  + optionele subLabel (e.g. "EAN 871687…"). Buiten-grootboek
+                 *  bronnen hebben geen GL-account, dus die regel valt weg. */}
+                {(!isManual && s.anchors?.[0]?.ledgerAccount) || s.subLabel ? (
+                  <div className="text-[10px] text-slate-500 mt-0.5 px-1.5 flex items-center gap-2 flex-wrap">
+                    {!isManual && s.anchors?.[0]?.ledgerAccount && (
+                      <code className="font-mono text-slate-500" title="Grootboekrekening">
+                        {s.anchors[0].ledgerAccount}
+                      </code>
+                    )}
+                    {s.subLabel && <span>{s.subLabel}</span>}
                   </div>
-                )}
-              </td>
-              <td className="px-3 py-2 text-slate-600">
-                <KindPickerCell
-                  value={s.sourceKind}
-                  disabled={frozen}
-                  onCommit={(val) =>
-                    setNodeField(groupId, s.id, "sourceKind", val)
-                  }
-                />
+                ) : null}
               </td>
               <td className="px-3 py-2">
                 {isManual ? (
@@ -696,11 +705,27 @@ function CostSourcesTable({ sources, adjustments = [], groupId, laneId, frozen }
           );
         })}
 
+        {/* Sectie-header — markeert visueel waar de grootboek-rijen ophouden
+         *  en de buiten-grootboek items beginnen. Alleen tonen als er ook
+         *  daadwerkelijk iets staat eronder (manuele bronnen of correcties). */}
+        {(manualSources.length > 0 || adjustments.length > 0) && (
+          <tr className="border-t-2 border-violet-200 bg-violet-50/40">
+            <td
+              colSpan={5}
+              className="px-3 py-1.5 text-[10px] uppercase tracking-widest font-semibold text-violet-700"
+            >
+              <span className="inline-flex items-center gap-1.5">
+                <Sparkles size={10} />
+                Aanvullingen buiten grootboek
+              </span>
+            </td>
+          </tr>
+        )}
+
         {/* Adjustment rows — corrections inserted on edges via the canvas.
-         *  Different visual treatment so the user can tell at a glance
-         *  these are signed corrections, not regular suppliers: violet
-         *  accent, +/− chip in the Soort column, signed amount in the
-         *  Werkelijk column tinted by direction, no Begroting/Afwijking. */}
+         *  Sign carried by amount; +/− indicator appears in the leverancier
+         *  cell so the table stays at 5 columns. Werkelijk column shows
+         *  the signed amount, Begroting + Afwijking show "—". */}
         {adjustments.map((a) => {
           const isPositive = (a.amount || 0) >= 0;
           const SignIcon = isPositive ? Plus : Minus;
@@ -708,9 +733,16 @@ function CostSourcesTable({ sources, adjustments = [], groupId, laneId, frozen }
             <tr key={a.id} className="group hover:bg-violet-50/40 bg-violet-50/20">
               <td className="px-3 py-2">
                 <div className="flex items-center gap-1.5 min-w-0">
-                  <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded-full bg-violet-100 border border-violet-200 text-violet-700 text-[9px] font-semibold uppercase tracking-wider shrink-0">
-                    <Sparkles size={9} />
-                    Correctie
+                  <span
+                    className={`inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded-full text-[9px] font-semibold uppercase tracking-wider shrink-0 ${
+                      isPositive
+                        ? "bg-emerald-50 border border-emerald-200 text-emerald-700"
+                        : "bg-amber-50 border border-amber-200 text-amber-700"
+                    }`}
+                    title={isPositive ? "Bijtelling buiten grootboek" : "Aftrek buiten grootboek"}
+                  >
+                    <SignIcon size={9} strokeWidth={2.5} />
+                    {isPositive ? "Bijtelling" : "Aftrek"}
                   </span>
                   <EditableTextCell
                     value={a.label}
@@ -721,16 +753,9 @@ function CostSourcesTable({ sources, adjustments = [], groupId, laneId, frozen }
                     }
                   />
                 </div>
-              </td>
-              <td className="px-3 py-2 text-slate-600">
-                <span
-                  className={`inline-flex items-center gap-1 text-[11px] ${
-                    isPositive ? "text-emerald-700" : "text-amber-700"
-                  }`}
-                >
-                  <SignIcon size={11} strokeWidth={2.5} />
-                  {isPositive ? "Bijtelling" : "Aftrek"}
-                </span>
+                <div className="text-[10px] text-slate-500 mt-0.5 px-1.5 italic">
+                  geen grootboekrekening — handmatig
+                </div>
               </td>
               <td className="px-3 py-2 text-right tabular-nums text-slate-300">
                 —
@@ -774,7 +799,7 @@ function CostSourcesTable({ sources, adjustments = [], groupId, laneId, frozen }
 
         {!frozen && (
           <tr className="border-t border-slate-100">
-            <td colSpan={6} className="px-3 py-1.5">
+            <td colSpan={5} className="px-3 py-1.5">
               <button
                 type="button"
                 onClick={handleAdd}
@@ -795,7 +820,7 @@ function CostSourcesTable({ sources, adjustments = [], groupId, laneId, frozen }
         {hasBuitenGrootboek && (
           <>
             <tr className="border-t border-slate-200 text-slate-500">
-              <td className="px-3 py-1.5 text-[10px] uppercase tracking-widest font-semibold" colSpan={2}>
+              <td className="px-3 py-1.5 text-[10px] uppercase tracking-widest font-semibold">
                 Subtotaal grootboek
               </td>
               <td className="px-3 py-1.5 text-right tabular-nums">
@@ -807,7 +832,7 @@ function CostSourcesTable({ sources, adjustments = [], groupId, laneId, frozen }
               <td colSpan={2} />
             </tr>
             <tr className="text-violet-700 bg-violet-50/30">
-              <td className="px-3 py-1.5 text-[10px] uppercase tracking-widest font-semibold" colSpan={2}>
+              <td className="px-3 py-1.5 text-[10px] uppercase tracking-widest font-semibold">
                 Subtotaal buiten grootboek
               </td>
               <td className="px-3 py-1.5 text-right tabular-nums text-slate-300">
@@ -821,7 +846,7 @@ function CostSourcesTable({ sources, adjustments = [], groupId, laneId, frozen }
           </>
         )}
         <tr className="bg-slate-50/60 border-t border-slate-200">
-          <td className="px-3 py-2 text-slate-700 font-semibold" colSpan={2}>
+          <td className="px-3 py-2 text-slate-700 font-semibold">
             Totaal werkelijk
           </td>
           <td className="px-3 py-2 text-right tabular-nums text-slate-700 font-semibold">
@@ -1387,6 +1412,36 @@ export default function LaneWorkflowView({ laneId, scopeAudienceId, onJumpToBook
                 </>
               )}
             </div>
+            {/* Verdeelsleutel-chip — admin-instelling per component, leest
+             *  uit de eerste in-scope settlement van deze lane. Read-only
+             *  display in de demo (admin-rol gating later). */}
+            {(() => {
+              const primary = allSettlements[0];
+              if (!primary?.distribution) return null;
+              const cfg = distributionConfig[primary.distribution.method];
+              if (!cfg) return null;
+              const Icon = cfg.Icon;
+              const label = cfg.short(primary.distribution);
+              const isExternal = !!externalDistributor;
+              return (
+                <div
+                  className={`mt-2 inline-flex items-center gap-1.5 px-2 py-1 rounded-md border text-[11px] ${
+                    isExternal
+                      ? "border-sky-200 bg-sky-50 text-sky-800"
+                      : "border-slate-200 bg-slate-50 text-slate-700"
+                  }`}
+                  title="Verdeelsleutel — wordt door admin per component ingesteld bij de configuratie"
+                >
+                  <Icon size={11} className="opacity-80" />
+                  <span className="font-medium">Verdeling: {label}</span>
+                  <span
+                    className="ml-1 inline-flex items-center px-1 py-0.5 rounded text-[8px] font-semibold tracking-wider opacity-75 normal-case"
+                  >
+                    Admin
+                  </span>
+                </div>
+              );
+            })()}
           </div>
           <div className="text-right shrink-0">
             <div className="text-[10px] uppercase tracking-widest text-slate-400 font-semibold">

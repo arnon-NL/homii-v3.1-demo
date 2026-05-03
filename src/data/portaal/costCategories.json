@@ -1,0 +1,57 @@
+[
+  {
+    "id": "CC-EM-consumption",
+    "serviceId": "SVC-EM-heat",
+    "name": {
+      "en": "Consumption",
+      "nl": "Verbruik"
+    },
+    "unit": "GJ",
+    "unitPrice": 28.5,
+    "budgetShare": 0.7
+  },
+  {
+    "id": "CC-EM-fixed",
+    "serviceId": "SVC-EM-heat",
+    "name": {
+      "en": "Fixed charges",
+      "nl": "Vast tarief"
+    },
+    "unit": null,
+    "unitPrice": null,
+    "budgetShare": 0.2
+  },
+  {
+    "id": "CC-EM-metering",
+    "serviceId": "SVC-EM-heat",
+    "name": {
+      "en": "Metering costs",
+      "nl": "Meetkosten"
+    },
+    "unit": null,
+    "unitPrice": null,
+    "budgetShare": 0.1
+  },
+  {
+    "id": "CC-EM-gas-consumption",
+    "serviceId": "SVC-EM-gas",
+    "name": {
+      "en": "Gas consumption",
+      "nl": "Gasverbruik"
+    },
+    "unit": "m\u00b3",
+    "unitPrice": 1.2,
+    "budgetShare": 0.85
+  },
+  {
+    "id": "CC-EM-gas-fixed",
+    "serviceId": "SVC-EM-gas",
+    "name": {
+      "en": "Standing charge",
+      "nl": "Vastrecht"
+    },
+    "unit": null,
+    "unitPrice": null,
+    "budgetShare": 0.15
+  }
+]

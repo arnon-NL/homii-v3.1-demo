@@ -1,0 +1,6 @@
+{
+  "mode": "energyOnly",
+  "hasLedgerData": false,
+  "hasConsumptionData": true,
+  "hasNonUtilityServices": false
+}

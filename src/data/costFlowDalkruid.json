@@ -1,0 +1,705 @@
+{
+  "group": {
+    "id": "GRP-dalkruid",
+    "kind": "complex",
+    "name": "Dalkruid",
+    "city": "Hilversum",
+    "vheCount": 52,
+    "sourceComplexes": [
+      "22110-01"
+    ],
+    "blocks": [
+      {
+        "id": "GRP-dalkruid-pijlkruid-2-16",
+        "name": "Pijlkruid 2-16",
+        "vheCount": 8
+      },
+      {
+        "id": "GRP-dalkruid-pijlkruid-34-48",
+        "name": "Pijlkruid 34-48",
+        "vheCount": 8
+      },
+      {
+        "id": "GRP-dalkruid-knoopkruid-22-36",
+        "name": "Knoopkruid 22-36",
+        "vheCount": 8
+      },
+      {
+        "id": "GRP-dalkruid-dalkruid-1-19",
+        "name": "Dalkruid 1-19",
+        "vheCount": 10
+      },
+      {
+        "id": "GRP-dalkruid-dalkruid-2-16",
+        "name": "Dalkruid 2-16",
+        "vheCount": 8
+      },
+      {
+        "id": "GRP-dalkruid-kleefkruid-18-36",
+        "name": "Kleefkruid 18-36",
+        "vheCount": 10
+      }
+    ]
+  },
+  "period": 2025,
+  "siblingGroups": [
+    {
+      "id": "GRP-dalkruid",
+      "name": "Dalkruid",
+      "vheCount": 52,
+      "kind": "complex",
+      "active": true
+    },
+    {
+      "id": "GRP-dalkruid-cv",
+      "name": "CV-heated units",
+      "vheCount": 13,
+      "kind": "subgroup"
+    },
+    {
+      "id": "GRP-dalkruid-wijkbeheer",
+      "name": "Wijkbeheerder audience",
+      "vheCount": 7,
+      "kind": "subgroup"
+    }
+  ],
+  "lanes": [
+    {
+      "id": "lane-glas",
+      "title": "Glasverzekering",
+      "category": "other",
+      "complexity": "simple"
+    },
+    {
+      "id": "lane-cv",
+      "title": "24-hour central heating service",
+      "category": "energy",
+      "complexity": "simple"
+    },
+    {
+      "id": "lane-riolering",
+      "title": "Sewer surcharge",
+      "category": "other",
+      "complexity": "simple"
+    },
+    {
+      "id": "lane-ventilation",
+      "title": "Mechanical ventilation",
+      "category": "energy",
+      "complexity": "simple"
+    },
+    {
+      "id": "lane-wijkbeheerder",
+      "title": "Wijkbeheerder",
+      "category": "management",
+      "complexity": "simple"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "src-glas",
+      "laneId": "lane-glas",
+      "type": "source",
+      "col": 0,
+      "row": 0,
+      "label": "Window cleaning",
+      "sourceKind": "recurring",
+      "cadence": "annual",
+      "identifier": "AON group glass policy",
+      "supplier": "AON",
+      "amount": 954.72,
+      "evidenceCount": 1,
+      "yoyComparison": [
+        {
+          "year": 2025,
+          "amount": 954.72
+        },
+        {
+          "year": 2024,
+          "amount": 924.3
+        },
+        {
+          "year": 2023,
+          "amount": 895.5
+        }
+      ],
+      "supplierBreakdown": [
+        {
+          "name": "AON",
+          "role": "insurer",
+          "amount": 954.72,
+          "evidenceCount": 1,
+          "status": "matched"
+        }
+      ],
+      "temporalCoverage": {
+        "expectedMonths": 1,
+        "bookedMonths": 1,
+        "missing": [],
+        "note": "Annual premium booked in full",
+        "cadence": "annual"
+      },
+      "manualNotes": [
+        {
+          "kind": "info",
+          "text": "Premium calculated centrally across 28,174 VHE in the portfolio at €17.55/year + 5% admin."
+        }
+      ],
+      "anchors": [
+        {
+          "ledgerAccount": "8507000-22110001-GDG036-",
+          "amount": 954.72,
+          "status": "matched"
+        }
+      ],
+      "budgetedAmount": 1031.1
+    },
+    {
+      "id": "settle-glas",
+      "laneId": "lane-glas",
+      "type": "settlement",
+      "col": 1,
+      "row": 0,
+      "label": "Glasverzekering / GDG036",
+      "subLabel": "Whole complex — 52 VHE",
+      "groupId": "GRP-dalkruid",
+      "serviceCode": "GDG036",
+      "vheCount": 52,
+      "amount": 954.72,
+      "advance": 954.72,
+      "delta": 0,
+      "settlementStatus": "proposed",
+      "yoyComparison": [
+        {
+          "year": 2025,
+          "actual": 954.72,
+          "advance": 954.72,
+          "delta": 0
+        },
+        {
+          "year": 2024,
+          "actual": 924.3,
+          "advance": 924.3,
+          "delta": 0
+        },
+        {
+          "year": 2023,
+          "actual": 895.5,
+          "advance": 895.5,
+          "delta": 0
+        }
+      ],
+      "newAdvanceRecommendation": {
+        "perVheJan": 1.54,
+        "perVheJul": 1.58,
+        "totalAnnual": 980.4,
+        "generalIncrease": 0.027,
+        "expectedCost2025": 980.4,
+        "rationale": "Premium pass-through with mid-year step-up for indexation",
+        "marginNote": "Cleanly settled three years running — no action needed"
+      },
+      "regulation": "Servicekosten Besluit Art. 1",
+      "distribution": {
+        "method": "per_vhe",
+        "denominator": 52,
+        "unit": "VHE"
+      }
+    },
+    {
+      "id": "src-cv",
+      "laneId": "lane-cv",
+      "type": "source",
+      "col": 0,
+      "row": 0,
+      "label": "24-hour central heating service",
+      "sourceKind": "contracted",
+      "cadence": "annual",
+      "identifier": "Bonarius — service contract per VHE",
+      "supplier": "Bonarius",
+      "amount": 0,
+      "evidenceCount": 0,
+      "yoyComparison": [
+        {
+          "year": 2025,
+          "amount": 0
+        },
+        {
+          "year": 2024,
+          "amount": 230.5
+        },
+        {
+          "year": 2023,
+          "amount": 198.4
+        }
+      ],
+      "supplierBreakdown": [
+        {
+          "name": "Bonarius",
+          "role": "CV service contract",
+          "amount": 0,
+          "evidenceCount": 0,
+          "status": "missing",
+          "note": "No invoices received in 2025"
+        }
+      ],
+      "temporalCoverage": {
+        "expectedMonths": 12,
+        "bookedMonths": 0,
+        "missing": [
+          "Jan",
+          "Feb",
+          "Mar",
+          "Apr",
+          "May",
+          "Jun",
+          "Jul",
+          "Aug",
+          "Sep",
+          "Oct",
+          "Nov",
+          "Dec"
+        ],
+        "note": "No monthly invoices booked all year",
+        "cadence": "monthly"
+      },
+      "manualNotes": [
+        {
+          "kind": "warn",
+          "text": "No costs booked in 2025 — confirm with Bonarius whether the contract is still active for this complex"
+        }
+      ],
+      "anchors": [],
+      "flags": [
+        {
+          "kind": "warning",
+          "note": "Voorschot collected but no actual cost booked — full refund to tenants"
+        }
+      ],
+      "budgetedAmount": 0
+    },
+    {
+      "id": "settle-cv",
+      "laneId": "lane-cv",
+      "type": "settlement",
+      "col": 1,
+      "row": 0,
+      "label": "24h CV service / GDG115",
+      "subLabel": "CV-heated units — 13 VHE",
+      "groupId": "GRP-dalkruid-cv",
+      "serviceCode": "GDG115",
+      "vheCount": 13,
+      "amount": 0,
+      "advance": 242.58,
+      "delta": -242.58,
+      "settlementStatus": "proposed",
+      "yoyComparison": [
+        {
+          "year": 2025,
+          "actual": 0,
+          "advance": 242.58,
+          "delta": -242.58
+        },
+        {
+          "year": 2024,
+          "actual": 230.5,
+          "advance": 250.2,
+          "delta": -19.7
+        },
+        {
+          "year": 2023,
+          "actual": 198.4,
+          "advance": 220,
+          "delta": -21.6
+        }
+      ],
+      "newAdvanceRecommendation": {
+        "perVheJan": 1.54,
+        "perVheJul": 1.57,
+        "totalAnnual": 244.92,
+        "generalIncrease": 0.0506,
+        "expectedCost2025": 255.71,
+        "rationale": "Contract step-up of 5% per Bonarius schedule; service may resume in 2026",
+        "marginNote": "Investigate before next year's settlement — do tenants still want this contract?"
+      },
+      "regulation": "Servicekosten Besluit Art. 1",
+      "audienceNote": "Only the 13 units with central-heating systems pay this — see Eltag mechanical ventilation for the same audience",
+      "distribution": {
+        "method": "per_vhe",
+        "denominator": 13,
+        "unit": "VHE"
+      }
+    },
+    {
+      "id": "src-riolering",
+      "laneId": "lane-riolering",
+      "type": "source",
+      "col": 0,
+      "row": 0,
+      "label": "Sewer maintenance",
+      "sourceKind": "recurring",
+      "cadence": "annual",
+      "identifier": "RRS / AORC — drain service",
+      "supplier": "RRS / AORC",
+      "amount": 0,
+      "evidenceCount": 0,
+      "yoyComparison": [
+        {
+          "year": 2025,
+          "amount": 0
+        },
+        {
+          "year": 2024,
+          "amount": 580.2
+        },
+        {
+          "year": 2023,
+          "amount": 520.4
+        }
+      ],
+      "supplierBreakdown": [
+        {
+          "name": "RRS / AORC",
+          "role": "sewer maintenance",
+          "amount": 0,
+          "evidenceCount": 0,
+          "status": "missing"
+        }
+      ],
+      "temporalCoverage": {
+        "expectedMonths": 1,
+        "bookedMonths": 0,
+        "missing": [
+          "annual"
+        ],
+        "note": "Annual premium not booked in 2025",
+        "cadence": "annual"
+      },
+      "manualNotes": [
+        {
+          "kind": "warn",
+          "text": "Annual fee not booked — likely supplier transition. Two rate tiers exist: laagbouw 100% (€19.02), hoogbouw 50% (€10.00)."
+        }
+      ],
+      "anchors": [],
+      "flags": [
+        {
+          "kind": "warning",
+          "note": "No cost booked — full refund to tenants"
+        }
+      ],
+      "budgetedAmount": 0
+    },
+    {
+      "id": "settle-riolering",
+      "laneId": "lane-riolering",
+      "type": "settlement",
+      "col": 1,
+      "row": 0,
+      "label": "Sewer surcharge / GDG122",
+      "subLabel": "Whole complex — 52 VHE",
+      "groupId": "GRP-dalkruid",
+      "serviceCode": "GDG122",
+      "vheCount": 52,
+      "amount": 0,
+      "advance": 567.84,
+      "delta": -567.84,
+      "settlementStatus": "proposed",
+      "yoyComparison": [
+        {
+          "year": 2025,
+          "actual": 0,
+          "advance": 567.84,
+          "delta": -567.84
+        },
+        {
+          "year": 2024,
+          "actual": 580.2,
+          "advance": 570,
+          "delta": 10.2
+        },
+        {
+          "year": 2023,
+          "actual": 520.4,
+          "advance": 540,
+          "delta": -19.6
+        }
+      ],
+      "newAdvanceRecommendation": {
+        "perVheJan": 0.92,
+        "perVheJul": 1.58,
+        "totalAnnual": 780,
+        "generalIncrease": 0.0269,
+        "expectedCost2025": 988.92,
+        "rationale": "Step-up planned mid-2026 to align with rate review",
+        "marginNote": "Mid-year step-up reflects expected 2026 rate increase"
+      },
+      "regulation": "Servicekosten Besluit Art. 1",
+      "distribution": {
+        "method": "per_vhe",
+        "denominator": 52,
+        "unit": "VHE"
+      }
+    },
+    {
+      "id": "src-ventilation",
+      "laneId": "lane-ventilation",
+      "type": "source",
+      "col": 0,
+      "row": 0,
+      "label": "Mechanical ventilation",
+      "sourceKind": "contracted",
+      "cadence": "annual",
+      "identifier": "Eltag — individual MV units service",
+      "supplier": "Eltag",
+      "amount": 0,
+      "evidenceCount": 0,
+      "yoyComparison": [
+        {
+          "year": 2025,
+          "amount": 0
+        },
+        {
+          "year": 2024,
+          "amount": 220.4
+        },
+        {
+          "year": 2023,
+          "amount": 210.3
+        }
+      ],
+      "supplierBreakdown": [
+        {
+          "name": "Eltag",
+          "role": "MV maintenance",
+          "amount": 0,
+          "evidenceCount": 0,
+          "status": "missing"
+        }
+      ],
+      "temporalCoverage": {
+        "expectedMonths": 1,
+        "bookedMonths": 0,
+        "missing": [
+          "annual"
+        ],
+        "note": "Annual premium not booked",
+        "cadence": "annual"
+      },
+      "manualNotes": [
+        {
+          "kind": "warn",
+          "text": "Same audience as Bonarius — both contracts may be in transition"
+        }
+      ],
+      "anchors": [],
+      "flags": [
+        {
+          "kind": "warning",
+          "note": "No cost booked — full refund to tenants"
+        }
+      ],
+      "budgetedAmount": 0
+    },
+    {
+      "id": "settle-ventilation",
+      "laneId": "lane-ventilation",
+      "type": "settlement",
+      "col": 1,
+      "row": 0,
+      "label": "Mechanical ventilation / GDG128",
+      "subLabel": "CV-heated units — 13 VHE",
+      "groupId": "GRP-dalkruid-cv",
+      "serviceCode": "GDG128",
+      "vheCount": 13,
+      "amount": 0,
+      "advance": 223.86,
+      "delta": -223.86,
+      "settlementStatus": "proposed",
+      "yoyComparison": [
+        {
+          "year": 2025,
+          "actual": 0,
+          "advance": 223.86,
+          "delta": -223.86
+        },
+        {
+          "year": 2024,
+          "actual": 220.4,
+          "advance": 230,
+          "delta": -9.6
+        },
+        {
+          "year": 2023,
+          "actual": 210.3,
+          "advance": 218,
+          "delta": -7.7
+        }
+      ],
+      "newAdvanceRecommendation": {
+        "perVheJan": 1.7,
+        "perVheJul": 1.76,
+        "totalAnnual": 270.1,
+        "generalIncrease": 0.0389,
+        "expectedCost2025": 274.3,
+        "rationale": "Contract step-up of 3.89% per Eltag indexation"
+      },
+      "regulation": "Servicekosten Besluit Art. 1",
+      "audienceNote": "Same 13-VHE audience as the 24h CV service",
+      "distribution": {
+        "method": "per_vhe",
+        "denominator": 13,
+        "unit": "VHE"
+      }
+    },
+    {
+      "id": "src-wijkbeheerder",
+      "laneId": "lane-wijkbeheerder",
+      "type": "source",
+      "col": 0,
+      "row": 0,
+      "label": "Wijkbeheerder",
+      "sourceKind": "internal",
+      "cadence": "annual",
+      "identifier": "Internal labour — neighbourhood manager",
+      "supplier": "Internal",
+      "amount": 0,
+      "evidenceCount": 0,
+      "yoyComparison": [
+        {
+          "year": 2025,
+          "amount": 0
+        },
+        {
+          "year": 2024,
+          "amount": 280.4
+        },
+        {
+          "year": 2023,
+          "amount": 260.2
+        }
+      ],
+      "supplierBreakdown": [
+        {
+          "name": "Internal labour",
+          "role": "neighbourhood manager",
+          "amount": 0,
+          "evidenceCount": 0,
+          "status": "missing"
+        }
+      ],
+      "temporalCoverage": {
+        "expectedMonths": 1,
+        "bookedMonths": 0,
+        "missing": [
+          "annual"
+        ],
+        "note": "Year-end allocation not booked",
+        "cadence": "annual"
+      },
+      "manualNotes": [
+        {
+          "kind": "warn",
+          "text": "No labour cost allocated in 2025 — confirm whether wijkbeheerder still services this 7-VHE audience"
+        },
+        {
+          "kind": "info",
+          "text": "Centrally calculated rate for 2025: €43.57/VHE/year + 5% admin = €45.75"
+        }
+      ],
+      "anchors": [],
+      "flags": [
+        {
+          "kind": "warning",
+          "note": "Voorschot collected but no allocation booked — full refund"
+        }
+      ],
+      "budgetedAmount": 0
+    },
+    {
+      "id": "settle-wijkbeheerder",
+      "laneId": "lane-wijkbeheerder",
+      "type": "settlement",
+      "col": 1,
+      "row": 0,
+      "label": "Wijkbeheerder / GDG131",
+      "subLabel": "7-VHE audience (custom)",
+      "groupId": "GRP-dalkruid-wijkbeheer",
+      "serviceCode": "GDG131",
+      "vheCount": 7,
+      "amount": 0,
+      "advance": 276.36,
+      "delta": -276.36,
+      "settlementStatus": "proposed",
+      "yoyComparison": [
+        {
+          "year": 2025,
+          "actual": 0,
+          "advance": 276.36,
+          "delta": -276.36
+        },
+        {
+          "year": 2024,
+          "actual": 280.4,
+          "advance": 290,
+          "delta": -9.6
+        },
+        {
+          "year": 2023,
+          "actual": 260.2,
+          "advance": 270,
+          "delta": -9.8
+        }
+      ],
+      "newAdvanceRecommendation": {
+        "perVheJan": 3.3,
+        "perVheJul": 3.75,
+        "totalAnnual": 297.3,
+        "generalIncrease": 0.06,
+        "expectedCost2025": 320.25,
+        "rationale": "+6% labour-cost indexation",
+        "marginNote": "Refund pattern persistent — investigate whether voorschot should drop to ~€2/month"
+      },
+      "regulation": "Servicekosten Besluit Art. 1",
+      "audienceNote": "Only 7 specific units pay for the wijkbeheerder service — historically these were the maisonette units with shared common space",
+      "distribution": {
+        "method": "per_vhe",
+        "denominator": 7,
+        "unit": "VHE"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "src-glas",
+      "to": "settle-glas",
+      "amount": 954.72
+    },
+    {
+      "from": "src-cv",
+      "to": "settle-cv",
+      "amount": 0
+    },
+    {
+      "from": "src-riolering",
+      "to": "settle-riolering",
+      "amount": 0
+    },
+    {
+      "from": "src-ventilation",
+      "to": "settle-ventilation",
+      "amount": 0
+    },
+    {
+      "from": "src-wijkbeheerder",
+      "to": "settle-wijkbeheerder",
+      "amount": 0
+    }
+  ],
+  "trustSummary": {
+    "totalExpected": 954.72,
+    "totalAnchored": 954.72,
+    "wrongAccountAmount": 0,
+    "manualAdjustmentAmount": 0,
+    "issuesCount": 4
+  }
+}

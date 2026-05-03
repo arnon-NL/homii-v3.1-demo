@@ -1,0 +1,73 @@
+[
+  {
+    "id": "portaal-all-buildings",
+    "objectType": "buildings",
+    "name": {
+      "en": "All Complexes",
+      "nl": "Alle Complexen"
+    },
+    "icon": "list",
+    "isDefault": true,
+    "columns": [
+      "complex",
+      "location",
+      "vhe",
+      "utilities",
+      "dataQuality"
+    ],
+    "filters": [],
+    "year": null
+  },
+  {
+    "id": "portaal-data-issues",
+    "objectType": "buildings",
+    "name": {
+      "en": "Data Quality Issues",
+      "nl": "Datakwaliteitsproblemen"
+    },
+    "icon": "alertTriangle",
+    "isDefault": false,
+    "columns": [
+      "complex",
+      "dataQuality",
+      "utilities"
+    ],
+    "filters": [],
+    "year": null
+  },
+  {
+    "id": "portaal-all-vhe",
+    "objectType": "vhe",
+    "name": {
+      "en": "All VHE",
+      "nl": "Alle VHE"
+    },
+    "icon": "list",
+    "isDefault": true,
+    "columns": [
+      "address",
+      "unit",
+      "status"
+    ],
+    "filters": [],
+    "year": null
+  },
+  {
+    "id": "portaal-all-meters",
+    "objectType": "meters",
+    "name": {
+      "en": "All Meters",
+      "nl": "Alle Meters"
+    },
+    "icon": "list",
+    "isDefault": true,
+    "columns": [
+      "utility",
+      "meterNumber",
+      "type",
+      "status"
+    ],
+    "filters": [],
+    "year": null
+  }
+]

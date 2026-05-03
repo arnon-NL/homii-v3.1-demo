@@ -1,0 +1,749 @@
+[
+  {
+    "id": "71565",
+    "complex": "Ankaradreef - noord",
+    "complexId": "71565",
+    "location": "Utrecht",
+    "vhe": 174,
+    "components": 2,
+    "utilities": [
+      "heat",
+      "gas"
+    ],
+    "budgetTotal": 167978.2,
+    "budgetSpent": 52269.46,
+    "dataQuality": "medium",
+    "status": "active",
+    "divider": "ista",
+    "divisionMethod": null,
+    "heatingSeasonInfo": {
+      "startMonth": 9,
+      "endMonth": 8,
+      "seasonStart": "2025-09-01",
+      "seasonEnd": "2026-08-31"
+    },
+    "onboardingStatus": "onboarded"
+  },
+  {
+    "id": "71560",
+    "complex": "Bangkokdreef - noord",
+    "complexId": "71560",
+    "location": "Utrecht",
+    "vhe": 116,
+    "components": 2,
+    "utilities": [
+      "heat",
+      "gas"
+    ],
+    "budgetTotal": 62695,
+    "budgetSpent": 26311.76,
+    "dataQuality": "good",
+    "status": "active",
+    "divider": "ista",
+    "divisionMethod": null,
+    "heatingSeasonInfo": {
+      "startMonth": 9,
+      "endMonth": 8,
+      "seasonStart": "2025-09-01",
+      "seasonEnd": "2026-08-31"
+    },
+    "onboardingStatus": "onboarded"
+  },
+  {
+    "id": "9318",
+    "complex": "Boekweitland 1-101",
+    "complexId": "9318",
+    "location": "Soest",
+    "vhe": 51,
+    "components": 1,
+    "utilities": [
+      "gas"
+    ],
+    "budgetTotal": 83933.63,
+    "budgetSpent": 20153.86,
+    "dataQuality": "good",
+    "status": "active",
+    "divider": "ista",
+    "divisionMethod": null,
+    "heatingSeasonInfo": {
+      "startMonth": 6,
+      "endMonth": 5,
+      "seasonStart": "2026-06-01",
+      "seasonEnd": "2027-05-31"
+    },
+    "onboardingStatus": "live"
+  },
+  {
+    "id": "100306",
+    "complex": "Columbuslaan 155-271 - zuid",
+    "complexId": "100306",
+    "location": "Utrecht",
+    "vhe": 53,
+    "components": 2,
+    "utilities": [
+      "heat",
+      "gas"
+    ],
+    "budgetTotal": 47559.5,
+    "budgetSpent": 13144.06,
+    "dataQuality": "good",
+    "status": "active",
+    "divider": "ista",
+    "divisionMethod": null,
+    "heatingSeasonInfo": {
+      "startMonth": 9,
+      "endMonth": 8,
+      "seasonStart": "2025-09-01",
+      "seasonEnd": "2026-08-31"
+    },
+    "onboardingStatus": "live"
+  },
+  {
+    "id": "12486",
+    "complex": "Dalweg, Veldeplein en meer",
+    "complexId": "12486",
+    "location": "Soest",
+    "vhe": 242,
+    "components": 1,
+    "utilities": [
+      "gas"
+    ],
+    "budgetTotal": 174492.52,
+    "budgetSpent": 78810.56,
+    "dataQuality": "good",
+    "status": "active",
+    "divider": "ista",
+    "divisionMethod": null,
+    "heatingSeasonInfo": {
+      "startMonth": 6,
+      "endMonth": 5,
+      "seasonStart": "2025-06-01",
+      "seasonEnd": "2026-05-31"
+    },
+    "onboardingStatus": "pipeline"
+  },
+  {
+    "id": "71014",
+    "complex": "Danangdreef e.o.",
+    "complexId": "71014",
+    "location": "Utrecht",
+    "vhe": 58,
+    "components": 2,
+    "utilities": [
+      "heat",
+      "gas"
+    ],
+    "budgetTotal": 60532.6,
+    "budgetSpent": 24905,
+    "dataQuality": "medium",
+    "status": "active",
+    "divider": "ista",
+    "divisionMethod": null,
+    "heatingSeasonInfo": {
+      "startMonth": 9,
+      "endMonth": 8,
+      "seasonStart": "2025-09-01",
+      "seasonEnd": "2026-08-31"
+    },
+    "onboardingStatus": "live"
+  },
+  {
+    "id": "12078",
+    "complex": "De Vijverhorst",
+    "complexId": "12078",
+    "location": "Nijmegen",
+    "vhe": 109,
+    "components": 2,
+    "utilities": [
+      "gas",
+      "heat"
+    ],
+    "budgetTotal": 40722.42,
+    "budgetSpent": 17543.53,
+    "dataQuality": "good",
+    "status": "active",
+    "divider": "Brunata WMS",
+    "divisionMethod": null,
+    "heatingSeasonInfo": {
+      "startMonth": 1,
+      "endMonth": 12,
+      "seasonStart": "2026-01-01",
+      "seasonEnd": "2026-12-31"
+    },
+    "onboardingStatus": "pipeline"
+  },
+  {
+    "id": "71574",
+    "complex": "Dorbeendreef 1- 174 - noord",
+    "complexId": "71574",
+    "location": "Utrecht",
+    "vhe": 174,
+    "components": 2,
+    "utilities": [
+      "heat",
+      "gas"
+    ],
+    "budgetTotal": 134335.24,
+    "budgetSpent": 40696.68,
+    "dataQuality": "low",
+    "status": "active",
+    "divider": "ista",
+    "divisionMethod": null,
+    "heatingSeasonInfo": {
+      "startMonth": 9,
+      "endMonth": 8,
+      "seasonStart": "2025-09-01",
+      "seasonEnd": "2026-08-31"
+    },
+    "onboardingStatus": "onboarded"
+  },
+  {
+    "id": "33770",
+    "complex": "Geulstr - Schependomln",
+    "complexId": "33770",
+    "location": "Nijmegen",
+    "vhe": 62,
+    "components": 2,
+    "utilities": [
+      "gas",
+      "heat"
+    ],
+    "budgetTotal": 140303.4,
+    "budgetSpent": 23748.72,
+    "dataQuality": "medium",
+    "status": "active",
+    "divider": "Brunata WMS",
+    "divisionMethod": null,
+    "heatingSeasonInfo": {
+      "startMonth": 1,
+      "endMonth": 12,
+      "seasonStart": "2026-01-01",
+      "seasonEnd": "2026-12-31"
+    },
+    "onboardingStatus": "onboarded"
+  },
+  {
+    "id": "52051",
+    "complex": "Haarlemmerhoutdreef 6-63",
+    "complexId": "52051",
+    "location": "Utrecht",
+    "vhe": 58,
+    "components": 2,
+    "utilities": [
+      "heat",
+      "gas"
+    ],
+    "budgetTotal": 34499.06,
+    "budgetSpent": 12645.84,
+    "dataQuality": "good",
+    "status": "active",
+    "divider": "ista",
+    "divisionMethod": null,
+    "heatingSeasonInfo": {
+      "startMonth": 9,
+      "endMonth": 8,
+      "seasonStart": "2025-09-01",
+      "seasonEnd": "2026-08-31"
+    },
+    "onboardingStatus": "onboarded"
+  },
+  {
+    "id": "33769",
+    "complex": "Hertogskamp",
+    "complexId": "33769",
+    "location": "Nijmegen",
+    "vhe": 63,
+    "components": 2,
+    "utilities": [
+      "gas",
+      "heat"
+    ],
+    "budgetTotal": 16394.7,
+    "budgetSpent": 5016.54,
+    "dataQuality": "low",
+    "status": "active",
+    "divider": "Brunata WMS",
+    "divisionMethod": null,
+    "heatingSeasonInfo": {
+      "startMonth": 1,
+      "endMonth": 12,
+      "seasonStart": "2026-01-01",
+      "seasonEnd": "2026-12-31"
+    },
+    "onboardingStatus": "onboarded"
+  },
+  {
+    "id": "103265",
+    "complex": "Hoog Soestdijk",
+    "complexId": "103265",
+    "location": "Soest",
+    "vhe": 85,
+    "components": 2,
+    "utilities": [
+      "gas",
+      "heat"
+    ],
+    "budgetTotal": 25803.82,
+    "budgetSpent": 10545.33,
+    "dataQuality": "good",
+    "status": "active",
+    "divider": "ista",
+    "divisionMethod": null,
+    "heatingSeasonInfo": {
+      "startMonth": 1,
+      "endMonth": 12,
+      "seasonStart": "2026-01-01",
+      "seasonEnd": "2026-12-31"
+    },
+    "onboardingStatus": "onboarded"
+  },
+  {
+    "id": "52565",
+    "complex": "Ibisdreef 2/232",
+    "complexId": "52565",
+    "location": "Utrecht",
+    "vhe": 116,
+    "components": 2,
+    "utilities": [
+      "heat",
+      "gas"
+    ],
+    "budgetTotal": 60058.2,
+    "budgetSpent": 27432.01,
+    "dataQuality": "good",
+    "status": "active",
+    "divider": "ista",
+    "divisionMethod": null,
+    "heatingSeasonInfo": {
+      "startMonth": 9,
+      "endMonth": 8,
+      "seasonStart": "2025-09-01",
+      "seasonEnd": "2026-08-31"
+    },
+    "onboardingStatus": "onboarded"
+  },
+  {
+    "id": "33000427",
+    "complex": "Kleine Oord 91-166",
+    "complexId": "033000427",
+    "location": "Arnhem",
+    "vhe": 83,
+    "components": 2,
+    "utilities": [
+      "gas",
+      "heat"
+    ],
+    "budgetTotal": 24273.78,
+    "budgetSpent": 8595.62,
+    "dataQuality": "good",
+    "status": "active",
+    "divider": "Techem",
+    "divisionMethod": null,
+    "heatingSeasonInfo": {
+      "startMonth": 1,
+      "endMonth": 12,
+      "seasonStart": "2026-01-01",
+      "seasonEnd": "2026-12-31"
+    },
+    "onboardingStatus": "live"
+  },
+  {
+    "id": "71577",
+    "complex": "Kwangodreef - noord",
+    "complexId": "71577",
+    "location": "Utrecht",
+    "vhe": 50,
+    "components": 2,
+    "utilities": [
+      "heat",
+      "gas"
+    ],
+    "budgetTotal": 33613.08,
+    "budgetSpent": 8117.25,
+    "dataQuality": "medium",
+    "status": "active",
+    "divider": "ista",
+    "divisionMethod": null,
+    "heatingSeasonInfo": {
+      "startMonth": 9,
+      "endMonth": 8,
+      "seasonStart": "2026-09-01",
+      "seasonEnd": "2027-08-31"
+    },
+    "onboardingStatus": "pipeline"
+  },
+  {
+    "id": "33001074",
+    "complex": "Langegracht 76-214",
+    "complexId": "033001074",
+    "location": "Leiden",
+    "vhe": 70,
+    "components": 3,
+    "utilities": [
+      "gas",
+      "water",
+      "heat"
+    ],
+    "budgetTotal": 27267.32,
+    "budgetSpent": 3863.75,
+    "dataQuality": "low",
+    "status": "active",
+    "divider": "Techem",
+    "divisionMethod": null,
+    "heatingSeasonInfo": {
+      "startMonth": 6,
+      "endMonth": 5,
+      "seasonStart": "2025-06-01",
+      "seasonEnd": "2026-05-31"
+    },
+    "onboardingStatus": "onboarded"
+  },
+  {
+    "id": "71579",
+    "complex": "Lichtenberchdreef 12-178 - noord",
+    "complexId": "71579",
+    "location": "Utrecht",
+    "vhe": 70,
+    "components": 2,
+    "utilities": [
+      "heat",
+      "gas"
+    ],
+    "budgetTotal": 62894.16,
+    "budgetSpent": 23213.78,
+    "dataQuality": "good",
+    "status": "active",
+    "divider": "ista",
+    "divisionMethod": null,
+    "heatingSeasonInfo": {
+      "startMonth": 9,
+      "endMonth": 8,
+      "seasonStart": "2025-09-01",
+      "seasonEnd": "2026-08-31"
+    },
+    "onboardingStatus": "pipeline"
+  },
+  {
+    "id": "17989",
+    "complex": "Malderburchtstr 380-656 (Hatert 12)",
+    "complexId": "17989",
+    "location": "Nijmegen",
+    "vhe": 142,
+    "components": 2,
+    "utilities": [
+      "gas",
+      "heat"
+    ],
+    "budgetTotal": 56397.44,
+    "budgetSpent": 21586.55,
+    "dataQuality": "medium",
+    "status": "active",
+    "divider": "Brunata WMS",
+    "divisionMethod": null,
+    "heatingSeasonInfo": {
+      "startMonth": 1,
+      "endMonth": 12,
+      "seasonStart": "2026-01-01",
+      "seasonEnd": "2026-12-31"
+    },
+    "onboardingStatus": "pipeline"
+  },
+  {
+    "id": "52050",
+    "complex": "Nigerdreef 1-347",
+    "complexId": "52050",
+    "location": "Utrecht",
+    "vhe": 174,
+    "components": 2,
+    "utilities": [
+      "heat",
+      "gas"
+    ],
+    "budgetTotal": 97917.4,
+    "budgetSpent": 34585.06,
+    "dataQuality": "good",
+    "status": "active",
+    "divider": "ista",
+    "divisionMethod": null,
+    "heatingSeasonInfo": {
+      "startMonth": 9,
+      "endMonth": 8,
+      "seasonStart": "2025-09-01",
+      "seasonEnd": "2026-08-31"
+    },
+    "onboardingStatus": "onboarded"
+  },
+  {
+    "id": "33006558",
+    "complex": "Nijeveldsingel 1-16 - zuid",
+    "complexId": "033006558",
+    "location": "Utrecht",
+    "vhe": 79,
+    "components": 2,
+    "utilities": [
+      "gas",
+      "electricity"
+    ],
+    "budgetTotal": 86986.94,
+    "budgetSpent": 12914.22,
+    "dataQuality": "good",
+    "status": "active",
+    "divider": "Techem",
+    "divisionMethod": null,
+    "heatingSeasonInfo": {
+      "startMonth": 5,
+      "endMonth": 4,
+      "seasonStart": "2026-05-01",
+      "seasonEnd": "2027-04-30"
+    },
+    "onboardingStatus": "onboarded"
+  },
+  {
+    "id": "33000586",
+    "complex": "Opaalstraat 170-288",
+    "complexId": "033000586",
+    "location": "Leiden",
+    "vhe": 60,
+    "components": 2,
+    "utilities": [
+      "heat",
+      "gas"
+    ],
+    "budgetTotal": 50175.92,
+    "budgetSpent": 16514.31,
+    "dataQuality": "low",
+    "status": "active",
+    "divider": "Techem",
+    "divisionMethod": null,
+    "heatingSeasonInfo": {
+      "startMonth": 6,
+      "endMonth": 5,
+      "seasonStart": "2026-06-01",
+      "seasonEnd": "2027-05-31"
+    },
+    "onboardingStatus": "pipeline"
+  },
+  {
+    "id": "15198",
+    "complex": "Oude Dukenburgseweg (Leuvensehof)",
+    "complexId": "15198",
+    "location": "Nijmegen",
+    "vhe": 198,
+    "components": 2,
+    "utilities": [
+      "gas",
+      "heat"
+    ],
+    "budgetTotal": 52161.46,
+    "budgetSpent": 15794.15,
+    "dataQuality": "medium",
+    "status": "active",
+    "divider": "Brunata WMS",
+    "divisionMethod": null,
+    "heatingSeasonInfo": {
+      "startMonth": 1,
+      "endMonth": 12,
+      "seasonStart": "2026-01-01",
+      "seasonEnd": "2026-12-31"
+    },
+    "onboardingStatus": "pipeline"
+  },
+  {
+    "id": "12487",
+    "complex": "P. Lorentzlaann, S.Stevinlaan",
+    "complexId": "12487",
+    "location": "Soesterberg",
+    "vhe": 56,
+    "components": 1,
+    "utilities": [
+      "gas"
+    ],
+    "budgetTotal": 38729.34,
+    "budgetSpent": 8029.26,
+    "dataQuality": "good",
+    "status": "active",
+    "divider": "ista",
+    "divisionMethod": null,
+    "heatingSeasonInfo": {
+      "startMonth": 6,
+      "endMonth": 5,
+      "seasonStart": "2026-06-01",
+      "seasonEnd": "2027-05-31"
+    },
+    "onboardingStatus": "pipeline"
+  },
+  {
+    "id": "51935",
+    "complex": "Scharlakendreef - noord",
+    "complexId": "51935",
+    "location": "Utrecht",
+    "vhe": 98,
+    "components": 2,
+    "utilities": [
+      "heat",
+      "gas"
+    ],
+    "budgetTotal": 47393.86,
+    "budgetSpent": 16942.13,
+    "dataQuality": "good",
+    "status": "active",
+    "divider": "ista",
+    "divisionMethod": null,
+    "heatingSeasonInfo": {
+      "startMonth": 9,
+      "endMonth": 8,
+      "seasonStart": "2025-09-01",
+      "seasonEnd": "2026-08-31"
+    },
+    "onboardingStatus": "live"
+  },
+  {
+    "id": "51596",
+    "complex": "St. Ludgerusstraat   Willibrordusstraat",
+    "complexId": "51596",
+    "location": "Utrecht",
+    "vhe": 99,
+    "components": 1,
+    "utilities": [
+      "gas"
+    ],
+    "budgetTotal": 86945.71,
+    "budgetSpent": 28715.55,
+    "dataQuality": "low",
+    "status": "active",
+    "divider": "ista",
+    "divisionMethod": null,
+    "heatingSeasonInfo": {
+      "startMonth": 7,
+      "endMonth": 6,
+      "seasonStart": "2026-07-01",
+      "seasonEnd": "2027-06-30"
+    },
+    "onboardingStatus": "pipeline"
+  },
+  {
+    "id": "71584",
+    "complex": "St. Maartendreef - noord",
+    "complexId": "71584",
+    "location": "Utrecht",
+    "vhe": 116,
+    "components": 2,
+    "utilities": [
+      "heat",
+      "gas"
+    ],
+    "budgetTotal": 55156.86,
+    "budgetSpent": 23336.49,
+    "dataQuality": "good",
+    "status": "active",
+    "divider": "ista",
+    "divisionMethod": null,
+    "heatingSeasonInfo": {
+      "startMonth": 9,
+      "endMonth": 8,
+      "seasonStart": "2025-09-01",
+      "seasonEnd": "2026-08-31"
+    },
+    "onboardingStatus": "pipeline"
+  },
+  {
+    "id": "33004024",
+    "complex": "Stedumhof 90-352",
+    "complexId": "033004024",
+    "location": "Arnhem",
+    "vhe": 144,
+    "components": 2,
+    "utilities": [
+      "gas",
+      "heat"
+    ],
+    "budgetTotal": 31133.8,
+    "budgetSpent": 10466.35,
+    "dataQuality": "good",
+    "status": "active",
+    "divider": "Techem",
+    "divisionMethod": null,
+    "heatingSeasonInfo": {
+      "startMonth": 1,
+      "endMonth": 12,
+      "seasonStart": "2026-01-01",
+      "seasonEnd": "2026-12-31"
+    },
+    "onboardingStatus": "live"
+  },
+  {
+    "id": "71578",
+    "complex": "Theemsdreef 16-178 - noord",
+    "complexId": "71578",
+    "location": "Utrecht",
+    "vhe": 70,
+    "components": 2,
+    "utilities": [
+      "heat",
+      "gas"
+    ],
+    "budgetTotal": 26723.62,
+    "budgetSpent": 4489.72,
+    "dataQuality": "good",
+    "status": "active",
+    "divider": "ista",
+    "divisionMethod": null,
+    "heatingSeasonInfo": {
+      "startMonth": 9,
+      "endMonth": 8,
+      "seasonStart": "2025-09-01",
+      "seasonEnd": "2026-08-31"
+    },
+    "onboardingStatus": "pipeline"
+  },
+  {
+    "id": "11493",
+    "complex": "Voorstenkamp (De Stroeten)",
+    "complexId": "11493",
+    "location": "Nijmegen",
+    "vhe": 120,
+    "components": 2,
+    "utilities": [
+      "gas",
+      "heat"
+    ],
+    "budgetTotal": 41350.44,
+    "budgetSpent": 16344.6,
+    "dataQuality": "medium",
+    "status": "active",
+    "divider": "Brunata WMS",
+    "divisionMethod": null,
+    "heatingSeasonInfo": {
+      "startMonth": 1,
+      "endMonth": 12,
+      "seasonStart": "2026-01-01",
+      "seasonEnd": "2026-12-31"
+    },
+    "onboardingStatus": "pipeline"
+  },
+  {
+    "id": "33006629",
+    "complex": "W.F. Hermansstr 80-198 ( Remus) - west",
+    "complexId": "033006629",
+    "location": "Utrecht",
+    "vhe": 60,
+    "components": 2,
+    "utilities": [
+      "heat",
+      "gas"
+    ],
+    "budgetTotal": 34323.29,
+    "budgetSpent": 7062.38,
+    "dataQuality": "good",
+    "status": "active",
+    "divider": "Techem",
+    "divisionMethod": null,
+    "heatingSeasonInfo": {
+      "startMonth": 10,
+      "endMonth": 9,
+      "seasonStart": "2025-10-01",
+      "seasonEnd": "2026-09-30"
+    },
+    "onboardingStatus": "live"
+  }
+]
