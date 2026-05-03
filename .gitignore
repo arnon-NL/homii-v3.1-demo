@@ -5,3 +5,12 @@ dist
 .vercel
 package-lock.json.bak
 *.bak
+
+# Productie-cost-flows en partner-data — buiten v3.1 demo houden
+src/data/costFlow.json
+src/data/costFlowDalkruid.json
+src/data/costFlowBurghoutweg.json
+src/data/costFlowIrenestraat.json
+src/data/costFlowSchelpenhoek.json
+src/data/costFlowCarolina.json
+src/data/portaal/
